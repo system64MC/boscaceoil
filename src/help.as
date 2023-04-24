@@ -1,27 +1,27 @@
-﻿package
+﻿namespace bosca
 {
-	import flash.display.*;
-	import flash.geom.*;
-	import flash.events.*;
-	import flash.net.*;
 	
-	public class help
+	
+	
+	
+	
+	struct help
 	{
-		public static function init():void
+		static void init()
 		{
 			glow = 0;
 			glowdir = 0;
 			slowsine = 0;
 		}
 		
-		public function RGB(red:Number, green:Number, blue:Number):Number
+		Number RGB(Number red, Number green, Number blue)
 		{
 			return (blue | (green << 8) | (red << 16))
 		}
 		
-		public static function removeObject(obj:Object, arr:Array):void
+		static void removeObject(Object obj, Array arr)
 		{
-			var i:String;
+			var std::string i;
 			for (i in arr)
 			{
 				if (arr[i] == obj)
@@ -32,7 +32,7 @@
 			}
 		}
 		
-		public static function updateglow():void
+		static void updateglow()
 		{
 			slowsine += 2;
 			if (slowsine >= 64) slowsine = 0;
@@ -49,7 +49,7 @@
 			}
 		}
 		
-		public static function inbox(xc:int, yc:int, x1:int, y1:int, x2:int, y2:int):Boolean
+		static bool inbox(int xc, int yc, int x1, int y1, int x2, int y2)
 		{
 			if (xc >= x1 && xc <= x2)
 			{
@@ -61,7 +61,7 @@
 			return false;
 		}
 		
-		public static function inboxw(xc:int, yc:int, x1:int, y1:int, x2:int, y2:int):Boolean
+		static bool inboxw(int xc, int yc, int x1, int y1, int x2, int y2)
 		{
 			if (xc >= x1 && xc <= x1 + x2)
 			{
@@ -73,27 +73,27 @@
 			return false;
 		}
 		
-		public static function Instr(s:String, c:String, start:int = 1):int
+		static int Instr(std::string s, std::string c, int start = 1)
 		{
 			return (s.indexOf(c, start - 1) + 1);
 		}
 		
-		public static function Mid(s:String, start:int = 0, length:int = 1):String
+		static std Mid(std::string s, int start = 0, int length = 1)::string
 		{
 			return s.substr(start, length);
 		}
 		
-		public static function Left(s:String, length:int = 1):String
+		static std Left(std::string s, int length = 1)::string
 		{
 			return s.substr(0, length);
 		}
 		
-		public static function Right(s:String, length:int = 1):String
+		static std Right(std::string s, int length = 1)::string
 		{
 			return s.substr(s.length - length, length);
 		}
 		
-		public static var glow:int, slowsine:int;
-		public static var glowdir:int;
+		static var int glow, int slowsine;
+		static var int glowdir;
 	}
 }

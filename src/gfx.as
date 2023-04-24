@@ -1,16 +1,16 @@
-﻿package{
-	import flash.display.*;
-	import flash.geom.*;
-	import flash.events.*;
-	import flash.net.*;
+﻿namespace bosca{
+	
+	
+	
+	
 	import flash.text.*;
 	import flash.utils.Dictionary;
 	CONFIG::desktop {
 		import flash.display.NativeWindow;
 	}
 	
-	public class gfx extends Sprite {
-		public static function init(_stage:Stage):void {
+	struct gfx extends Sprite {
+		static void init(Stage _stage) {
 			min_windowwidth = 768;
 			min_windowheight = 540;
 			updatebackground = 5;
@@ -21,7 +21,7 @@
 			stage = _stage;
 		}
 		
-		public static function changeframerate(t:int):void {
+		static void changeframerate(int t) {
 			if (t != boscaframerate) {
 				stage.frameRate = t;
 				boscaframerate = t;
@@ -30,7 +30,7 @@
 		
 		
 
-		public static function changescalemode(t:int):void {
+		static void changescalemode(int t) {
 			//Set new minimum screensize
 			if (t == 0) {
 				min_windowwidth = 768;
@@ -51,15 +51,15 @@
 			control.clicklist = true; // Stops from placing a note on resize
 		}
 		
-		public static function tutorialimagewidth(t:int):int {
+		static int tutorialimagewidth(int t) {
 			return images[t + 8].width;
 		}
 		
-		public static function tutorialimageheight(t:int):int {
+		static int tutorialimageheight(int t) {
 			return images[t + 8].height;
 		}
 		
-		public static function forceminimumsize():void {
+		static void forceminimumsize() {
 			if (windowwidth < min_windowwidth && windowheight < min_windowheight) {
 				changewindowsize(min_windowwidth, min_windowheight);
 			}else if (windowwidth < min_windowwidth) {
@@ -69,7 +69,7 @@
 			}
 		}
 		
-		public static function initpal():void {
+		static void initpal() {
 			//Initalise all the program's palettes here
 			pal[0].setto(255, 255, 255);			//Pure White
 			pal[1].setto(52, 66, 70);				 //Background
@@ -159,7 +159,7 @@
 			pal[306].setto(227,227,227);		 //Octave change
 		}
 		
-		public static function updateboxsize():void {
+		static void updateboxsize() {
 			if (control.doublesize) {
 				control.boxsize = (screenwidth - 60) / 32;
 				control.barsize = control.boxsize * control.barcount;
@@ -169,25 +169,25 @@
 			}
 		}
 
-		public static function lastchar(s:String):String {
+		static std lastchar(std::string s)::string {
 			return (s.length > 0) ? s.charAt(s.length - 1) : "";
 		}
 
-		public static function drawpatterneditor():void {
+		static void drawpatterneditor() {
 			//Pattern editor
 			updateboxsize();
 			
 			//Draw background colour for each row
-			var isdrumkit:Boolean = control.instrument[control.musicbox[control.currentbox].instr].type >= 1;
+			var bool isdrumkit = control.instrument[control.musicbox[control.currentbox].instr].type >= 1;
 			for (i = 0; i < notesonscreen; i++){
-				var instsize:int = control.pianorollsize;
+				var int instsize = control.pianorollsize;
 				if (control.instrument[control.musicbox[control.currentbox].instr].type >= 1) {
 					instsize = control.drumkit[control.instrument[control.musicbox[control.currentbox].instr].type - 1].size;
 				}
 				if (control.musicbox[control.currentbox].start + i - 1 < instsize) {
-					var n:int = control.musicbox[control.currentbox].start + i - 1;
-					var notename:String = (n > -1) ? control.notename[control.pianoroll[n]] : "";
-					var sharp:Boolean = isdrumkit ? (n % 2 == 0) : (lastchar(notename) == '#');
+					var int n = control.musicbox[control.currentbox].start + i - 1;
+					var std::string notename = (n > -1) ? control.notename[control.pianoroll[n]] : "";
+					var bool sharp = isdrumkit ? (n % 2 == 0) : (lastchar(notename) == '#');
 					if (!sharp) {
 						fillrect(0, screenheight - linesize - (i * linesize), screenwidth, linesize, 100 + (control.musicbox[control.currentbox].palette * 10));
 						fillrect(0, screenheight - linesize - (i * linesize), screenwidth, 2, 103+(control.musicbox[control.currentbox].palette*10));
@@ -282,7 +282,7 @@
 					if ((j + i) % control.scalesize == 0) {
 						fillrect(30, screenheight - linesize - (i * linesize), screenwidth, 3, 106 + (control.musicbox[control.currentbox].palette * 10));
 						fillrect(30, screenheight - linesize - (i * linesize) + 3, screenwidth, 1, 107 + (control.musicbox[control.currentbox].palette * 10));
-						tempstring = String(int(j + i) / control.scalesize);
+						tempstring = std::string(int(j + i) / control.scalesize);
 						print(screenwidth - 20, screenheight - linesize - (i * linesize) + 4, tempstring, 0, false, true);
 					}
 				}
@@ -311,7 +311,7 @@
 							fillrect(42 + (i * control.boxsize), screenheight - linesize - (control.drawnoteposition * linesize) + 16, control.drawnotelength, 4, 104+(control.musicbox[control.currentbox].palette*10));
 							fillrect(42 + (i * control.boxsize) + control.drawnotelength - 4,	screenheight - linesize - (control.drawnoteposition * linesize), 4, linesize, 104 + (control.musicbox[control.currentbox].palette * 10));
 							
-							tempstring = String(int(control.musicbox[control.currentbox].notes[j].y))
+							tempstring = std::string(int(control.musicbox[control.currentbox].notes[j].y))
 							if (control.doublesize) {
 								if (control.musicbox[control.currentbox].notes[j].y + control.musicbox[control.currentbox].notes[j].width > 32) {
 									print(42 + (i * control.boxsize), screenheight - linesize - (control.drawnoteposition * linesize), tempstring, 12);
@@ -327,7 +327,7 @@
 			}
 		}
 		
-		public static function drawpatterneditor_cursor():void {
+		static function drawpatterneditor_cursor():void {
 			//Bar position
 			control.seekposition(control.boxsize * control.looptime);
 			if (control.musicbox[control.currentbox].isplayed) {
@@ -351,7 +351,7 @@
 					}else {
 						drawbox(40 + (control.cursorx * control.boxsize), gfx.screenheight - linesize - (control.cursory * linesize), control.boxsize * control.notelength, linesize, 0);
 						if (control.notelength > control.boxcount) {
-							tempstring = String(control.notelength);
+							tempstring = std::string(control.notelength);
 							print(40 + (control.cursorx * control.boxsize), gfx.screenheight - linesize	- (control.cursory * linesize), tempstring, 0);
 						}
 					}
@@ -359,7 +359,7 @@
 			}
 		}
 		
-		public static function drawlist():void {
+		static void drawlist() {
 			if (control.list.active) {
 				//Draw list
 				fillrect(control.list.x - 2, control.list.y - 2, control.list.w + 4, control.list.h + 4, 12);
@@ -428,7 +428,7 @@
 			}			
 		}
 		
-		public static function drawmusicbox(xp:int, yp:int, t:int, enabled:Boolean=true, forcezoom:int = -1):void {
+		static void drawmusicbox(int xp, int yp, int t, bool enabled=true, int forcezoom = -1) {
 			//Draw a little music box containing our notes!
 			if (xp < screenwidth) {
 				temppal = control.musicbox[t].palette;
@@ -483,14 +483,14 @@
 				}
 				
 				if (t + 1 < 10) {
-					print(xp + 10, yp + 2, String(t + 1), 2, false, true);
+					print(xp + 10, yp + 2, std::string(t + 1), 2, false, true);
 				}else {
-					print(xp + 4, yp + 2, String(t + 1), 2, false, true);
+					print(xp + 4, yp + 2, std::string(t + 1), 2, false, true);
 				}
 			}
 		}
 		
-		public static function drawarrangementeditor():void {
+		static void drawarrangementeditor() {
 			for (i = 0; i < 8; i++) {
 				if(control.arrange.channelon[i]){
 					if (i % 2 == 0) {
@@ -521,7 +521,7 @@
 			}
 		}
 		
-		public static function drawarrangementcursor():void {
+		static void drawarrangementcursor() {
 			//Position bar
 			i = ((control.looptime * patternwidth) / control.boxcount) + ((control.arrange.currentbar - control.arrange.viewstart) * patternwidth);
 			if (i < patternmanagerx) {
@@ -577,7 +577,7 @@
 			}
 		}
 		
-		public static function drawtimeline():void {
+		static void drawtimeline() {
 			//From here: TIMELINE
 			fillrect(0, pianorollposition + 8, screenwidth, 12, 6);
 			
@@ -616,19 +616,19 @@
 			}
 		}
 		
-		public static function drawtimeline_cursor():void {
+		static function drawtimeline_cursor():void {
 			//Draw the cursor
 			if (control.timelinecurx > -1) {
 				if (control.arrange.viewstart == -1 && control.timelinecurx == 0) {
 					drawbox(0, linesize, patternwidth, pianorollposition - 12, 0);
 				}else{
 					drawbox(control.timelinecurx * patternwidth,	pianorollposition + 8, patternwidth, 12, 0);
-					print(control.timelinecurx * patternwidth,	pianorollposition + 8 - linesize, String(control.arrange.viewstart +control.timelinecurx + 1), 0, false, true);
+					print(control.timelinecurx * patternwidth,	pianorollposition + 8 - linesize, std::string(control.arrange.viewstart +control.timelinecurx + 1), 0, false, true);
 				}
 			}
 		}
 		
-		public static function drawpatternmanager():void {
+		static void drawpatternmanager() {
 			//From here, PATTERN Manager
 			fillrect(patternmanagerx, linesize, screenwidth - patternmanagerx, pianorollposition, 2);
 			
@@ -649,14 +649,14 @@
 			}
 		}
 		
-		public static function drawpatternmanager_cursor():void {
+		static function drawpatternmanager_cursor():void {
 			//Draw the cursor
 			if (control.patterncury > -1) {
 				drawbox(patternmanagerx + 3, linesize + 2 + (control.patterncury * patternheight), 108, patternheight, 0);
 			}
 		}
 		
-		public static function drawinstrumentlist():void {
+		static void drawinstrumentlist() {
 			fillrect(0, linesize, 280, pianorollposition, 2);
 			
 			//List
@@ -672,7 +672,7 @@
 					if (control.instrumentmanagerview + k < control.numinstrument) {
 						fillrect(4, linesize + 4 + (k * patternheight), 272, 24, 100 + (control.instrument[control.instrumentmanagerview + k].palette * 10));
 						fillrect(4+50, linesize + 4 + (k * patternheight), 272-50, 24, 101 + (control.instrument[control.instrumentmanagerview + k].palette * 10));
-						print(12, linesize + 6 + (k * patternheight), String(control.instrumentmanagerview + k + 1), 0, false, true);
+						print(12, linesize + 6 + (k * patternheight), std::string(control.instrumentmanagerview + k + 1), 0, false, true);
 						print(56, linesize + 6 + (k * patternheight), control.instrument[control.instrumentmanagerview + k].name, 0, false, true);
 					}
 				}
@@ -683,9 +683,9 @@
 			}
 		}
 		
-		public static function drawinstrument():void {
+		static void drawinstrument() {
 			fillrect(280, linesize, screenwidth - 280, pianorollposition, 101 + (control.instrument[control.currentinstrument].palette * 10));
-			print(290, linesize + 6, "INSTRUMENT " + String(control.currentinstrument + 1), 0, false, true);
+			print(290, linesize + 6, "INSTRUMENT " + std::string(control.currentinstrument + 1), 0, false, true);
 			
 			fillrect(286, (linesize * 2) + 6, 160, linesize, 100 + (control.instrument[control.currentinstrument].palette * 10));
 			drawicon(290, (linesize * 2) + 4, 0);
@@ -715,7 +715,7 @@
 					}
 				}
 				
-				print(286 + ((screenwidth - 348)/2) - (len("! RECORDING FOR PATTERN " + String(control.currentbox + 1) + "!") / 2), (linesize * 4) + 114, "! RECORDING FOR PATTERN " + String(control.currentbox + 1) + "!", 15, false, true);
+				print(286 + ((screenwidth - 348)/2) - (len("! RECORDING FOR PATTERN " + std::string(control.currentbox + 1) + "!") / 2), (linesize * 4) + 114, "! RECORDING FOR PATTERN " + std::string(control.currentbox + 1) + "!", 15, false, true);
 				
 				//Move over recording
 				j = int(((256-control.musicbox[control.currentbox].volumegraph[control.looptime%control.boxcount]) * 90) / 256);
@@ -761,7 +761,7 @@
 			}
 		}
 		
-		public static function initgfx():void {
+		static void initgfx() {
 			//We initialise a few things
 			linesize = 20; 
 			linespacing = 20;
@@ -799,13 +799,13 @@
 			screen.y = 0; 
 		}
 		
-		public static function setzoomlevel(t:int):void {
+		static void setzoomlevel(int t) {
 			zoom = t;
 			patternwidth = 44 + (zoom * 16);
 		}
 		
 		CONFIG::desktop {
-			public static function changewindowsize(w:int, h:int):void {
+			static void changewindowsize(int w, int h) {
 				//if (w < 768) w = 768;
 				//if (h < 480) h = 480;
 				windowboundsx = stage.nativeWindow.bounds.width - stage.stageWidth;
@@ -833,7 +833,7 @@
 		}
 
 		CONFIG::web {
-			public static function changewindowsize(w:int, h:int):void {
+			static void changewindowsize(int w, int h) {
 				windowwidth = w;
 				windowheight = h;
 
@@ -848,41 +848,41 @@
 			}
 		}
 
-		public static function settrect(x:int, y:int, w:int, h:int):void {
+		static void settrect(int x, int y, int w, int h) {
 			trect.x = x;
 			trect.y = y;
 			trect.width = w;
 			trect.height = h;
 		}
 
-		public static function settpoint(x:int, y:int):void {
+		static void settpoint(int x, int y) {
 			tpoint.x = x;
 			tpoint.y = y;
 		}
 		
-		public static function addimage():void {
-			var t:BitmapData = new BitmapData(buffer.width, buffer.height, true, 0x000000);
+		static void addimage() {
+			var BitmapData t = new BitmapData(buffer.width, buffer.height, true, 0x000000);
 			t.copyPixels(buffer, new Rectangle(0, 0, buffer.width, buffer.height), tl);
 			images.push(t);
 		}
 		
-		public static function drawimage(t:int, xp:int, yp:int):void {
+		static void drawimage(int t, int xp, int yp) {
 			settpoint(xp, yp);
 			settrect(0, 0, images[t].width, images[t].height);
 			backbuffer.copyPixels(images[t], trect, tpoint);
 		}
 		
-		public static function makeiconarray():void {
-			for (var i:int = 0; i < 20; i++) {
-				var t:BitmapData = new BitmapData(32, 32, true, 0x000000);
-				var temprect:Rectangle = new Rectangle(i * 32, 0, 32, 32);	
+		static void makeiconarray() {
+			for (var int i = 0; i < 20; i++) {
+				var BitmapData t = new BitmapData(32, 32, true, 0x000000);
+				var Rectangle temprect = new Rectangle(i * 32, 0, 32, 32);	
 				t.copyPixels(buffer, temprect, tl);
 				icons.push(t);
 			}
 		}	
 		
 		// Draw Primatives
-		public static function drawline(x1:int, y1:int, x2:int, y2:int, col:int):void {
+		static void drawline(int x1, int y1, int x2, int y2, int col) {
 			if (x1 > x2) {
 				drawline(x2, y1, x1, y2, col);
 			}else if (y1 > y2) {
@@ -898,7 +898,7 @@
 			}
 		}
 		
-		public static function drawpartialbox(x1:int, y1:int, w1:int, h1:int, col:int, cutoff:int):void {
+		static void drawpartialbox(int x1, int y1, int w1, int h1, int col, int cutoff) {
 			if (y1 > cutoff) {
 				settrect(x1, y1, w1, 2); backbuffer.fillRect(trect, RGB(pal[col].r, pal[col].g, pal[col].b));
 			}
@@ -917,34 +917,34 @@
 			}
 		}
 		
-		public static function drawbox(x1:int, y1:int, w1:int, h1:int, col:int):void {
+		static void drawbox(int x1, int y1, int w1, int h1, int col) {
 			settrect(x1, y1, w1, 2); backbuffer.fillRect(trect, RGB(pal[col].r, pal[col].g, pal[col].b));
 			settrect(x1, y1 + h1 - 2, w1, 2); backbuffer.fillRect(trect, RGB(pal[col].r, pal[col].g, pal[col].b));
 			settrect(x1, y1, 2, h1); backbuffer.fillRect(trect, RGB(pal[col].r, pal[col].g, pal[col].b));
 			settrect(x1 + w1 - 2, y1, 2, h1); backbuffer.fillRect(trect, RGB(pal[col].r, pal[col].g, pal[col].b));
 		}
 		
-		public static function cls():void {
+		static void cls() {
 			fillrect(0, 0, 384, 240, 1);
 		}
 		
-		public static function fillrect(x1:int, y1:int, w1:int, h1:int, t:int):void {
+		static void fillrect(int x1, int y1, int w1, int h1, int t) {
 			settrect(x1, y1, w1, h1);
 			backbuffer.fillRect(trect, RGB(pal[t].r, pal[t].g, pal[t].b));
 		}
 		
-		public static function drawbuffericon(x:int, y:int, t:int):void {
+		static void drawbuffericon(int x, int y, int t) {
 			settpoint(x, y);
 			buffer.copyPixels(icons[t], icons_rect, tpoint);
 		}
 
-		public static function drawicon(x:int, y:int, t:int):void {
+		static void drawicon(int x, int y, int t) {
 			settpoint(x, y);
 			backbuffer.copyPixels(icons[t], icons_rect, tpoint);
 		}
 		
 		//Text Functions
-		public static function initfont():void {			
+		static void initfont() {			
 			tf_1.embedFonts = true;
 			tf_1.defaultTextFormat = new TextFormat("FFF Aquarius Bold Condensed", fontsize[0], 0, true);
 			tf_1.width = screenwidth; tf_1.height = 200;
@@ -971,22 +971,22 @@
 			tf_5.antiAliasType = AntiAliasType.NORMAL;
 		}
 
-		public static function rprint(x:int, y:int, t:String, col:int, shadow:Boolean = false):void {
+		static void rprint(int x, int y, std::string t, int col, bool shadow = false) {
 			x = x - len(t);
 			print(x, y, t, col, false, shadow);
 		}
 		
-		public static var cachedtextindex:Dictionary = new Dictionary;
-		public static var cachedtext:Vector.<BitmapData> = new Vector.<BitmapData>;
-		public static var cachedrect:Vector.<Rectangle> = new Vector.<Rectangle>;
-		public static var cacheindex:int;
-		public static var cachelabel:String;
+		static var Dictionary cachedtextindex = new Dictionary;
+		static var std::vector<BitmapData> cachedtext = new std::vector<BitmapData>;
+		static var std::vector<Rectangle> cachedrect = new std::vector<Rectangle>;
+		static var int cacheindex;
+		static var std::string cachelabel;
 		
-		public static function print(x:int, y:int, t:String, col:int, cen:Boolean = false, shadow:Boolean = false):void {
+		static void print(int x, int y, std::string t, int col, bool cen = false, bool shadow = false) {
 			if(shadow){
-				cachelabel = t + "_" + String(col) + "_shadow";
+				cachelabel = t + "_" + std::string(col) + "_shadow";
 			}else {
-				cachelabel = t + "_" + String(col) + "_noshadow";
+				cachelabel = t + "_" + std::string(col) + "_noshadow";
 			}
 			if (cachedtextindex[cachelabel] == null) {
 				//Cache the text
@@ -1003,7 +1003,7 @@
 			backbuffer.copyPixels(cachedtext[cacheindex], cachedrect[cacheindex], tpoint);
 		}
 		
-		public static function printoncache(x:int, y:int, t:String, col:int, cen:Boolean = false, shadow:Boolean=false):void {
+		static void printoncache(int x, int y, std::string t, int col, bool cen = false, bool shadow=false) {
 			y -= 3;
 			
 			tf_1.textColor = RGB(pal[col].r, pal[col].g, pal[col].b);
@@ -1025,7 +1025,7 @@
 			shapematrix.translate(-x, -y);
 		}
 		
-		public static function normalprint(x:int, y:int, t:String, col:int, cen:Boolean = false, shadow:Boolean=false):void {
+		static void normalprint(int x, int y, std::string t, int col, bool cen = false, bool shadow=false) {
 			y -= 3;
 			
 			tf_1.textColor = RGB(pal[col].r, pal[col].g, pal[col].b);
@@ -1047,7 +1047,7 @@
 			shapematrix.translate(-x, -y);
 		}
 		
-		public static function len(t:String, sz:int = 1):int {
+		static int len(std::string t, int sz = 1) {
 			if(sz==1){
 				tf_1.text = t;
 				return tf_1.textWidth;
@@ -1068,7 +1068,7 @@
 			tf_1.text = t;
 			return tf_1.textWidth;
 		}
-		public static function hig(t:String, sz:int = 1):int {
+		static int hig(std::string t, int sz = 1) {
 			if(sz==1){
 				tf_1.text = t;
 				return tf_1.textHeight;
@@ -1090,12 +1090,12 @@
 			return tf_1.textHeight;
 		}
 
-		public static function rbigprint(x:int, y:int, t:String, r:int, g:int, b:int, cen:Boolean = false, sc:Number = 2):void {
+		static void rbigprint(int x, int y, std::string t, int r, int g, int b, bool cen = false, Number sc = 2) {
 			x = x - len(t, sc);
 			bigprint(x, y, t, r, g, b, cen, sc);
 		}
 
-		public static function bigprint(x:int, y:int, t:String, r:int, g:int, b:int, cen:Boolean = false, sc:Number = 2):void {
+		static void bigprint(int x, int y, std::string t, int r, int g, int b, bool cen = false, Number sc = 2) {
 			if (r < 0) r = 0; if (g < 0) g = 0; if (b < 0) b = 0;
 			if (r > 255) r = 255; if (g > 255) g = 255; if (b > 255) b = 255;
 			
@@ -1139,17 +1139,17 @@
 			}
 		}
 		
-		public static function RGB(red:Number,green:Number,blue:Number):Number{
+		static Number RGB(Number red,Number green,Number blue){
 			return (blue | (green << 8) | (red << 16))
 		}
 		
 		//Render functions
-		public static function normalrender():void {
+		static void normalrender() {
 			backbuffer.unlock();
 			backbuffer.lock();
 		}
 		
-		public static function render():void {
+		static void render() {
 			if (control.test) {
 				settrect(0, 0, screenwidth, 10);
 				backbuffer.fillRect(trect, 0x000000);
@@ -1159,70 +1159,70 @@
 			normalrender();
 		}
 			
-		public static var icons:Vector.<BitmapData> = new Vector.<BitmapData>;
-		public static var ct:ColorTransform;
-		public static var icons_rect:Rectangle;
-		public static var tl:Point = new Point(0, 0);
-		public static var images:Vector.<BitmapData> = new Vector.<BitmapData>;
-		public static var trect:Rectangle, tpoint:Point, tbuffer:BitmapData;
-		public static var i:int, j:int, k:int, l:int, mbi:int, mbj:int;
-		public static var tempstring:String;
+		static var std::vector<BitmapData> icons = new std::vector<BitmapData>;
+		static var ColorTransform ct;
+		static var Rectangle icons_rect;
+		static var Point tl = new Point(0, 0);
+		static var std::vector<BitmapData> images = new std::vector<BitmapData>;
+		static var Rectangle trect, Point tpoint, BitmapData tbuffer;
+		static var int i, int j, int k, int l, int mbi, int mbj;
+		static var std::string tempstring;
 		
-		public static var screenwidth:int, screenheight:int;
-		public static var screenwidthmid:int, screenheightmid:int;
-		public static var screenviewwidth:int, screenviewheight:int;
-		public static var linesize:int, patternheight:int, patternwidth:int;
-		public static var temppatternwidth:int;
-		public static var patternmanagerx:int;
-		public static var linespacing:int;
-		public static var patterneditorheight:int;
-		public static var buttonheight:int;
-		public static var pianorollposition:int;
-		public static var notesonscreen:int;
+		static var int screenwidth, int screenheight;
+		static var int screenwidthmid, int screenheightmid;
+		static var int screenviewwidth, int screenviewheight;
+		static var int linesize, int patternheight, int patternwidth;
+		static var int temppatternwidth;
+		static var int patternmanagerx;
+		static var int linespacing;
+		static var int patterneditorheight;
+		static var int buttonheight;
+		static var int pianorollposition;
+		static var int notesonscreen;
 		
-		public static var temp:int, temp2:int, temp3:int;
-		public static var alphamult:uint;
-		public static var stemp:String;
-		public static var buffer:BitmapData;
-		public static var temppal:int;
+		static var int temp, int temp2, int temp3;
+		static var uint alphamult;
+		static var std::string stemp;
+		static var BitmapData buffer;
+		static var int temppal;
 		
-		public static var zoom:int, zoomoffset:Number;
+		static var int zoom, Number zoomoffset;
 		
-		public static var tempicon:BitmapData;
+		static var BitmapData tempicon;
 		//Actual backgrounds
-		public static var drawto:BitmapData;
-		public static var backbuffer:BitmapData;
-		public static var backbuffercache:BitmapData;
-		public static var updatebackground:int;
-		public static var screenbuffer:BitmapData;
-		public static var screen:Bitmap;
+		static var BitmapData drawto;
+		static var BitmapData backbuffer;
+		static var BitmapData backbuffercache;
+		static var int updatebackground;
+		static var BitmapData screenbuffer;
+		static var Bitmap screen;
 		//Tempshape
-		public static var tempshape:Shape = new Shape();
-		public static var shapematrix:Matrix = new Matrix();
+		static var Shape tempshape = new Shape();
+		static var Matrix shapematrix = new Matrix();
 		
 		[Embed(source = "graphics/font.swf", symbol = "FFF Aquarius Bold Condensed")]
-		public static var ttffont:Class;
-		public static var tf_1:TextField = new TextField();
-		public static var tf_2:TextField = new TextField();
-		public static var tf_3:TextField = new TextField();
-		public static var tf_4:TextField = new TextField();
-		public static var tf_5:TextField = new TextField();
-		public static var fontsize:Vector.<int> = new Vector.<int>;
+		static var Class ttffont;
+		static var TextField tf_1 = new TextField();
+		static var TextField tf_2 = new TextField();
+		static var TextField tf_3 = new TextField();
+		static var TextField tf_4 = new TextField();
+		static var TextField tf_5 = new TextField();
+		static var std::vector<int> fontsize = new std::vector<int>;
 		
-		public static var pal:Vector.<paletteclass> = new Vector.<paletteclass>;
+		static var std::vector<paletteclass> pal = new std::vector<paletteclass>;
 		
-		public static var buttonpress:int;
+		static var int buttonpress;
 		
-		public static var stage:Stage;
+		static var Stage stage;
 		
-		public static var windowwidth:int, windowheight:int;
-		public static var min_windowwidth:int, min_windowheight:int;
-		public static var windowboundsx:int, windowboundsy:int;
-		public static var scalemode:int;
+		static var int windowwidth, int windowheight;
+		static var int min_windowwidth, int min_windowheight;
+		static var int windowboundsx, int windowboundsy;
+		static var int scalemode;
 		
-		public static var boscaframerate:int = -1;
+		static var int boscaframerate = -1;
 		
-		public static var arrangementscrollleft:int = 0;
-		public static var arrangementscrollright:int = 0;
+		static var int arrangementscrollleft = 0;
+		static var int arrangementscrollright = 0;
 	}
 }

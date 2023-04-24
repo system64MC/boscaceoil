@@ -1,65 +1,65 @@
 // temporary: ignore the entire contents of this file when building for web
 CONFIG::desktop {
-package {
-	import flash.display.*;
-	import flash.geom.*;
-	import flash.events.*;
-	import flash.utils.*;
-	import flash.net.*;
+namespace bosca {
+	
+	
+	
+	
+	
 	import flash.filesystem.*;
 	import org.si.sion.midi.*;
 	import org.si.sion.events.*;
 	
-	public class midicontrol {
-		public static var MIDIDRUM_35_Acoustic_Bass_Drum:int = 35;
-		public static var MIDIDRUM_36_Bass_Drum_1:int = 36;
-		public static var MIDIDRUM_37_Side_Stick:int = 37;
-		public static var MIDIDRUM_38_Acoustic_Snare:int = 38;
-		public static var MIDIDRUM_39_Hand_Clap:int = 39;
-		public static var MIDIDRUM_40_Electric_Snare:int = 40;
-		public static var MIDIDRUM_41_Low_Floor_Tom:int = 41;
-		public static var MIDIDRUM_42_Closed_Hi_Hat:int = 42;
-		public static var MIDIDRUM_43_High_Floor_Tom:int = 43;
-		public static var MIDIDRUM_44_Pedal_Hi_Hat:int = 44;
-		public static var MIDIDRUM_45_Low_Tom:int = 45;
-		public static var MIDIDRUM_46_Open_Hi_Hat:int = 46;
-		public static var MIDIDRUM_47_Low_Mid_Tom:int = 47;
-		public static var MIDIDRUM_48_Hi_Mid_Tom:int = 48;
-		public static var MIDIDRUM_49_Crash_Cymbal_1:int = 49;
-		public static var MIDIDRUM_50_High_Tom:int = 50;
-		public static var MIDIDRUM_51_Ride_Cymbal_1:int = 51;
-		public static var MIDIDRUM_52_Chinese_Cymbal:int = 52;
-		public static var MIDIDRUM_53_Ride_Bell:int = 53;
-		public static var MIDIDRUM_54_Tambourine:int = 54;
-		public static var MIDIDRUM_55_Splash_Cymbal:int = 55;
-		public static var MIDIDRUM_56_Cowbell:int = 56;
-		public static var MIDIDRUM_57_Crash_Cymbal_2:int = 57;
-		public static var MIDIDRUM_58_Vibraslap:int = 58;
-		public static var MIDIDRUM_59_Ride_Cymbal_2:int = 59;
-		public static var MIDIDRUM_60_Hi_Bongo:int = 60;
-		public static var MIDIDRUM_61_Low_Bongo:int = 61;
-		public static var MIDIDRUM_62_Mute_Hi_Conga:int = 62;
-		public static var MIDIDRUM_63_Open_Hi_Conga:int = 63;
-		public static var MIDIDRUM_64_Low_Conga:int = 64;
-		public static var MIDIDRUM_65_High_Timbale:int = 65;
-		public static var MIDIDRUM_66_Low_Timbale:int = 66;
-		public static var MIDIDRUM_67_High_Agogo:int = 67;
-		public static var MIDIDRUM_68_Low_Agogo:int = 68;
-		public static var MIDIDRUM_69_Cabasa:int = 69;
-		public static var MIDIDRUM_70_Maracas:int = 70;
-		public static var MIDIDRUM_71_Short_Whistle:int = 71;
-		public static var MIDIDRUM_72_Long_Whistle:int = 72;
-		public static var MIDIDRUM_73_Short_Guiro:int = 73;
-		public static var MIDIDRUM_74_Long_Guiro:int = 74;
-		public static var MIDIDRUM_75_Claves:int = 75;
-		public static var MIDIDRUM_76_Hi_Wood_Block:int = 76;
-		public static var MIDIDRUM_77_Low_Wood_Block:int = 77;
-		public static var MIDIDRUM_78_Mute_Cuica:int = 78;
-		public static var MIDIDRUM_79_Open_Cuica:int = 79;
-		public static var MIDIDRUM_80_Mute_Triangle:int = 80;
-		public static var MIDIDRUM_81_Open_Triangle:int = 81;
+	struct midicontrol {
+		static var int MIDIDRUM_35_Acoustic_Bass_Drum = 35;
+		static var int MIDIDRUM_36_Bass_Drum_1 = 36;
+		static var int MIDIDRUM_37_Side_Stick = 37;
+		static var int MIDIDRUM_38_Acoustic_Snare = 38;
+		static var int MIDIDRUM_39_Hand_Clap = 39;
+		static var int MIDIDRUM_40_Electric_Snare = 40;
+		static var int MIDIDRUM_41_Low_Floor_Tom = 41;
+		static var int MIDIDRUM_42_Closed_Hi_Hat = 42;
+		static var int MIDIDRUM_43_High_Floor_Tom = 43;
+		static var int MIDIDRUM_44_Pedal_Hi_Hat = 44;
+		static var int MIDIDRUM_45_Low_Tom = 45;
+		static var int MIDIDRUM_46_Open_Hi_Hat = 46;
+		static var int MIDIDRUM_47_Low_Mid_Tom = 47;
+		static var int MIDIDRUM_48_Hi_Mid_Tom = 48;
+		static var int MIDIDRUM_49_Crash_Cymbal_1 = 49;
+		static var int MIDIDRUM_50_High_Tom = 50;
+		static var int MIDIDRUM_51_Ride_Cymbal_1 = 51;
+		static var int MIDIDRUM_52_Chinese_Cymbal = 52;
+		static var int MIDIDRUM_53_Ride_Bell = 53;
+		static var int MIDIDRUM_54_Tambourine = 54;
+		static var int MIDIDRUM_55_Splash_Cymbal = 55;
+		static var int MIDIDRUM_56_Cowbell = 56;
+		static var int MIDIDRUM_57_Crash_Cymbal_2 = 57;
+		static var int MIDIDRUM_58_Vibraslap = 58;
+		static var int MIDIDRUM_59_Ride_Cymbal_2 = 59;
+		static var int MIDIDRUM_60_Hi_Bongo = 60;
+		static var int MIDIDRUM_61_Low_Bongo = 61;
+		static var int MIDIDRUM_62_Mute_Hi_Conga = 62;
+		static var int MIDIDRUM_63_Open_Hi_Conga = 63;
+		static var int MIDIDRUM_64_Low_Conga = 64;
+		static var int MIDIDRUM_65_High_Timbale = 65;
+		static var int MIDIDRUM_66_Low_Timbale = 66;
+		static var int MIDIDRUM_67_High_Agogo = 67;
+		static var int MIDIDRUM_68_Low_Agogo = 68;
+		static var int MIDIDRUM_69_Cabasa = 69;
+		static var int MIDIDRUM_70_Maracas = 70;
+		static var int MIDIDRUM_71_Short_Whistle = 71;
+		static var int MIDIDRUM_72_Long_Whistle = 72;
+		static var int MIDIDRUM_73_Short_Guiro = 73;
+		static var int MIDIDRUM_74_Long_Guiro = 74;
+		static var int MIDIDRUM_75_Claves = 75;
+		static var int MIDIDRUM_76_Hi_Wood_Block = 76;
+		static var int MIDIDRUM_77_Low_Wood_Block = 77;
+		static var int MIDIDRUM_78_Mute_Cuica = 78;
+		static var int MIDIDRUM_79_Open_Cuica = 79;
+		static var int MIDIDRUM_80_Mute_Triangle = 80;
+		static var int MIDIDRUM_81_Open_Triangle = 81;
 		
-		public static function openfile():void {
+		static void openfile() {
 			control.stopmusic();	
 			
 			if (!control.filepath)
@@ -73,7 +73,7 @@ package {
 			control.fixmouseclicks = true;
 		}
 		
-		public static function savemidi():void {
+		static void savemidi() {
 			control.stopmusic();
 			
 			if (!control.filepath)
@@ -87,7 +87,7 @@ package {
 			control.fixmouseclicks = true;
 		}
 		
-		private static function onsavemidi(e:Event):void {		
+		private static void onsavemidi(Event e) {		
 			file = e.currentTarget as File;
 			
 			if (!control.fileHasExtension(file, "mid")) {
@@ -109,7 +109,7 @@ package {
 			control.savefilesettings();
 		}
 		
-		private static function onloadmidi(e:Event):void {	
+		private static void onloadmidi(Event e) {	
 			mididata = new ByteArray();
 			file = e.currentTarget as File;
 			
@@ -125,18 +125,18 @@ package {
 			
 			smfData.loadBytes(mididata);
 			
-			var track:SMFTrack;
-			var event:SMFEvent;
+			var SMFTrack track;
+			var SMFEvent event;
 			
 			clearnotes();
 			resetinstruments();
 			
 			//trace(smfData.toString());
 			
-			for (var trackn:int = 0; trackn < smfData.numTracks; trackn++) {
-				//trace("Reading track " + String(trackn) + ": " + String(smfData.tracks[trackn].sequence.length));
+			for (var int trackn = 0; trackn < smfData.numTracks; trackn++) {
+				//trace("Reading track " + std::string(trackn) + ": " + std::string(smfData.tracks[trackn].sequence.length));
 				for each(event in smfData.tracks[trackn].sequence) {
-					//trace("msg: " + String(event.time) + ": " + event.toString());
+					//trace("msg: " + std::string(event.time) + ": " + event.toString());
 					switch (event.type & 0xf0) {
 						case SMFEvent.NOTE_ON:
 							if(event.velocity == 0) {
@@ -178,16 +178,16 @@ package {
 			control.savefilesettings();
 		}
 		
-		public static function clone(source:Object):* { 
-			var myBA:ByteArray = new ByteArray(); 
+		static function clone(Object source):* { 
+			var ByteArray myBA = new ByteArray(); 
 			myBA.writeObject(source); 
 			myBA.position = 0; 
 			return(myBA.readObject()); 
 		}
 		
-		public static function resetinstruments():void {
+		static void resetinstruments() {
 			if (channelinstrument.length == 0) {
-				for (var i:int = 0; i < 16; i++) {
+				for (var int i = 0; i < 16; i++) {
 					channelinstrument.push(-1);
 					channelvolume.push(0);
 				}
@@ -199,22 +199,22 @@ package {
 			}
 		}
 		
-		public static function clearnotes():void {
-			unmatchednotes = new Vector.<Rectangle>;
-			midinotes = new Vector.<Rectangle>;
+		static void clearnotes() {
+			unmatchednotes = new std::vector<Rectangle>;
+			midinotes = new std::vector<Rectangle>;
 		}
 		
-		public static function addnote(time:int, note:int, instr:int):void {
+		static void addnote(int time, int note, int instr) {
 			unmatchednotes.push(new Rectangle(time, note, 0, instr));
 			//trace("adding note: ", time, note, instr);
 		}
 		
-		public static function changenotelength(time:int, note:int, instr:int):void {
+		static void changenotelength(int time, int note, int instr) {
 			//Find the first note of that pitch and instrument BEFORE given time.
-			var timedist:int = -1;
-			var currenttimedist:int = 0;
-			var matchingnote:int = -1;
-			for (var i:int = 0; i < unmatchednotes.length; i++) {
+			var int timedist = -1;
+			var int currenttimedist = 0;
+			var int matchingnote = -1;
+			for (var int i = 0; i < unmatchednotes.length; i++) {
 				if (unmatchednotes[i].y == note && unmatchednotes[i].height == instr) {
 					currenttimedist = time - unmatchednotes[i].x;
 					if (currenttimedist >= 0) {
@@ -240,7 +240,7 @@ package {
 				
 				//Swap matching note with last note, and pop it off
 				if (matchingnote != unmatchednotes.length - 1) {					
-					var swp:int;
+					var int swp;
 					
 					swp = unmatchednotes[matchingnote].x;
 					unmatchednotes[matchingnote].x = unmatchednotes[unmatchednotes.length - 1].x;
@@ -267,19 +267,19 @@ package {
 			}
 		}
 		
-		public static function getsonglength():int {
+		static int getsonglength() {
 			return int(smfData.measures);
 		}
 		
-		public static function reversechannelinstrument(t:int):int {
+		static int reversechannelinstrument(int t) {
 			//Given instrument number t, return first channel using it.
-			for (var i:int = 0; i < 16; i++) {
+			for (var int i = 0; i < 16; i++) {
 				if (channelinstrument[i] == t) return i;
 			}
 			return -1;
 		}
 		
-		public static function gettopbox(currentpattern:int, chan:int):int {
+		static int gettopbox(int currentpattern, int chan) {
 			//return the first musicbox to either match instrument or be empty
 			if (chan == 9) {
 				//Drums, put it on the last row
@@ -293,7 +293,7 @@ package {
 			}
 			
 			
-			for (var i:int = 0; i < 8; i++) {
+			for (var int i = 0; i < 8; i++) {
 				if(control.arrange.bar[currentpattern].channel[i] == -1) {
 					return i;
 				}else {
@@ -307,9 +307,9 @@ package {
 			return -1;
 		}
 		
-		public static function getmusicbox(currentpattern:int, chan:int):int {
+		static int getmusicbox(int currentpattern, int chan) {
 			//Find (or create a new) music box at the position we're placing the note.
-			var top:int = gettopbox(currentpattern, chan);
+			var int top = gettopbox(currentpattern, chan);
 			
 			if (top > -1) {
 				if (control.arrange.bar[currentpattern].channel[top] == -1) {
@@ -332,7 +332,7 @@ package {
 			return -1;
 		}
 		
-		public static function addnotetoceol(currentpattern:int, time:int, pitch:int, notelength:int, chan:int):void {
+		static void addnotetoceol(int currentpattern, int time, int pitch, int notelength, int chan) {
 			//control.musicbox[currentpattern + (instr * numpatterns)].addnote(time, pitch, notelength);
 			currentpattern = getmusicbox(currentpattern, chan);
 			if(currentpattern>-1){
@@ -340,9 +340,9 @@ package {
 			}
 		}
 		
-		public static function replaceontimeline(_old:int, _new:int):void {
-			for (var i:int = 0; i < numpatterns; i++) {
-				for (var j:int = 0; j < 8; j++) {
+		static void replaceontimeline(int _old, int _new) {
+			for (var int i = 0; i < numpatterns; i++) {
+				for (var int j = 0; j < 8; j++) {
 					if (control.arrange.bar[i].channel[j] == _old) {
 						control.arrange.bar[i].channel[j] = _new;
 					}
@@ -350,10 +350,10 @@ package {
 			}
 		}
 		
-		public static function musicboxmatch(a:int, b:int):Boolean {
+		static bool musicboxmatch(int a, int b) {
 			if (control.musicbox[a].numnotes == control.musicbox[b].numnotes) {
 				if (control.musicbox[a].instr == control.musicbox[b].instr) {
-					for (var i:int = 0; i < control.musicbox[a].numnotes; i++) {
+					for (var int i = 0; i < control.musicbox[a].numnotes; i++) {
 						if (control.musicbox[a].notes[i].x != control.musicbox[b].notes[i].x) {
 							return false;
 						}
@@ -364,7 +364,7 @@ package {
 			return false;
 		}
 		
-		public static function convertmiditoceol():void {
+		static void convertmiditoceol() {
 			control.newsong();
 			control.numboxes = 0;
 			control.bpm = (smfData.bpm - (smfData.bpm % 5));
@@ -372,8 +372,8 @@ package {
 			control._driver.bpm = control.bpm;
 			control._driver.play(null, false);
 			
-			//for (var tst:int = 0; tst < 16; tst++) {
-			//	trace("channel " + String(tst) + " uses instrument " + String(channelinstrument[tst]) + " at volume " + String(channelvolume[tst]));
+			//for (var int tst = 0; tst < 16; tst++) {
+			//	trace("channel " + std::string(tst) + " uses instrument " + std::string(channelinstrument[tst]) + " at volume " + std::string(channelvolume[tst]));
 			//}
 			
 			resolution = smfData.resolution;
@@ -385,13 +385,13 @@ package {
 			}
 			if (numnotes > 16) control.doublesize = true;
 			
-			var boxsize:int = resolution;
+			var int boxsize = resolution;
 			numpatterns = getsonglength();
 			control.numboxes = 0;
 			control.arrange.bar[0].channel[0] = -1;
 			
 			control.numinstrument = 16;
-			for (var j:int = 0; j < 16; j++) {
+			for (var int j = 0; j < 16; j++) {
 				control.currentinstrument = j;
 				control.voicelist.index = 132; //Set to chiptune noise if not used
 				control.changeinstrumentvoice(control.voicelist.name[control.voicelist.index]);
@@ -408,10 +408,10 @@ package {
 				}
 			}
 			
-			var i:int;
-			var note:int;
-			var notelength:int;
-			var currentpattern:int;
+			var int i;
+			var int note;
+			var int notelength;
+			var int currentpattern;
 			
 			for (i = 0; i < midinotes.length; i++) {
 				//Drums
@@ -424,7 +424,7 @@ package {
 					notelength = (((midinotes[i].width - midinotes[i].x - 1) * numnotes) / boxsize) + 1;
 					currentpattern = int((midinotes[i].x	- (midinotes[i].x % boxsize)) / boxsize);
 					
-					var drumnote:int = 0;
+					var int drumnote = 0;
 					
 					//0 "Bass Drum 1"
 					//1 "Bass Drum 2"
@@ -500,7 +500,7 @@ package {
 			
 			//Optimising stage: Check for duplicate patterns and remove unused ones.
 			for (i = 0; i < control.numboxes; i++) {
-				var currenthash:int = control.musicbox[i].hash;
+				var int currenthash = control.musicbox[i].hash;
 				if (currenthash != -1) {
 					for (j = i + 1; j < control.numboxes; j++) {
 						if (control.musicbox[j].hash == currenthash) {
@@ -532,25 +532,25 @@ package {
 			}
 		}
 		
-		public static function convertceoltomidi():void {
+		static void convertceoltomidi() {
 			//Export the song currently loaded as a midi.
 			//midifile = new MidiFile();
 			/*
 			trace("num tracks:" + midifile.tracks);
-			for (var sel:int = 0 ; sel < midifile.tracks ; sel++) {
-				trace("track " + String(sel + 1) + ", data:" + String(midifile.track(sel).trackChannel) + ", channel:" + String(midifile.track(sel).trackChannel));
-				for (var i:int = 0 ; i < midifile.track(sel).msgList.length ; i++) {
+			for (var int sel = 0 ; sel < midifile.tracks ; sel++) {
+				trace("track " + std::string(sel + 1) + ", data:" + std::string(midifile.track(sel).trackChannel) + ", channel:" + std::string(midifile.track(sel).trackChannel));
+				for (var int i = 0 ; i < midifile.track(sel).msgList.length ; i++) {
 					if (midifile.track(sel).msgList[i] is ChannelItem) {
-						trace(i, "command: " + String(midifile.track(sel).msgList[i]._command) + ", data1:" + String(midifile.track(sel).msgList[i]._data1));
+						trace(i, "command: " + std::string(midifile.track(sel).msgList[i]._command) + ", data1:" + std::string(midifile.track(sel).msgList[i]._data1));
 					}
-					var index:uint = i+1;
-					var time:uint = midifile.track(sel).msgList[i].timeline;
-					var len:uint = midifile.track(sel).msgList[i] is NoteItem? midifile.track(sel).msgList[i].duration : null;
-					var channel:uint = midifile.track(sel).msgList[i] is NoteItem?midifile.track(sel).msgList[i].channel+1 : midifile.track(sel).trackChannel+1;
-					var type:String = MidiEnum.getMessageName(midifile.track(sel).msgList[i].kind);
-					var param:String = midifile.track(sel).msgList[i] is NoteItem? midifile.track(sel).msgList[i].pitchName : "else";
-					var value:uint = midifile.track(sel).msgList[i] is NoteItem? midifile.track(sel).msgList[i].velocity : null;
-					trace("index:" + String(index) + ", time:" + String(time) + ", len:+" + String(len) + ", channel:" + String(channel) + ", event:" + String(type) + ", param:" + String(param) + ", value:" + String(value));
+					var uint index = i+1;
+					var uint time = midifile.track(sel).msgList[i].timeline;
+					var uint len = midifile.track(sel).msgList[i] is NoteItem? midifile.track(sel).msgList[i].duration : null;
+					var uint channel = midifile.track(sel).msgList[i] is NoteItem?midifile.track(sel).msgList[i].channel+1 : midifile.track(sel).trackChannel+1;
+					var std::string type = MidiEnum.getMessageName(midifile.track(sel).msgList[i].kind);
+					var std::string param = midifile.track(sel).msgList[i] is NoteItem? midifile.track(sel).msgList[i].pitchName : "else";
+					var uint value = midifile.track(sel).msgList[i] is NoteItem? midifile.track(sel).msgList[i].velocity : null;
+					trace("index:" + std::string(index) + ", time:" + std::string(time) + ", len:+" + std::string(len) + ", channel:" + std::string(channel) + ", event:" + std::string(type) + ", param:" + std::string(param) + ", value:" + std::string(value));
 				}				
 			}
 			*/
@@ -564,7 +564,7 @@ package {
 			
 			//Write all the instruments to each channel.
 			//In MIDI, channel 9 is special.
-			for (var j:int = 0; j < control.numinstrument; j++) {
+			for (var int j = 0; j < control.numinstrument; j++) {
 				midiexporter.writeinstrument(instrumentconverttomidi(control.instrument[j].index), j);
 			}
 			
@@ -584,12 +584,12 @@ package {
 			
 			//Write notes
 			for (j = 0; j < control.arrange.lastbar; j++) {
-				for (var i:int = 0; i < 8; i++) {
+				for (var int i = 0; i < 8; i++) {
 					if (control.arrange.bar[j].channel[i] != -1) {
-						var t:int = control.arrange.bar[j].channel[i];
+						var int t = control.arrange.bar[j].channel[i];
 						//Do normal instruments first
 						if (control.instrument[control.musicbox[control.arrange.bar[j].channel[i]].instr].type == 0) {
-							for (var k:int = 0; k < control.musicbox[t].numnotes; k++) {
+							for (var int k = 0; k < control.musicbox[t].numnotes; k++) {
 								midiexporter.writenote(control.musicbox[t].instr, 
 																			 control.musicbox[t].notes[k].x, 
 																			 ((j * control.boxcount) + control.musicbox[t].notes[k].width) * 30, 
@@ -607,7 +607,7 @@ package {
 				for (i = 0; i < 8; i++) {
 					if (control.arrange.bar[j].channel[i] != -1) {
 						t = control.arrange.bar[j].channel[i];
-						var drumkit:int = control.musicbox[control.arrange.bar[j].channel[i]].instr;
+						var int drumkit = control.musicbox[control.arrange.bar[j].channel[i]].instr;
 						//Now do drum kits
 						if (help.Left(control.voicelist.voice[control.instrument[drumkit].index], 7) == "drumkit") {
 							for (k = 0; k < control.musicbox[t].numnotes; k++) {
@@ -628,7 +628,7 @@ package {
 			writenote(0, 67, 240, 120, 255);
 			writenote(0, 72, 360, 120, 255);
 			
-			for (var j:int = 0; j < 4; j++) {
+			for (var int j = 0; j < 4; j++) {
 				writenote(0, 60 - 24, 0 + (120 * j), 30, 255);
 				writenote(0, 63 - 24, 30 + (120 * j), 30, 255);
 				writenote(0, 67 - 24, 60 + (120 * j), 30, 255);
@@ -659,11 +659,11 @@ package {
 			//midifile.addTrack(new MidiTrack());
 		}
 		
-		public static function convertdrumtonote(note:int, drumkit:int):int {
+		static int convertdrumtonote(int note, int drumkit) {
 			//Takes a drum beat from control.createdrumkit()'s list and converts it
 			//to a drum beat from the General Midi list (http://www.midi.org/techspecs/gm1sound.php)
-			var i:int;
-			var voicename:String = "";
+			var int i;
+			var std::string voicename = "";
 			if (control.voicelist.name[drumkit] == "Simple Drumkit") {
 				voicename = control.drumkit[0].voicename[note];
 				
@@ -745,32 +745,32 @@ package {
 			return 35;
 		}
 		
-		public static function instrumentconverttomidi(t:int):int {
+		static int instrumentconverttomidi(int t) {
 			//Converts Bosca Ceoil instrument to a similar Midi one.
 			return control.voicelist.midimap[t];
 		}
 		
 		CONFIG::desktop {
-			public static var file:File, stream:FileStream;
+			static var File file, FileStream stream;
 		}
 		
-		public static var mididata:ByteArray;
-		public static var resolution:Number;
-		public static var signature:Number;
-		public static var numnotes:int;
-		public static var numpatterns:int;
+		static var ByteArray mididata;
+		static var Number resolution;
+		static var Number signature;
+		static var int numnotes;
+		static var int numpatterns;
 		
-		public static var midiFilter:FileFilter = new FileFilter("Standard MIDI File", "*.mid;*.midi;");
+		static var FileFilter midiFilter = new FileFilter("Standard MIDI File", "*.mid;*.midi;");
 		
-		public static var unmatchednotes:Vector.<Rectangle> = new Vector.<Rectangle>;
-		public static var midinotes:Vector.<Rectangle> = new Vector.<Rectangle>;
-		public static var channelinstrument:Vector.<int> = new Vector.<int>;
-		public static var channelvolume:Vector.<int> = new Vector.<int>;
-		public static var smfData:SMFData = new SMFData();
+		static var std::vector<Rectangle> unmatchednotes = new std::vector<Rectangle>;
+		static var std::vector<Rectangle> midinotes = new std::vector<Rectangle>;
+		static var std::vector<int> channelinstrument = new std::vector<int>;
+		static var std::vector<int> channelvolume = new std::vector<int>;
+		static var SMFData smfData = new SMFData();
 		
 		//Stuff for exporting
-		public static var tempbytes:ByteArray;
-		public static var midiexporter:Midiexporter;
+		static var ByteArray tempbytes;
+		static var Midiexporter midiexporter;
 	}
 }
 }

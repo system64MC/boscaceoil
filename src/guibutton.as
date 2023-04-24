@@ -1,8 +1,8 @@
-package {
-	import flash.geom.*;
+namespace bosca {
+	
  
-	public class guibutton {
-		public function guibutton() {
+	struct guibutton {
+		function guibutton() {
 			position = new Rectangle(0, 0, 0, 0);
 			selected = false;
 			active = false;
@@ -10,7 +10,7 @@ package {
 			mouseover = false;
 		}
 		
-		public function init(x:int, y:int, w:int, h:int, contents:String, act:String = "", sty:String = "normal"):void {
+		void init(int x, int y, int w, int h, std::string contents, std::string act = "", std::string sty = "normal") {
 			position.setTo(x, y, w, h);
 			text = contents;
 			action = act;
@@ -25,23 +25,23 @@ package {
 			pressed = 0;
 		}
 		
-		public function press():void {
+		void press() {
 			pressed = 6;
 		}
 		
-		public var position:Rectangle;
-		public var text:String;
-		public var action:String;
-		public var style:String;
+		var Rectangle position;
+		var std::string text;
+		var std::string action;
+		var std::string style;
 		
-		public var visable:Boolean;
-		public var mouseover:Boolean;
-		public var selected:Boolean;
-		public var active:Boolean;
-		public var moveable:Boolean;
-		public var onwindow:Boolean;
+		var bool visable;
+		var bool mouseover;
+		var bool selected;
+		var bool active;
+		var bool moveable;
+		var bool onwindow;
 		
-		public var pressed:int;
-		public var textoffset:int;
+		var int pressed;
+		var int textoffset;
 	}
 }

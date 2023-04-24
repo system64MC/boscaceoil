@@ -1,10 +1,10 @@
-﻿package
+﻿namespace bosca
 {
-	import flash.display.*;
-	import flash.geom.*;
-	import flash.events.*;
-	import flash.utils.*;
-	import flash.net.*;
+	
+	
+	
+	
+	
 	import ocean.midi.MidiFile;
 	import org.si.sion.SiONDriver;
 	import org.si.sion.SiONData;
@@ -22,68 +22,68 @@
 		import mx.utils.Base64Encoder;
 	}
 	
-	public class control extends Sprite
+	struct control extends Sprite
 	{
-		public static var SCALE_NORMAL:int = 0;
-		public static var SCALE_MAJOR:int = 1;
-		public static var SCALE_MINOR:int = 2;
-		public static var SCALE_BLUES:int = 3;
-		public static var SCALE_HARMONIC_MINOR:int = 4;
-		public static var SCALE_PENTATONIC_MAJOR:int = 5;
-		public static var SCALE_PENTATONIC_MINOR:int = 6;
-		public static var SCALE_PENTATONIC_BLUES:int = 7;
-		public static var SCALE_PENTATONIC_NEUTRAL:int = 8;
-		public static var SCALE_ROMANIAN_FOLK:int = 9;
-		public static var SCALE_SPANISH_GYPSY:int = 10;
-		public static var SCALE_ARABIC_MAGAM:int = 11;
-		public static var SCALE_CHINESE:int = 12;
-		public static var SCALE_HUNGARIAN:int = 13;
-		public static var CHORD_MAJOR:int = 14;
-		public static var CHORD_MINOR:int = 15;
-		public static var CHORD_5TH:int = 16;
-		public static var CHORD_DOM_7TH:int = 17;
-		public static var CHORD_MAJOR_7TH:int = 18;
-		public static var CHORD_MINOR_7TH:int = 19;
-		public static var CHORD_MINOR_MAJOR_7TH:int = 20;
-		public static var CHORD_SUS4:int = 21;
-		public static var CHORD_SUS2:int = 22;
+		static var int SCALE_NORMAL = 0;
+		static var int SCALE_MAJOR = 1;
+		static var int SCALE_MINOR = 2;
+		static var int SCALE_BLUES = 3;
+		static var int SCALE_HARMONIC_MINOR = 4;
+		static var int SCALE_PENTATONIC_MAJOR = 5;
+		static var int SCALE_PENTATONIC_MINOR = 6;
+		static var int SCALE_PENTATONIC_BLUES = 7;
+		static var int SCALE_PENTATONIC_NEUTRAL = 8;
+		static var int SCALE_ROMANIAN_FOLK = 9;
+		static var int SCALE_SPANISH_GYPSY = 10;
+		static var int SCALE_ARABIC_MAGAM = 11;
+		static var int SCALE_CHINESE = 12;
+		static var int SCALE_HUNGARIAN = 13;
+		static var int CHORD_MAJOR = 14;
+		static var int CHORD_MINOR = 15;
+		static var int CHORD_5TH = 16;
+		static var int CHORD_DOM_7TH = 17;
+		static var int CHORD_MAJOR_7TH = 18;
+		static var int CHORD_MINOR_7TH = 19;
+		static var int CHORD_MINOR_MAJOR_7TH = 20;
+		static var int CHORD_SUS4 = 21;
+		static var int CHORD_SUS2 = 22;
 		
-		public static var LIST_KEY:int = 0;
-		public static var LIST_SCALE:int = 1;
-		public static var LIST_INSTRUMENT:int = 2;
-		public static var LIST_CATEGORY:int = 3;
-		public static var LIST_SELECTINSTRUMENT:int = 4;
-		public static var LIST_BUFFERSIZE:int = 5;
-		public static var LIST_MOREEXPORTS:int = 6;
-		public static var LIST_EFFECTS:int = 7;
-		public static var LIST_EXPORTS:int = 8;
-		public static var LIST_MIDIINSTRUMENT:int = 9;
-		public static var LIST_MIDI_0_PIANO:int = 10;
-		public static var LIST_MIDI_1_BELLS:int = 11;
-		public static var LIST_MIDI_2_ORGAN:int = 12;
-		public static var LIST_MIDI_3_GUITAR:int = 13;
-		public static var LIST_MIDI_4_BASS:int = 14;
-		public static var LIST_MIDI_5_STRINGS:int = 15;
-		public static var LIST_MIDI_6_ENSEMBLE:int = 16;
-		public static var LIST_MIDI_7_BRASS:int = 17;
-		public static var LIST_MIDI_8_REED:int = 18;
-		public static var LIST_MIDI_9_PIPE:int = 19;
-		public static var LIST_MIDI_10_SYNTHLEAD:int = 20;
-		public static var LIST_MIDI_11_SYNTHPAD:int = 21;
-		public static var LIST_MIDI_12_SYNTHEFFECTS:int = 22;
-		public static var LIST_MIDI_13_WORLD:int = 23;
-		public static var LIST_MIDI_14_PERCUSSIVE:int = 24;
-		public static var LIST_MIDI_15_SOUNDEFFECTS:int = 25;
+		static var int LIST_KEY = 0;
+		static var int LIST_SCALE = 1;
+		static var int LIST_INSTRUMENT = 2;
+		static var int LIST_CATEGORY = 3;
+		static var int LIST_SELECTINSTRUMENT = 4;
+		static var int LIST_BUFFERSIZE = 5;
+		static var int LIST_MOREEXPORTS = 6;
+		static var int LIST_EFFECTS = 7;
+		static var int LIST_EXPORTS = 8;
+		static var int LIST_MIDIINSTRUMENT = 9;
+		static var int LIST_MIDI_0_PIANO = 10;
+		static var int LIST_MIDI_1_BELLS = 11;
+		static var int LIST_MIDI_2_ORGAN = 12;
+		static var int LIST_MIDI_3_GUITAR = 13;
+		static var int LIST_MIDI_4_BASS = 14;
+		static var int LIST_MIDI_5_STRINGS = 15;
+		static var int LIST_MIDI_6_ENSEMBLE = 16;
+		static var int LIST_MIDI_7_BRASS = 17;
+		static var int LIST_MIDI_8_REED = 18;
+		static var int LIST_MIDI_9_PIPE = 19;
+		static var int LIST_MIDI_10_SYNTHLEAD = 20;
+		static var int LIST_MIDI_11_SYNTHPAD = 21;
+		static var int LIST_MIDI_12_SYNTHEFFECTS = 22;
+		static var int LIST_MIDI_13_WORLD = 23;
+		static var int LIST_MIDI_14_PERCUSSIVE = 24;
+		static var int LIST_MIDI_15_SOUNDEFFECTS = 25;
 		
-		public static var MENUTAB_FILE:int = 0;
-		public static var MENUTAB_ARRANGEMENTS:int = 1;
-		public static var MENUTAB_INSTRUMENTS:int = 2;
-		public static var MENUTAB_ADVANCED:int = 3;
-		public static var MENUTAB_CREDITS:int = 4;
-		public static var MENUTAB_HELP:int = 5;
-		public static var MENUTAB_GITHUB:int = 6;
+		static var int MENUTAB_FILE = 0;
+		static var int MENUTAB_ARRANGEMENTS = 1;
+		static var int MENUTAB_INSTRUMENTS = 2;
+		static var int MENUTAB_ADVANCED = 3;
+		static var int MENUTAB_CREDITS = 4;
+		static var int MENUTAB_HELP = 5;
+		static var int MENUTAB_GITHUB = 6;
 		
-		public static function init():void
+		static void init()
 		{
 			clicklist = false;
 			clicksecondlist = false;
@@ -165,9 +165,9 @@
 			voicelist = new voicelistclass();
 			
 			//Setup drumkits
-			drumkit.push(new drumkitclass());
-			drumkit.push(new drumkitclass());
-			drumkit.push(new drumkitclass()); //Midi Drums
+			drumkit.push(new Drumkit());
+			drumkit.push(new Drumkit());
+			drumkit.push(new Drumkit()); //Midi Drums
 			createdrumkit(0);
 			createdrumkit(1);
 			createdrumkit(2);
@@ -267,13 +267,13 @@
 			}
 		}
 		
-		public static function notecut():void
+		static void notecut()
 		{
 			//This is broken, try to fix later
-			//for each (var trk:SiMMLTrack in _driver.sequencer.tracks) trk.keyOff();
+			//for each (var SiMMLTrack trk in _driver.sequencer.tracks) trk.keyOff();
 		}
 		
-		public static function updateeffects():void
+		static void updateeffects()
 		{
 			//So, I can't see to figure out WHY only one effect at a time seems to work.
 			//If anyone else can, please, by all means update this code!
@@ -322,7 +322,7 @@
 			 effectname.push("HIGH PASS");	*/
 		}
 		
-		public static function _onTimerInterruption():void
+		static function _onTimerInterruption():void
 		{
 			if (musicplaying)
 			{
@@ -409,13 +409,13 @@
 			}
 		}
 		
-		private static function SetSwing():void
+		private static void SetSwing()
 		{
 			if (_driver == null) return;
 			
 			//swing goes from -10 to 10
 			//fswing goes from 0.2 - 1.8
-			var fswing:Number = 0.2 + (swing + 10) * (1.8 - 0.2) / 20.0;
+			var Number fswing = 0.2 + (swing + 10) * (1.8 - 0.2) / 20.0;
 			
 			if (swing == 0)
 			{
@@ -439,7 +439,7 @@
 			}
 		}
 		
-		public static function loadscreensettings():void
+		static void loadscreensettings()
 		{
 			programsettings = SharedObject.getLocal("boscaceoil_settings");
 			
@@ -488,7 +488,7 @@
 			programsettings.close();
 		}
 		
-		public static function loadfilesettings():void
+		static void loadfilesettings()
 		{
 			programsettings = SharedObject.getLocal("boscaceoil_settings");
 			
@@ -506,7 +506,7 @@
 			programsettings.close();
 		}
 		
-		public static function savescreensettings():void
+		static void savescreensettings()
 		{
 			programsettings = SharedObject.getLocal("boscaceoil_settings");
 			
@@ -529,7 +529,7 @@
 			programsettings.close();
 		}
 		
-		public static function savefilesettings():void
+		static void savefilesettings()
 		{
 			programsettings = SharedObject.getLocal("boscaceoil_settings");
 			
@@ -543,7 +543,7 @@
 			programsettings.close();
 		}
 		
-		public static function setbuffersize(t:int):void
+		static void setbuffersize(int t)
 		{
 			if (t == 0) buffersize = 2048;
 			if (t == 1) buffersize = 4096;
@@ -555,7 +555,7 @@
 			programsettings.close();
 		}
 		
-		public static function adddrumkitnote(t:int, name:String, voice:String, note:int = 60):void
+		static void adddrumkitnote(int t, std::string name, std::string voice, int note = 60)
 		{
 			if (t == 2 && note == 60) note = 16;
 			drumkit[t].voicelist.push(_presets[voice]);
@@ -564,9 +564,9 @@
 			if (t == 2)
 			{
 				//Midi drumkit
-				var voicenum:String = "";
-				var afterdot:Boolean = false;
-				for (var i:int = 0; i < voice.length; i++)
+				var std::string voicenum = "";
+				var bool afterdot = false;
+				for (var int i = 0; i < voice.length; i++)
 				{
 					if (afterdot)
 					{
@@ -579,7 +579,7 @@
 			drumkit[t].size++;
 		}
 		
-		public static function createdrumkit(t:int):void
+		static void createdrumkit(int t)
 		{
 			//Create Drumkit t at index
 			switch (t)
@@ -706,9 +706,9 @@
 			}
 		}
 		
-		public static function changekey(t:int):void
+		static void changekey(int t)
 		{
-			var keyshift:int = t - key;
+			var int keyshift = t - key;
 			for (i = 0; i < musicbox[currentbox].numnotes; i++)
 			{
 				musicbox[currentbox].notes[i].x += keyshift;
@@ -719,7 +719,7 @@
 			updatepianoroll();
 		}
 		
-		public static function changescale(t:int):void
+		static void changescale(int t)
 		{
 			setscale(t);
 			updatepianoroll();
@@ -747,7 +747,7 @@
 			musicbox[currentbox].setnotespan();
 		}
 		
-		public static function changemusicbox(t:int):void
+		static void changemusicbox(int t)
 		{
 			currentbox = t;
 			key = musicbox[t].key;
@@ -774,7 +774,7 @@
 			guiclass.changetab(currenttab);
 		}
 		
-		public static function _setscale(t1:int = -1, t2:int = -1, t3:int = -1, t4:int = -1, t5:int = -1, t6:int = -1, t7:int = -1, t8:int = -1, t9:int = -1, t10:int = -1, t11:int = -1, t12:int = -1):void
+		static function _setscale(int t1 = -1, int t2 = -1, int t3 = -1, int t4 = -1, int t5 = -1, int t6 = -1, int t7 = -1, int t8 = -1, int t9 = -1, int t10 = -1, int t11 = -1, int t12 = -1):void
 		{
 			if (t1 == -1)
 			{
@@ -908,7 +908,7 @@
 			}
 		}
 		
-		public static function setscale(t:int):void
+		static void setscale(int t)
 		{
 			currentscale = t;
 			switch (t)
@@ -986,10 +986,10 @@
 			}
 		}
 		
-		public static function updatepianoroll():void
+		static void updatepianoroll()
 		{
 			//Set piano roll based on currently loaded scale
-			var scaleiter:int = -1, pianorolliter:int = 0, lastnote:int = 0;
+			var int scaleiter = -1, int pianorolliter = 0, int lastnote = 0;
 			
 			lastnote = key;
 			pianorollsize = 0;
@@ -1018,7 +1018,7 @@
 			}
 		}
 		
-		public static function addmusicbox():void
+		static void addmusicbox()
 		{
 			musicbox[numboxes].clear();
 			musicbox[numboxes].instr = currentinstrument;
@@ -1027,7 +1027,7 @@
 			numboxes++;
 		}
 		
-		public static function copymusicbox(a:int, b:int):void
+		static void copymusicbox(int a, int b)
 		{
 			musicbox[a].numnotes = musicbox[b].numnotes;
 			
@@ -1059,7 +1059,7 @@
 			musicbox[a].isplayed = musicbox[b].isplayed;
 		}
 		
-		public static function deletemusicbox(t:int):void
+		static void deletemusicbox(int t)
 		{
 			if (currentbox == t) currentbox--;
 			for (i = t; i < numboxes; i++)
@@ -1084,13 +1084,13 @@
 			}
 		}
 		
-		public static function seekposition(t:int):void
+		static void seekposition(int t)
 		{
 			//Make this smoother someday maybe
 			barposition = t;
 		}
 		
-		public static function filllist(t:int):void
+		static void filllist(int t)
 		{
 			list.type = t;
 			switch (t)
@@ -1184,7 +1184,7 @@
 				//For choosing from existing instruments
 				for (i = 0; i < numinstrument; i++)
 				{
-					list.item[i] = String(i + 1) + " " + instrument[i].name;
+					list.item[i] = std::string(i + 1) + " " + instrument[i].name;
 				}
 				list.numitems = numinstrument;
 				break;
@@ -1225,7 +1225,7 @@
 			}
 		}
 		
-		public static function setinstrumenttoindex(t:int):void
+		static void setinstrumenttoindex(int t)
 		{
 			voicelist.index = instrument[t].index;
 			if (help.Left(voicelist.voice[voicelist.index], 7) == "drumkit")
@@ -1246,21 +1246,21 @@
 			instrument[t].palette = voicelist.palette[voicelist.index];
 		}
 		
-		public static function nextinstrument():void
+		static void nextinstrument()
 		{
 			//Change to the next instrument in a category
 			voicelist.index = voicelist.getnext(voicelist.getvoice(instrument[currentinstrument].name));
 			changeinstrumentvoice(voicelist.name[voicelist.index]);
 		}
 		
-		public static function previousinstrument():void
+		static void previousinstrument()
 		{
 			//Change to the previous instrument in a category
 			voicelist.index = voicelist.getprevious(voicelist.getvoice(instrument[currentinstrument].name));
 			changeinstrumentvoice(voicelist.name[voicelist.index]);
 		}
 		
-		public static function changeinstrumentvoice(t:String):void
+		static void changeinstrumentvoice(std::string t)
 		{
 			instrument[currentinstrument].name = t;
 			voicelist.index = voicelist.getvoice(t);
@@ -1298,68 +1298,68 @@
 			}
 		}
 		
-		public static function makefilestring():void
+		static void makefilestring()
 		{
 			filestring = "";
-			filestring += String(version) + ",";
-			filestring += String(swing) + ",";
-			filestring += String(effecttype) + ",";
-			filestring += String(effectvalue) + ",";
-			filestring += String(bpm) + ",";
-			filestring += String(boxcount) + ",";
-			filestring += String(barcount) + ",";
+			filestring += std::string(version) + ",";
+			filestring += std::string(swing) + ",";
+			filestring += std::string(effecttype) + ",";
+			filestring += std::string(effectvalue) + ",";
+			filestring += std::string(bpm) + ",";
+			filestring += std::string(boxcount) + ",";
+			filestring += std::string(barcount) + ",";
 			//Instruments first!
-			filestring += String(numinstrument) + ",";
+			filestring += std::string(numinstrument) + ",";
 			for (i = 0; i < numinstrument; i++)
 			{
-				filestring += String(instrument[i].index) + ",";
-				filestring += String(instrument[i].type) + ",";
-				filestring += String(instrument[i].palette) + ",";
-				filestring += String(instrument[i].cutoff) + ",";
-				filestring += String(instrument[i].resonance) + ",";
-				filestring += String(instrument[i].volume) + ",";
+				filestring += std::string(instrument[i].index) + ",";
+				filestring += std::string(instrument[i].type) + ",";
+				filestring += std::string(instrument[i].palette) + ",";
+				filestring += std::string(instrument[i].cutoff) + ",";
+				filestring += std::string(instrument[i].resonance) + ",";
+				filestring += std::string(instrument[i].volume) + ",";
 			}
 			//Next, musicboxes
-			filestring += String(numboxes) + ",";
+			filestring += std::string(numboxes) + ",";
 			for (i = 0; i < numboxes; i++)
 			{
-				filestring += String(musicbox[i].key) + ",";
-				filestring += String(musicbox[i].scale) + ",";
-				filestring += String(musicbox[i].instr) + ",";
-				filestring += String(musicbox[i].palette) + ",";
-				filestring += String(musicbox[i].numnotes) + ",";
+				filestring += std::string(musicbox[i].key) + ",";
+				filestring += std::string(musicbox[i].scale) + ",";
+				filestring += std::string(musicbox[i].instr) + ",";
+				filestring += std::string(musicbox[i].palette) + ",";
+				filestring += std::string(musicbox[i].numnotes) + ",";
 				for (j = 0; j < musicbox[i].numnotes; j++)
 				{
-					filestring += String(musicbox[i].notes[j].x) + ",";
-					filestring += String(musicbox[i].notes[j].y) + ",";
-					filestring += String(musicbox[i].notes[j].width) + ",";
-					filestring += String(musicbox[i].notes[j].height) + ",";
+					filestring += std::string(musicbox[i].notes[j].x) + ",";
+					filestring += std::string(musicbox[i].notes[j].y) + ",";
+					filestring += std::string(musicbox[i].notes[j].width) + ",";
+					filestring += std::string(musicbox[i].notes[j].height) + ",";
 				}
-				filestring += String(musicbox[i].recordfilter) + ",";
+				filestring += std::string(musicbox[i].recordfilter) + ",";
 				if (musicbox[i].recordfilter == 1)
 				{
 					for (j = 0; j < 16; j++)
 					{
-						filestring += String(musicbox[i].volumegraph[j]) + ",";
-						filestring += String(musicbox[i].cutoffgraph[j]) + ",";
-						filestring += String(musicbox[i].resonancegraph[j]) + ",";
+						filestring += std::string(musicbox[i].volumegraph[j]) + ",";
+						filestring += std::string(musicbox[i].cutoffgraph[j]) + ",";
+						filestring += std::string(musicbox[i].resonancegraph[j]) + ",";
 					}
 				}
 			}
 			//Next, arrangements
-			filestring += String(arrange.lastbar) + ",";
-			filestring += String(arrange.loopstart) + ",";
-			filestring += String(arrange.loopend) + ",";
+			filestring += std::string(arrange.lastbar) + ",";
+			filestring += std::string(arrange.loopstart) + ",";
+			filestring += std::string(arrange.loopend) + ",";
 			for (i = 0; i < arrange.lastbar; i++)
 			{
 				for (j = 0; j < 8; j++)
 				{
-					filestring += String(arrange.bar[i].channel[j]) + ",";
+					filestring += std::string(arrange.bar[i].channel[j]) + ",";
 				}
 			}
 		}
 		
-		public static function newsong():void
+		static void newsong()
 		{
 			changetab(MENUTAB_FILE);
 			bpm = 120;
@@ -1387,13 +1387,13 @@
 			showmessage("NEW SONG CREATED");
 		}
 		
-		public static function readfilestream():int
+		static int readfilestream()
 		{
 			fi++;
 			return filestream[fi - 1];
 		}
 		
-		public static function convertfilestring():void
+		static void convertfilestring()
 		{
 			fi = 0;
 			version = readfilestream();
@@ -1475,7 +1475,7 @@
 			}
 		}
 		
-		public static function legacy_convertfilestring(t:int):void
+		static function legacy_convertfilestring(int t):void
 		{
 			switch (t)
 			{
@@ -1621,7 +1621,7 @@
 		CONFIG::desktop
 		{
 			
-			public static function fileHasExtension(file:File, extension:String):Boolean
+			static bool fileHasExtension(File file, std::string extension)
 			{
 				if (!file.extension || file.extension.toLowerCase() != extension)
 				{
@@ -1630,12 +1630,12 @@
 				return true;
 			}
 			
-			public static function addExtensionToFile(file:File, extension:String):void
+			static void addExtensionToFile(File file, std::string extension)
 			{
 				file.url += "." + extension;
 			}
 			
-			public static function saveceol():void
+			static void saveceol()
 			{
 				if (!filepath)
 				{
@@ -1648,7 +1648,7 @@
 				fixmouseclicks = true;
 			}
 			
-			private static function onsaveceol(e:Event):void
+			private static void onsaveceol(Event e)
 			{
 				file = e.currentTarget as File;
 				
@@ -1669,7 +1669,7 @@
 				savefilesettings();
 			}
 			
-			public static function loadceol():void
+			static void loadceol()
 			{
 				if (!filepath)
 				{
@@ -1682,7 +1682,7 @@
 				fixmouseclicks = true;
 			}
 			
-			public static function invokeceol(t:String):void
+			static void invokeceol(std::string t)
 			{
 				file = new File();
 				file.nativePath = t;
@@ -1699,7 +1699,7 @@
 				showmessage("SONG LOADED");
 			}
 			
-			private static function onloadceol(e:Event):void
+			private static void onloadceol(Event e)
 			{
 				file = e.currentTarget as File;
 				filepath = file.resolvePath("");
@@ -1717,7 +1717,7 @@
 				savefilesettings();
 			}
 			
-			public static function exportxm():void
+			static void exportxm()
 			{
 				stopmusic();
 				
@@ -1732,7 +1732,7 @@
 				fixmouseclicks = true;
 			}
 			
-			private static function onexportxm(e:Event):void
+			private static void onexportxm(Event e)
 			{
 				file = e.currentTarget as File;
 				
@@ -1741,7 +1741,7 @@
 					addExtensionToFile(file, "xm");
 				}
 				
-				var xm:TrackerModuleXM = new TrackerModuleXM();
+				var TrackerModuleXM xm = new TrackerModuleXM();
 				xm.loadFromLiveBoscaCeoilModel(file.name);
 				
 				stream = new FileStream();
@@ -1754,7 +1754,7 @@
 				savefilesettings();
 			}
 			
-			public static function exportmml():void
+			static void exportmml()
 			{
 				stopmusic();
 				
@@ -1769,7 +1769,7 @@
 				fixmouseclicks = true;
 			}
 			
-			private static function onexportmml(e:Event):void
+			private static void onexportmml(Event e)
 			{
 				file = e.currentTarget as File;
 				
@@ -1778,7 +1778,7 @@
 					addExtensionToFile(file, "mml");
 				}
 				
-				var song:MMLSong = new MMLSong();
+				var MMLSong song = new MMLSong();
 				song.loadFromLiveBoscaCeoilModel();
 				
 				stream = new FileStream();
@@ -1791,7 +1791,7 @@
 				savefilesettings();
 			}
 			
-			private static function onsavewav(e:Event):void
+			private static void onsavewav(Event e)
 			{
 				file = e.currentTarget as File;
 				
@@ -1814,7 +1814,7 @@
 		
 		CONFIG::web
 		{
-			public static function invokeCeolWeb(ceolStr:String):void
+			static void invokeCeolWeb(std::string ceolStr)
 			{
 				changetab(MENUTAB_FILE);
 				if (ceolStr != "")
@@ -1831,14 +1831,14 @@
 				_driver.play(null, false);
 			}
 			
-			public static function getCeolString():String
+			static std getCeolString()::string
 			{
 				makefilestring();
 				return filestring;
 			}
 		}
 		
-		private static function loadfilestring(s:String):void
+		private static void loadfilestring(std::string s)
 		{
 			filestream = new Array();
 			filestream = s.split(",");
@@ -1855,23 +1855,23 @@
 			looptime = 0;
 		}
 		
-		public static function showmessage(t:String):void
+		static void showmessage(std::string t)
 		{
 			message = t;
 			messagedelay = 90;
 		}
 		
-		public static function onStream(e:SiONEvent):void
+		static void onStream(SiONEvent e)
 		{
 			e.streamBuffer.position = 0;
 			while (e.streamBuffer.bytesAvailable > 0)
 			{
-				var d:int = e.streamBuffer.readFloat() * 32767;
+				var int d = e.streamBuffer.readFloat() * 32767;
 				if (nowexporting) _data.writeShort(d);
 			}
 		}
 		
-		public static function pausemusic():void
+		static void pausemusic()
 		{
 			if (musicplaying)
 			{
@@ -1880,7 +1880,7 @@
 			}
 		}
 		
-		public static function stopmusic():void
+		static void stopmusic()
 		{
 			if (musicplaying)
 			{
@@ -1891,7 +1891,7 @@
 			}
 		}
 		
-		public static function startmusic():void
+		static void startmusic()
 		{
 			if (!musicplaying)
 			{
@@ -1899,7 +1899,7 @@
 			}
 		}
 		
-		public static function exportwav():void
+		static void exportwav()
 		{
 			changetab(MENUTAB_ARRANGEMENTS);
 			clicklist = true;
@@ -1918,7 +1918,7 @@
 			nowexporting = true;
 		}
 		
-		public static function savewav():void
+		static void savewav()
 		{
 			nowexporting = false;
 			followmode = false;
@@ -1926,7 +1926,7 @@
 			_wav = new ByteArray();
 			_wav.endian = Endian.LITTLE_ENDIAN;
 			_wav.writeUTFBytes("RIFF");
-			var len:int = _data.length;
+			var int len = _data.length;
 			_wav.writeInt(len + 36);
 			_wav.writeUTFBytes("WAVE");
 			_wav.writeUTFBytes("fmt ");
@@ -1955,7 +1955,7 @@
 			
 			CONFIG::web
 			{
-				var b64:Base64Encoder = new Base64Encoder();
+				var Base64Encoder b64 = new Base64Encoder();
 				_wav.position = 0;
 				b64.encodeBytes(_wav);
 				ExternalInterface.call('Bosca._wavRecorded', b64.toString());
@@ -1964,13 +1964,13 @@
 			fixmouseclicks = true;
 		}
 		
-		public static function changetab(newtab:int):void
+		static void changetab(int newtab)
 		{
 			currenttab = newtab;
 			guiclass.changetab(newtab);
 		}
 		
-		public static function changetab_ifdifferent(newtab:int):void
+		static function changetab_ifdifferent(int newtab):void
 		{
 			if (currenttab != newtab)
 			{
@@ -1981,120 +1981,120 @@
 		
 		CONFIG::desktop
 		{
-			public static var file:File, stream:FileStream;
+			static var File file, FileStream stream;
 		}
-		public static var filestring:String, fi:int;
-		public static var filestream:Array;
-		public static var ceolFilter:FileFilter = new FileFilter("Ceol", "*.ceol");
+		static var std::string filestring, int fi;
+		static var Array filestream;
+		static var FileFilter ceolFilter = new FileFilter("Ceol", "*.ceol");
 		
-		public static var i:int, j:int, k:int;
+		static var int i, int j, int k;
 		
-		public static var fullscreen:Boolean;
+		static var bool fullscreen;
 		
-		public static var fullscreentoggleheld:Boolean = false;
+		static var bool fullscreentoggleheld = false;
 		
-		public static var press_up:Boolean, press_down:Boolean, press_left:Boolean, press_right:Boolean, press_space:Boolean, press_enter:Boolean;
-		public static var keypriority:int = 0;
-		public static var keyheld:Boolean = false;
+		static var bool press_up, bool press_down, bool press_left, bool press_right, bool press_space, bool press_enter;
+		static var int keypriority = 0;
+		static var bool keyheld = false;
 		;
-		public static var clicklist:Boolean;
-		public static var clicksecondlist:Boolean;
-		public static var copykeyheld:Boolean = false;
+		static var bool clicklist;
+		static var bool clicksecondlist;
+		static var bool copykeyheld = false;
 		
-		public static var keydelay:int, keyboardpressed:int = 0;
-		public static var fixmouseclicks:Boolean = false;
+		static var int keydelay, int keyboardpressed = 0;
+		static var bool fixmouseclicks = false;
 		
-		public static var mx:int, my:int;
-		public static var test:Boolean, teststring:String;
+		static var int mx, int my;
+		static var bool test, std::string teststring;
 		
-		public static var _driver:SiONDriver;
-		public static var _presets:SiONPresetVoice;
-		public static var voicelist:voicelistclass;
+		static var SiONDriver _driver;
+		static var SiONPresetVoice _presets;
+		static var voicelistclass voicelist;
 		
-		public static var instrument:Vector.<instrumentclass> = new Vector.<instrumentclass>;
-		public static var numinstrument:int;
-		public static var instrumentmanagerview:int;
+		static var std::vector<instrumentclass> instrument = new std::vector<instrumentclass>;
+		static var int numinstrument;
+		static var int instrumentmanagerview;
 		
-		public static var musicbox:Vector.<musicphraseclass> = new Vector.<musicphraseclass>;
-		public static var numboxes:int;
-		public static var looptime:int;
-		public static var currentbox:int;
-		public static var currentnote:int;
-		public static var currentinstrument:int;
-		public static var boxsize:int, boxcount:int;
-		public static var barsize:int, barcount:int;
-		public static var notelength:int;
-		public static var doublesize:Boolean;
-		public static var arrangescrolldelay:int = 0;
+		static var std::vector<musicphraseclass> musicbox = new std::vector<musicphraseclass>;
+		static var int numboxes;
+		static var int looptime;
+		static var int currentbox;
+		static var int currentnote;
+		static var int currentinstrument;
+		static var int boxsize, int boxcount;
+		static var int barsize, int barcount;
+		static var int notelength;
+		static var bool doublesize;
+		static var int arrangescrolldelay = 0;
 		
-		public static var barposition:Number = 0;
-		public static var drawnoteposition:int, drawnotelength:int;
+		static var Number barposition = 0;
+		static var int drawnoteposition, int drawnotelength;
 		
-		public static var cursorx:int, cursory:int;
-		public static var arrangecurx:int, arrangecury:int;
-		public static var patterncury:int, timelinecurx:int;
-		public static var instrumentcury:int;
-		public static var notey:int;
+		static var int cursorx, int cursory;
+		static var int arrangecurx, int arrangecury;
+		static var int patterncury, int timelinecurx;
+		static var int instrumentcury;
+		static var int notey;
 		
-		public static var notename:Vector.<String> = new Vector.<String>;
-		public static var scalename:Vector.<String> = new Vector.<String>;
+		static var std::vector<std::string> notename = new std::vector<std::string>;
+		static var std::vector<std::string> scalename = new std::vector<std::string>;
 		
-		public static var currentscale:int = 0;
-		public static var scale:Vector.<int> = new Vector.<int>;
-		public static var key:int;
-		public static var scalesize:int;
+		static var int currentscale = 0;
+		static var std::vector<int> scale = new std::vector<int>;
+		static var int key;
+		static var int scalesize;
 		
-		public static var pianoroll:Vector.<int> = new Vector.<int>;
-		public static var invertpianoroll:Vector.<int> = new Vector.<int>;
-		public static var pianorollsize:int;
+		static var std::vector<int> pianoroll = new std::vector<int>;
+		static var std::vector<int> invertpianoroll = new std::vector<int>;
+		static var int pianorollsize;
 		
-		public static var arrange:arrangementclass = new arrangementclass();
-		public static var drumkit:Vector.<drumkitclass> = new Vector.<drumkitclass>;
+		static var Arrangement arrange = new Arrangement();
+		static var std::vector<Drumkit> drumkit = new std::vector<Drumkit>;
 		
-		public static var currenttab:int;
+		static var int currenttab;
 		
-		public static var dragaction:int, dragx:int, dragy:int, dragpattern:int;
-		public static var patternmanagerview:int;
+		static var int dragaction, int dragx, int dragy, int dragpattern;
+		static var int patternmanagerview;
 		
-		public static var trashbutton:int;
+		static var int trashbutton;
 		
-		public static var list:listclass = new listclass;
-		public static var secondlist:listclass = new listclass;
-		public static var midilistselection:int;
+		static var listclass list = new listclass;
+		static var listclass secondlist = new listclass;
+		static var int midilistselection;
 		
-		public static var musicplaying:Boolean = true;
-		public static var nowexporting:Boolean = false;
-		public static var followmode:Boolean = false;
-		public static var bpm:int;
-		public static var version:int;
-		public static var swing:int;
-		public static var swingoff:int;
+		static var bool musicplaying = true;
+		static var bool nowexporting = false;
+		static var bool followmode = false;
+		static var int bpm;
+		static var int version;
+		static var int swing;
+		static var int swingoff;
 		
-		public static var doubleclickcheck:int;
+		static var int doubleclickcheck;
 		
-		public static var programsettings:SharedObject;
-		public static var buffersize:int, currentbuffersize:int;
+		static var SharedObject programsettings;
+		static var int buffersize, int currentbuffersize;
 		
-		private static var _data:ByteArray;
-		private static var _wav:ByteArray;
+		private static var ByteArray _data;
+		private static var ByteArray _wav;
 		
-		public static var message:String;
-		public static var messagedelay:int = 0;
-		public static var startup:int = 0, invokefile:String = "null";
-		public static var ctrl:String;
+		static var std::string message;
+		static var int messagedelay = 0;
+		static var int startup = 0, std::string invokefile = "null";
+		static var std::string ctrl;
 		
 		// Add filepath memory
-		public static var filepath:File = null;
-		public static var defaultDirectory:File = null;
+		static var File filepath = null;
+		static var File defaultDirectory = null;
 		
 		//Global effects
-		public static var effecttype:int;
-		public static var effectvalue:int;
-		public static var effectname:Vector.<String> = new Vector.<String>;
+		static var int effecttype;
+		static var int effectvalue;
+		static var std::vector<std::string> effectname = new std::vector<std::string>;
 		
-		public static var versionnumber:String;
-		public static var savescreencountdown:int;
-		public static var minresizecountdown:int;
-		public static var forceresize:Boolean = false;
+		static var std::string versionnumber;
+		static var int savescreencountdown;
+		static var int minresizecountdown;
+		static var bool forceresize = false;
 	}
 }

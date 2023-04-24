@@ -1,12 +1,11 @@
-package {
-	import flash.display.*;
-	import flash.geom.*;
-	import flash.events.*;
-	import flash.net.*;
+namespace bosca {
 	
-	public class musicphraseclass	{
-		public function musicphraseclass():void {
-			for (var i:int = 0; i < 129; i++) {
+	
+	
+		
+	struct musicphraseclass	{
+		void musicphraseclass() {
+			for (var int i = 0; i < 129; i++) {
 				notes.push(new Rectangle(-1, 0, 0, 0));
 			}
 			for (i = 0; i < 16; i++) {
@@ -17,8 +16,8 @@ package {
 			clear();
 		}
 		
-		public function clear():void {
-			for (var i:int = 0; i < 128; i++) {
+		void clear() {
+			for (var int i = 0; i < 128; i++) {
 				notes[i].setTo(-1, 0, 0, 0);
 			}
 			
@@ -41,26 +40,26 @@ package {
 			hash = 0;
 		}
 		
-		public function findtopnote():void {
+		void findtopnote() {
 			topnote = -1;
-			for (var i:int = 0; i < numnotes; i++) {
+			for (var int i = 0; i < numnotes; i++) {
 				if (notes[i].x > topnote) {
 					topnote = notes[i].x;
 				}
 			}
 		}
 		
-		public function findbottomnote():void {
+		void findbottomnote() {
 			bottomnote = 250;
-			for (var i:int = 0; i < numnotes; i++) {
+			for (var int i = 0; i < numnotes; i++) {
 				if (notes[i].x < bottomnote) {
 					bottomnote = notes[i].x;
 				}
 			}
 		}
 		
-		public function transpose(amount:int):void {
-			for (var i:int = 0; i < numnotes; i++) {
+		void transpose(int amount) {
+			for (var int i = 0; i < numnotes; i++) {
 				if (notes[i].x != -1) {
 					if (control.invertpianoroll[notes[i].x] + amount != -1) {
 						notes[i].x = control.pianoroll[control.invertpianoroll[notes[i].x] + amount];
@@ -71,7 +70,7 @@ package {
 			}
 		}
 		
-		public function addnote(noteindex:int, note:int, time:int):void {
+		void addnote(int noteindex, int note, int time) {
 			if (numnotes < 128) {
 				notes[numnotes].setTo(note, time, noteindex, 0);
 				numnotes++;
@@ -84,9 +83,9 @@ package {
 			hash = (hash + (note * time)) % 2147483647;
 		}
 		
-		public function noteat(noteindex:int, note:int):Boolean {
+		bool noteat(int noteindex, int note) {
 			//Returns true if there is a note that intersects the cursor position
-			for (var i:int = 0; i < numnotes; i++) {
+			for (var int i = 0; i < numnotes; i++) {
 				if (notes[i].x == note) {
 					if (noteindex >= notes[i].width && noteindex < notes[i].width + notes[i].y) {
 						return true;
@@ -96,9 +95,9 @@ package {
 			return false;
 		}
 		
-		public function removenote(noteindex:int, note:int):void {
+		void removenote(int noteindex, int note) {
 			//Remove any note that intersects that cursor position!
-			for (var i:int = 0; i < numnotes; i++) {
+			for (var int i = 0; i < numnotes; i++) {
 				if (notes[i].x == note) {
 					if (noteindex >= notes[i].width && noteindex < notes[i].width + notes[i].y) {
 						deletenote(i);
@@ -110,13 +109,13 @@ package {
 			findtopnote(); findbottomnote(); notespan = topnote-bottomnote;
 		}
 		
-		public function setnotespan():void {
+		void setnotespan() {
 			findtopnote(); findbottomnote(); notespan = topnote-bottomnote;
 		}
 		
-		public function deletenote(t:int):void {
+		void deletenote(int t) {
 			//Remove note t, rearrange note vector
-			for (var i:int = t; i < numnotes; i++) {
+			for (var int i = t; i < numnotes; i++) {
 				notes[i].x = notes[i + 1].x;
 				notes[i].y = notes[i + 1].y;
 				notes[i].width = notes[i + 1].width;
@@ -125,25 +124,25 @@ package {
 			numnotes--;
 		}
 		
-		public var notes:Vector.<Rectangle> = new Vector.<Rectangle>;
-		public var start:int;
-		public var numnotes:int;
+		var std::vector<Rectangle> notes = new std::vector<Rectangle>;
+		var int start;
+		var int numnotes;
 		
-		public var cutoffgraph:Vector.<int> = new Vector.<int>;
-		public var resonancegraph:Vector.<int> = new Vector.<int>;
-		public var volumegraph:Vector.<int> = new Vector.<int>;
-		public var recordfilter:int;
+		var std::vector<int> cutoffgraph = new std::vector<int>;
+		var std::vector<int> resonancegraph = new std::vector<int>;
+		var std::vector<int> volumegraph = new std::vector<int>;
+		var int recordfilter;
 		
-		public var topnote:int, bottomnote:int, notespan:Number;
+		var int topnote, int bottomnote, Number notespan;
 		
-		public var key:int, scale:int;
+		var int key, int scale;
 		
-		public var instr:int;
+		var int instr;
 		
-		public var palette:int;
+		var int palette;
 		
-		public var isplayed:Boolean;
+		var bool isplayed;
 		
-		public var hash:int; //massively simplified thing
+		var int hash; //massively simplified thing
 	}
 }

@@ -1,5 +1,5 @@
-﻿public function input(key:KeyPoll):void {
-	var i:int, j:int, k:int;
+﻿void input(KeyPoll key) {
+	var int i, int j, int k;
 	
 	generickeypoll();
 	if (key.click || key.press 

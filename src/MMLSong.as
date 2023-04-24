@@ -1,33 +1,33 @@
-package {
+namespace bosca {
 	import flash.utils.IDataOutput;
 	import flash.geom.Rectangle;
 	import mx.utils.StringUtil;
 
-	public class MMLSong {
-		protected var instrumentDefinitions:Vector.<String>;
-		protected var mmlToUseInstrument:Vector.<String>;
-		protected var noteDivisions:uint = 4;
-		protected var bpm:uint = 120;
-		protected var lengthOfPattern:uint = 16;
-		protected var monophonicTracksForBoscaTrack:Vector.<Vector.<String>>;
+	struct MMLSong {
+		protected var std::vector<std::string> instrumentDefinitions;
+		protected var std::vector<std::string> mmlToUseInstrument;
+		protected var uint noteDivisions = 4;
+		protected var uint bpm = 120;
+		protected var uint lengthOfPattern = 16;
+		protected var std::vector<std::vector<std::string>> monophonicTracksForBoscaTrack;
 
-		public function MMLSong() {
+		function MMLSong() {
 		}
 
-		public function loadFromLiveBoscaCeoilModel():void {
+		void loadFromLiveBoscaCeoilModel() {
 			noteDivisions = control.barcount;
 			bpm = control.bpm;
 			lengthOfPattern = control.boxcount;
 
-			var emptyBarMML:String = "\n// empty bar\n" + StringUtil.repeat("	r	 ", lengthOfPattern) + "\n";
-			var bar:uint;
-			var patternNum:int;
-			var numberOfPatterns:int = control.numboxes;
+			var std::string emptyBarMML = "\n// empty bar\n" + StringUtil.repeat("	r	 ", lengthOfPattern) + "\n";
+			var uint bar;
+			var int patternNum;
+			var int numberOfPatterns = control.numboxes;
 
-			instrumentDefinitions = new Vector.<String>();
-			mmlToUseInstrument = new Vector.<String>();
-			for (var i:uint = 0; i < control.numinstrument; i++) {
-				var boscaInstrument:instrumentclass = control.instrument[i];
+			instrumentDefinitions = new std::vector<std::string>();
+			mmlToUseInstrument = new std::vector<std::string>();
+			for (var uint i = 0; i < control.numinstrument; i++) {
+				var instrumentclass boscaInstrument = control.instrument[i];
 				if (boscaInstrument.type == 0) { //regular instrument, not a drumkit
 					instrumentDefinitions[i] = _boscaInstrumentToMML(boscaInstrument, i);
 					mmlToUseInstrument[i] = _boscaInstrumentToMMLUse(boscaInstrument, i);
@@ -42,23 +42,23 @@ package {
 				}
 			}
 
-			var monophonicTracksForBoscaPattern:Vector.<Vector.<String>> = new Vector.<Vector.<String>>(numberOfPatterns + 1);
-			monophonicTracksForBoscaTrack = new Vector.<Vector.<String>>();
-			for (var track:uint = 0; track < 8; track++) {
-				var maxMonoTracksForBoscaTrack:uint = 0;
+			var std::vector<std::vector<std::string>> monophonicTracksForBoscaPattern = new std::vector<std::vector<std::string>>(numberOfPatterns + 1);
+			monophonicTracksForBoscaTrack = new std::vector<std::vector<std::string>>();
+			for (var uint track = 0; track < 8; track++) {
+				var uint maxMonoTracksForBoscaTrack = 0;
 				for (bar = 0; bar < control.arrange.lastbar; bar++) {
 					patternNum = control.arrange.bar[bar].channel[track];
 
 					if (patternNum < 0) { continue; }
-					var monoTracksForBar:Vector.<String> = _mmlTracksForBoscaPattern(patternNum, control.musicbox);
+					var std::vector<std::string> monoTracksForBar = _mmlTracksForBoscaPattern(patternNum, control.musicbox);
 					maxMonoTracksForBoscaTrack = Math.max(maxMonoTracksForBoscaTrack, monoTracksForBar.length);
 
 					monophonicTracksForBoscaPattern[patternNum] = monoTracksForBar;
 				}
 
-				var outTracks:Vector.<String> = new Vector.<String>();
-				for(var monoTrackNo:uint = 0; monoTrackNo < maxMonoTracksForBoscaTrack; monoTrackNo++) {
-					var outTrack:String = "\n";
+				var std::vector<std::string> outTracks = new std::vector<std::string>();
+				for(var uint monoTrackNo = 0; monoTrackNo < maxMonoTracksForBoscaTrack; monoTrackNo++) {
+					var std::string outTrack = "\n";
 					for (bar = 0; bar < control.arrange.lastbar; bar++) {
 						patternNum = control.arrange.bar[bar].channel[track];
 						if (patternNum < 0) {
@@ -80,20 +80,20 @@ package {
 			}
 		}
 
-		public function writeToStream(stream:IDataOutput):void {
-			var out:String = "";
+		void writeToStream(IDataOutput stream) {
+			var std::string out = "";
 			out += "/** Music Macro Language (MML) exported from Bosca Ceoil */\n";
-			for each (var def:String in instrumentDefinitions) {
+			for each (var std::string def in instrumentDefinitions) {
 				out += def;
 				out += "\n";
 			}
 
-			for each (var monoTracks:Vector.<String> in monophonicTracksForBoscaTrack) {
+			for each (var std::vector<std::string> monoTracks in monophonicTracksForBoscaTrack) {
 				if (monoTracks.length == 0) { continue; } // don't bother printing entirely empty tracks
 
 				out += StringUtil.substitute("\n\n// === Bosca Ceoil track with up to {0} notes played at a time\n", monoTracks.length);
 
-				for each (var monoTrack:String in monoTracks) {
+				for each (var std::string monoTrack in monoTracks) {
 					out += "\n// ---- track\n"
 
 					// XXX: I thought note length would be something like (lengthOfPattern / noteDivisions) but I clearly misunderstand
@@ -106,42 +106,42 @@ package {
 			stream.writeMultiByte(out, "utf-8");
 		}
 
-		protected function _mmlTracksForBoscaPattern(patternNum:int, patternDefinitions:Vector.<musicphraseclass>):Vector.<String> {
-			var tracks:Vector.<String> = new Vector.<String>();
+		protected function _mmlTracksForBoscaPattern(int patternNum, std::vector<musicphraseclass> patternDefinitions):std::vector<std::string> {
+			var std::vector<std::string> tracks = new std::vector<std::string>();
 
-			var pattern:musicphraseclass = patternDefinitions[patternNum];
-			var octave:int = -1;
+			var musicphraseclass pattern = patternDefinitions[patternNum];
+			var int octave = -1;
 
-			for (var place:uint = 0; place < lengthOfPattern; place++) {
-				var notesInThisSlot:Vector.<String> = new Vector.<String>();
-				for (var n:int = 0; n < pattern.numnotes; n++) {
-					var note:Rectangle = pattern.notes[n];
-					var noteStartingAt:int = note.width;
-					var sionNoteNum:int = note.x;
-					var noteLength:uint = note.y;
-					var noteEndingAt:int = noteStartingAt + noteLength - 1;
+			for (var uint place = 0; place < lengthOfPattern; place++) {
+				var std::vector<std::string> notesInThisSlot = new std::vector<std::string>();
+				for (var int n = 0; n < pattern.numnotes; n++) {
+					var Rectangle note = pattern.notes[n];
+					var int noteStartingAt = note.width;
+					var int sionNoteNum = note.x;
+					var uint noteLength = note.y;
+					var int noteEndingAt = noteStartingAt + noteLength - 1;
 
-					var isNotePlaying:Boolean = (noteStartingAt <= place) && (place <= noteEndingAt);
+					var bool isNotePlaying = (noteStartingAt <= place) && (place <= noteEndingAt);
 
 					if (!isNotePlaying) { continue; }
 
-					var newOctave:int = _octaveFromSiONNoteNumber(sionNoteNum);
-					var mmlOctave:String = _mmlTransitionFromOctaveToOctave(octave, newOctave);
-					var mmlNoteName:String = _mmlNoteNameFromSiONNoteNumber(sionNoteNum);
-					var mmlSlur:String = (noteEndingAt > place) ? "& " : "	";
+					var int newOctave = _octaveFromSiONNoteNumber(sionNoteNum);
+					var std::string mmlOctave = _mmlTransitionFromOctaveToOctave(octave, newOctave);
+					var std::string mmlNoteName = _mmlNoteNameFromSiONNoteNumber(sionNoteNum);
+					var std::string mmlSlur = (noteEndingAt > place) ? "& " : "	";
 
 					octave = newOctave;
 
 					notesInThisSlot.push(mmlOctave + mmlNoteName + mmlSlur);
 				}
 				while (notesInThisSlot.length > tracks.length) {
-					var emptyTrackSoFar:String = StringUtil.repeat(emptyNoteMML, place);
+					var std::string emptyTrackSoFar = StringUtil.repeat(emptyNoteMML, place);
 					tracks.push(mmlToUseInstrument[pattern.instr] + "\n" + emptyTrackSoFar);
 				}
-				var emptyNoteMML:String = "	r	 ";
+				var std::string emptyNoteMML = "	r	 ";
 
-				for (var track:uint = 0; track < tracks.length; track++) {
-					var noteMML:String;
+				for (var uint track = 0; track < tracks.length; track++) {
+					var std::string noteMML;
 					if (track in notesInThisSlot) {
 						noteMML = notesInThisSlot[track];
 					} else {
@@ -157,22 +157,22 @@ package {
 		/**
 		 * XXX: Duplicated from TrackerModuleXM (consider factoring out)
 		 */
-		protected function _mmlNoteNameFromSiONNoteNumber(noteNum:int):String {
-			var noteNames:Vector.<String> = Vector.<String>(['c ', 'c+', 'd ', 'd+', 'e ', 'f ', 'f+', 'g ', 'g+', 'a ', 'a+', 'b ']);
+		protected function _mmlNoteNameFromSiONNoteNumber(int noteNum):std::string {
+			var std::vector<std::string> noteNames = std::vector<std::string>(['c ', 'c+', 'd ', 'd+', 'e ', 'f ', 'f+', 'g ', 'g+', 'a ', 'a+', 'b ']);
 
-			var noteName:String = noteNames[noteNum % 12];
+			var std::string noteName = noteNames[noteNum % 12];
 			return noteName;
 		}
 
 		/**
 		 * XXX: Duplicated from TrackerModuleXM (consider factoring out)
 		 */
-		protected function _octaveFromSiONNoteNumber(noteNum:int):int {
-			var octave:int = int(noteNum / 12);
+		protected function _octaveFromSiONNoteNumber(int noteNum):int {
+			var int octave = int(noteNum / 12);
 			return octave;
 		}
 
-		protected function _mmlTransitionFromOctaveToOctave(oldOctave:int, newOctave:int):String {
+		protected function _mmlTransitionFromOctaveToOctave(int oldOctave, int newOctave):std::string {
 			if (oldOctave == newOctave) {
 				return "	";
 			}
@@ -185,11 +185,11 @@ package {
 			return "o" + newOctave;
 		}
 
-		protected function _boscaInstrumentToMML(instrument:instrumentclass, channel:int):String {
+		protected function _boscaInstrumentToMML(instrumentclass instrument, int channel):std::string {
 			return StringUtil.substitute("// instrument \"{0}\"\n{1}\n", instrument.name, instrument.voice.getMML(channel));
 		}
 
-		protected function _boscaInstrumentToMMLUse(instrument:instrumentclass, channel:int):String {
+		protected function _boscaInstrumentToMMLUse(instrumentclass instrument, int channel):std::string {
 			return StringUtil.substitute("%6@{0} v{1} @f{2},{3}", channel, int(instrument.volume / 16), instrument.cutoff, instrument.resonance);
 		}
 

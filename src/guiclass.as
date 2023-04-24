@@ -1,17 +1,17 @@
-package {
+namespace bosca {
 	import flash.desktop.InteractiveIcon;
-	import flash.display.*;
-	import flash.geom.*;
-	import flash.events.*;
-	import flash.utils.*;
-	import flash.net.*;
+	
+	
+	
+	
+	
 	import bigroom.input.KeyPoll;
 	
-	public class guiclass {
-		public function guiclass() {}
+	struct guiclass {
+		function guiclass() {}
 		
-		public static function init():void {
-			for (var i:int = 0; i < 250; i++) {
+		static void init() {
+			for (var int i = 0; i < 250; i++) {
 				button.push(new guibutton());
 			}
 			
@@ -23,7 +23,7 @@ package {
 			helpcondition_set = "nothing";
 		}
 		
-		public static function changewindow(winname:String, initalise:Boolean = true):void {
+		static void changewindow(std::string winname, bool initalise = true) {
 			helpwindow = winname;
 			if (winname == "nothing") return;
 			windowxoffset = 0; windowyoffset = 0;
@@ -654,7 +654,7 @@ package {
 			}
 		}
 		
-		public static function addline(line:String, high:String = "", high2:String = ""):void {
+		static void addline(std::string line, std::string high = "", std::string high2 = "") {
 			if(line != "") {
 				addtextlabel(windowx + 10 + windowxoffset, windowy + 30 + windowyoffset + (gfx.linesize * windowline), line, 0, true);
 				if (high != "") {
@@ -671,124 +671,124 @@ package {
 			windowline++;
 		}
 		
-		public static function addwindow(x:int, y:int, w:int, h:int, text:String):void {
+		static void addwindow(int x, int y, int w, int h, std::string text) {
 			if(helpwindow != "nothing"){
 				addguipart(x, y, w, h, windowtext, "window", "window");
 			}
 		}
 		
-		public static function addtutorialimage(x:int, y:int, img:int, towindow:Boolean = false):void {
+		static void addtutorialimage(int x, int y, int img, bool towindow = false) {
 			addguipart(x, y, 0, 0, "", "", "tutorialimage", img);
 			if (towindow) button[lastbutton].onwindow = true;
 		}
 		
-		public static function addbutton(x:int, y:int, w:int, text:String, action:String, textoffset:int = 0, towindow:Boolean = false):void {
+		static void addbutton(int x, int y, int w, std::string text, std::string action, int textoffset = 0, bool towindow = false) {
 			addguipart(x, y, w, gfx.buttonheight, text, action, "normal", textoffset);
 			if (towindow) button[lastbutton].onwindow = true;
 		}
 		
-		public static function addlogo(x:int, y:int, towindow:Boolean = false):void {
+		static void addlogo(int x, int y, bool towindow = false) {
 			addguipart(x, y, 356, 44, "BOSCA CEOIL", "logo", "logo");
 			if (towindow) button[lastbutton].onwindow = true;
 		}
 		
-		public static function addtextlabel(x:int, y:int, text:String, col:int = 2, towindow:Boolean = false):void {
+		static void addtextlabel(int x, int y, std::string text, int col = 2, bool towindow = false) {
 			addguipart(x, y, col, 0, text, "", "textlabel");
 			if (towindow) button[lastbutton].onwindow = true;
 		}
 		
-		public static function addcentertextlabel(x:int, y:int, w:int, text:String, col:int = 2, towindow:Boolean = false):void {
+		static void addcentertextlabel(int x, int y, int w, std::string text, int col = 2, bool towindow = false) {
 			addguipart(x + ((w / 2) - (gfx.len(text) / 2)), y, col, 0, text, "", "textlabel");
 			if (towindow) button[lastbutton].onwindow = true;
 		}
 		
-		public static function addrighttextlabel(x:int, y:int, text:String, col:int = 2, towindow:Boolean = false):void {
+		static void addrighttextlabel(int x, int y, std::string text, int col = 2, bool towindow = false) {
 			addguipart(x, y, col, 0, text, "", "righttextlabel");
 			if (towindow) button[lastbutton].onwindow = true;
 		}
 		
-		public static function addblackout(towindow:Boolean = false):void {
+		static void addblackout(bool towindow = false) {
 			addguipart(0, 0, 0, 0, "", "", "blackout", 12);
 			if (towindow) button[lastbutton].onwindow = true;
 		}
 		
-		public static function addrect(x:int, y:int, w:int, h:int, col:int = 1, action:String = "", towindow:Boolean = false):void {
+		static void addrect(int x, int y, int w, int h, int col = 1, std::string action = "", bool towindow = false) {
 			addguipart(x, y, w, h, "", action, "fillrect", col);
 			if (towindow) button[lastbutton].onwindow = true;
 		}
 		
-		public static function addhighlight(x:int, y:int, w:int, h:int, col:int = 1, action:String = "", towindow:Boolean = false):void {
+		static void addhighlight(int x, int y, int w, int h, int col = 1, std::string action = "", bool towindow = false) {
 			highlightflash = 30;
 			addguipart(x, y, w, h, "", action, "highlight", col);
 			if (towindow) button[lastbutton].onwindow = true;
 		}
 		
-		public static function addleftarrow(x:int, y:int, action:String, towindow:Boolean = false):void {
+		static void addleftarrow(int x, int y, std::string action, bool towindow = false) {
 			addguipart(x, y, 16, 16, "", action, "leftarrow");
 			if (towindow) button[lastbutton].onwindow = true;
 		}
 		
-		public static function addrightarrow(x:int, y:int, action:String, towindow:Boolean = false):void {
+		static void addrightarrow(int x, int y, std::string action, bool towindow = false) {
 			addguipart(x, y, 16, 16, "", action, "rightarrow");
 			if (towindow) button[lastbutton].onwindow = true;
 		}
 		
-		public static function addplayarrow(x:int, y:int, action:String, towindow:Boolean = false):void {
+		static void addplayarrow(int x, int y, std::string action, bool towindow = false) {
 			addguipart(x, y, 16, 16, "", action, "playarrow");
 			if (towindow) button[lastbutton].onwindow = true;
 		}
 		
-		public static function addpausebutton(x:int, y:int, action:String, towindow:Boolean = false):void {
+		static void addpausebutton(int x, int y, std::string action, bool towindow = false) {
 			addguipart(x, y, 16, 16, "", action, "pause");
 			if (towindow) button[lastbutton].onwindow = true;
 		}
 		
-		public static function addstopbutton(x:int, y:int, action:String, towindow:Boolean = false):void {
+		static void addstopbutton(int x, int y, std::string action, bool towindow = false) {
 			addguipart(x, y, 16, 16, "", action, "stop");
 			if (towindow) button[lastbutton].onwindow = true;
 		}
 		
-		public static function addplusbutton(x:int, y:int, action:String, towindow:Boolean = false):void {
+		static void addplusbutton(int x, int y, std::string action, bool towindow = false) {
 			addguipart(x, y, 16, 16, "", action, "plus");
 			if (towindow) button[lastbutton].onwindow = true;
 		}
 		
-		public static function addminusbutton(x:int, y:int, action:String, towindow:Boolean = false):void {
+		static void addminusbutton(int x, int y, std::string action, bool towindow = false) {
 			addguipart(x, y, 16, 16, "", action, "minus");
 			if (towindow) button[lastbutton].onwindow = true;
 		}
 		
-		public static function adddownarrow(x:int, y:int, action:String, towindow:Boolean = false):void {
+		static void adddownarrow(int x, int y, std::string action, bool towindow = false) {
 			addguipart(x, y, 16, 16, "", action, "downarrow");
 			if (towindow) button[lastbutton].onwindow = true;
 		}
 			
-		public static function adduparrow(x:int, y:int, action:String, towindow:Boolean = false):void {
+		static void adduparrow(int x, int y, std::string action, bool towindow = false) {
 			addguipart(x, y, 16, 16, "", action, "uparrow");
 			if (towindow) button[lastbutton].onwindow = true;
 		}
 		
-		public static function addscrollupbutton(x:int, y:int, w:int, action:String, towindow:Boolean = false):void {
+		static void addscrollupbutton(int x, int y, int w, std::string action, bool towindow = false) {
 			addguipart(x, y, w, 21, "", action, "scrollup");
 			if (towindow) button[lastbutton].onwindow = true;
 		}
 		
-		public static function addscrolldownbutton(x:int, y:int, w:int,action:String, towindow:Boolean = false):void {
+		static void addscrolldownbutton(int x, int y, int w,std::string action, bool towindow = false) {
 			addguipart(x, y, w, 21, "", action, "scrolldown");
 			if (towindow) button[lastbutton].onwindow = true;
 		}
 		
-		public static function addvariable(x:int, y:int, variable:String, col:int = 0, towindow:Boolean = false):void {
+		static void addvariable(int x, int y, std::string variable, int col = 0, bool towindow = false) {
 			addguipart(x, y, col, 0, "", variable, "variable");
 			if (towindow) button[lastbutton].onwindow = true;
 		}
 		
-		public static function addhorizontalslider(x:int, y:int, w:int, variable:String, towindow:Boolean = false):void {
+		static void addhorizontalslider(int x, int y, int w, std::string variable, bool towindow = false) {
 			addguipart(x, y, w, 26, "", variable, "horizontalslider");
 			if (towindow) button[lastbutton].onwindow = true;
 		}
 		
-		public static function addcontrol(x:int, y:int, type:String):void {
+		static void addcontrol(int x, int y, std::string type) {
 			//For complex multipart things
 			if (type == "changepatternlength") {
 				addrect(x, y - 4, 320, 26);
@@ -842,10 +842,10 @@ package {
 			}
 		}
 		
-		public static function addguipart(x:int, y:int, w:int, h:int, contents:String, act:String = "", sty:String = "normal", toffset:int = 0):void {
+		static void addguipart(int x, int y, int w, int h, std::string contents, std::string act = "", std::string sty = "normal", int toffset = 0) {
 			if (button.length == 0) init();
 			
-			var i:int, z:int;
+			var int i, int z;
 			if(numbuttons == 0) {
 				//If there are no active buttons, Z=0;
 				z = 0; 
@@ -871,16 +871,16 @@ package {
 			numbuttons++;
 		}
 		
-		public static function clear():void {
-			for (var i:int = 0; i < numbuttons; i++) {
+		static void clear() {
+			for (var int i = 0; i < numbuttons; i++) {
 				button[i].active = false;
 			}
 			numbuttons = 0;
 		}
 		
-		public static function buttonexists(t:String):Boolean {
+		static bool buttonexists(std::string t) {
 			//Return true if there is an active button with action t
-			for (var i:int = 0; i < numbuttons; i++) {
+			for (var int i = 0; i < numbuttons; i++) {
 				if (button[i].active) {
 					if (button[i].action == t) {
 						return true;
@@ -891,13 +891,13 @@ package {
 			return false;
 		}
 		
-		public static function checkinput(key:KeyPoll):void {
+		static void checkinput(KeyPoll key) {
 			if (highlightflash > 0) {
 				highlightflash--;
 			}
 			//Do window stuff first
 			overwindow = false;
-			for (var i:int = 0; i < numbuttons; i++) {
+			for (var int i = 0; i < numbuttons; i++) {
 				if (button[i].active && button[i].visable) {
 					if (button[i].action == "window") {
 						if (help.inboxw(control.mx, control.my, button[i].position.x, button[i].position.y, button[i].position.width, button[i].position.height)) {
@@ -944,7 +944,7 @@ package {
 							windowx = button[i].position.x;
 							windowy = button[i].position.y;
 							
-							for (var j:int = 0; j < numbuttons; j++) {
+							for (var int j = 0; j < numbuttons; j++) {
 								if (button[j].active && button[j].visable) {
 									if (button[j].onwindow) {
 										button[j].position.x -= windowddx;
@@ -977,13 +977,13 @@ package {
 			cleanup();
 		}
 		
-		public static function cleanup():void {
-			var i:int = 0;
+		static void cleanup() {
+			var int i = 0;
 			i = numbuttons - 1; while (i >= 0 && !button[i].active) { numbuttons--; i--; }
 		}
 		
-		public static function drawbuttons():void {
-			for (var i:int = 0; i < numbuttons; i++) {
+		static void drawbuttons() {
+			for (var int i = 0; i < numbuttons; i++) {
 				if (button[i].active && button[i].visable) {
 					if (button[i].style == "normal") {
 						gfx.fillrect(button[i].position.x, button[i].position.y, button[i].position.width, button[i].position.height, 12);
@@ -1009,7 +1009,7 @@ package {
 						
 						gfx.print(tx, ty, button[i].text, 0, false, true);
 					}else if (button[i].style == "blackout") {
-						for (var j:int = 0; j < gfx.screenheight; j++) {
+						for (var int j = 0; j < gfx.screenheight; j++) {
 							if (j % 4 == 0) {
 								gfx.fillrect(0, j, gfx.screenwidth, 2, 12);
 							}
@@ -1119,13 +1119,13 @@ package {
 						}
 					}else if (button[i].style == "variable") {
 						if(button[i].action == "barcount"){
-							gfx.print(button[i].position.x, button[i].position.y, String(control.barcount), button[i].position.width, false, true);
+							gfx.print(button[i].position.x, button[i].position.y, std::string(control.barcount), button[i].position.width, false, true);
 						}else if(button[i].action == "boxcount"){
-							gfx.print(button[i].position.x, button[i].position.y, String(control.boxcount), button[i].position.width, false, true);
+							gfx.print(button[i].position.x, button[i].position.y, std::string(control.boxcount), button[i].position.width, false, true);
 						}else if(button[i].action == "bpm"){
-							gfx.print(button[i].position.x, button[i].position.y, String(control.bpm), button[i].position.width, false, true);
+							gfx.print(button[i].position.x, button[i].position.y, std::string(control.bpm), button[i].position.width, false, true);
 						}else if(button[i].action == "buffersize"){
-							gfx.print(button[i].position.x, button[i].position.y, String(control.buffersize), button[i].position.width, false, true);
+							gfx.print(button[i].position.x, button[i].position.y, std::string(control.buffersize), button[i].position.width, false, true);
 						}else if (button[i].action == "buffersizealert") {
 							if (control.buffersize != control.currentbuffersize) {
 								if (help.slowsine >= 32) {
@@ -1136,17 +1136,17 @@ package {
 							}
 						}else if (button[i].action == "swing") {
 							if(control.swing==-10){
-								gfx.print(button[i].position.x, button[i].position.y, String(control.swing), 0, false, true);
+								gfx.print(button[i].position.x, button[i].position.y, std::string(control.swing), 0, false, true);
 							}else if (control.swing < 0 || control.swing == 10 ) {
-								gfx.print(button[i].position.x + 5, button[i].position.y, String(control.swing), 0, false, true);
+								gfx.print(button[i].position.x + 5, button[i].position.y, std::string(control.swing), 0, false, true);
 							}else{
-								gfx.print(button[i].position.x + 10, button[i].position.y, String(control.swing), 0, false, true);
+								gfx.print(button[i].position.x + 10, button[i].position.y, std::string(control.swing), 0, false, true);
 							}
 						}else if (button[i].action == "currenteffect") {
 							gfx.rprint(button[i].position.x, button[i].position.y, control.effectname[control.effecttype], button[i].position.width, true);
 						}else if (button[i].action == "currentinstrument") {
 							if (control.currentbox > -1) {
-								gfx.print(button[i].position.x, button[i].position.y, String(control.musicbox[control.currentbox].instr + 1) + "	" + control.instrument[control.musicbox[control.currentbox].instr].name, 0, false, true);
+								gfx.print(button[i].position.x, button[i].position.y, std::string(control.musicbox[control.currentbox].instr + 1) + "	" + control.instrument[control.musicbox[control.currentbox].instr].name, 0, false, true);
 							}
 						}else if (button[i].action == "currentkey") {
 							gfx.print(button[i].position.x, button[i].position.y, control.notename[control.key], 0, false, true);
@@ -1183,9 +1183,9 @@ package {
 			}
 		}
 		
-		public static function deleteall(t:String = ""):void {
+		static void deleteall(std::string t = "") {
 			if (t == "") {
-				for (var i:int = 0; i < numbuttons; i++) button[i].active = false;
+				for (var int i = 0; i < numbuttons; i++) button[i].active = false;
 				numbuttons = 0;
 			}else{
 				//Deselect any buttons with style t
@@ -1199,9 +1199,9 @@ package {
 			}
 		}
 		
-		public static function selectbutton(t:String):void {
+		static void selectbutton(std::string t) {
 			//select any buttons with action t
-			for (var i:int = 0; i < numbuttons; i++) {
+			for (var int i = 0; i < numbuttons; i++) {
 				if (button[i].active) {
 					if (button[i].action == t) {
 						dobuttonaction(i);
@@ -1211,9 +1211,9 @@ package {
 			}
 		}
 		
-		public static function deselect(t:String):void {
+		static void deselect(std::string t) {
 			//Deselect any buttons with action t
-			for (var i:int = 0; i < numbuttons; i++) {
+			for (var int i = 0; i < numbuttons; i++) {
 				if (button[i].active) {
 					if (button[i].action == t) {
 						button[i].selected = false;
@@ -1222,9 +1222,9 @@ package {
 			}
 		}
 		
-		public static function deselectall(t:String):void {
+		static void deselectall(std::string t) {
 			//Deselect any buttons with style t
-			for (var i:int = 0; i < numbuttons; i++) {
+			for (var int i = 0; i < numbuttons; i++) {
 				if (button[i].active) {
 					if (button[i].style == t) {
 						button[i].selected = false;
@@ -1233,8 +1233,8 @@ package {
 			}
 		}
 		
-		public static function findbuttonbyaction(t:String):int {
-			for (var i:int = 0; i < numbuttons; i++) {
+		static int findbuttonbyaction(std::string t) {
+			for (var int i = 0; i < numbuttons; i++) {
 				if (button[i].active) {
 					if (button[i].action == t) {
 						return i;
@@ -1244,7 +1244,7 @@ package {
 			return 0;
 		}
 		
-		public static function changetab(t:int):void {
+		static void changetab(int t) {
 			//Delete all buttons when tabs change, and create new ones
 			deleteall();
 			
@@ -1377,7 +1377,7 @@ package {
 			}
 		}
 		
-		public static function dobuttonmoveaction(i:int):void {
+		static void dobuttonmoveaction(int i) {
 			currentbutton = button[i].action;
 			
 			if (currentbutton == "window") {
@@ -1399,7 +1399,7 @@ package {
 				}
 			}else	if (currentbutton == "currenteffect") {
 				if (control.mx >= button[i].position.x - 5	- 20 && control.mx < button[i].position.x + button[i].position.width + 20 && control.my >= button[i].position.y - 4 - 20 && control.my <= button[i].position.y + gfx.buttonheight + 4 + 20) {
-					var barposition:int = control.mx - (button[i].position.x + 5);
+					var int barposition = control.mx - (button[i].position.x + 5);
 					if (barposition < 0) barposition = 0; 
 					if (barposition > button[i].position.width) barposition = button[i].position.width;
 					
@@ -1429,7 +1429,7 @@ package {
 			}
 		}
 		
-		public static function dobuttonaction(i:int):void {
+		static void dobuttonaction(int i) {
 			helpcondition_set = "nothing";
 			currentbutton = button[i].action;
 			button[i].press();
@@ -1666,33 +1666,33 @@ package {
 			}
 		}
 		
-		public static var button:Vector.<guibutton> = new Vector.<guibutton>;
-		public static var numbuttons:int;
-		public static var maxbuttons:int;
+		static var std::vector<guibutton> button = new std::vector<guibutton>;
+		static var int numbuttons;
+		static var int maxbuttons;
 		
-		public static var tx:int, ty:int, timage:int;
-		public static var tw:int, th:int;
-		public static var currentbutton:String;
-		public static var lastbutton:int;
-		public static var highlightflash:int;
+		static var int tx, int ty, int timage;
+		static var int tw, int th;
+		static var std::string currentbutton;
+		static var int lastbutton;
+		static var int highlightflash;
 		
-		public static var windowcheck:Boolean;
-		public static var windowdrag:Boolean = false;
-		public static var overwindow:Boolean = false;
-		public static var windowddx:int, windowddy:int;
-		public static var windowdx:int, windowdy:int;
-		public static var windowx:int, windowy:int;
-		public static var windowwidth:int, windowheight:int;
-		public static var windowline:int;
-		public static var windowxoffset:int;
-		public static var windowyoffset:int;
-		public static var windowtext:String;
+		static var bool windowcheck;
+		static var bool windowdrag = false;
+		static var bool overwindow = false;
+		static var int windowddx, int windowddy;
+		static var int windowdx, int windowdy;
+		static var int windowx, int windowy;
+		static var int windowwidth, int windowheight;
+		static var int windowline;
+		static var int windowxoffset;
+		static var int windowyoffset;
+		static var std::string windowtext;
 		
-		public static var helpwindow:String;
+		static var std::string helpwindow;
 		
-		public static var helpcondition_check:String;
-		public static var helpcondition_set:String;
+		static var std::string helpcondition_check;
+		static var std::string helpcondition_set;
 		
-		public static var firstrun:Boolean = false;
+		static var bool firstrun = false;
 	}
 }

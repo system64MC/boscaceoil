@@ -1,13 +1,12 @@
-package {
-	import flash.display.*;
-	import flash.geom.*;
-	import flash.events.*;
-	import flash.net.*;
+namespace bosca {
 	
-	public class voicelistclass	{
-		public function voicelistclass():void {
+	
+	
+		
+	struct voicelistclass	{
+		void voicelistclass() {
 			listsize = 0; sublistsize = 0; pagenum = 0;
-			for (var i:int = 0; i < 256; i++) {
+			for (var int i = 0; i < 256; i++) {
 				subname.push("");
 				subvoice.push("");
 				subpalette.push("");
@@ -15,7 +14,7 @@ package {
 			init();
 		}
 		
-		public function init():void {
+		void init() {
 			create("MIDI", "Grand Piano", "midi.piano1", 0);
 			create("MIDI", "Bright Piano", "midi.piano2", 1);
 			create("MIDI", "Electric Grand", "midi.piano3", 2);
@@ -64,8 +63,8 @@ package {
 			create("MIDI", "Pizzicato Strings", "midi.strings6", 3);
 			create("MIDI", "Harp", "midi.strings7", 4);
 			create("MIDI", "Timpani", "midi.strings8", 5);
-			create("MIDI", "String Ensemble 1", "midi.ensemble1", 0);
-			create("MIDI", "String Ensemble 2", "midi.ensemble2", 1);
+			create("MIDI", "std::string Ensemble 1", "midi.ensemble1", 0);
+			create("MIDI", "std::string Ensemble 2", "midi.ensemble2", 1);
 			create("MIDI", "Synth Strings 1", "midi.ensemble3", 2);
 			create("MIDI", "Synth Strings 2", "midi.ensemble4", 3);
 			create("MIDI", "Choir Aahs", "midi.ensemble5", 4);
@@ -396,16 +395,16 @@ package {
 			create("DRUMKIT", "Midi Drumkit", "drumkit.3", 20);
 		}
 		
-		public function fixlengths():void {
+		void fixlengths() {
 			//Fix the lengths of the names
-			for (var i:int = 0; i < listsize; i++) {
+			for (var int i = 0; i < listsize; i++) {
 				while (gfx.len(name[i]) > 190) {
 					name[i] = help.Left(name[i], name[i].length - 1)					
 				}
 			}
 		}
 		
-		public function create(cat:String, t1:String, t2:String, pal:int, midimapping:int = -1):void {
+		void create(std::string cat, std::string t1, std::string t2, int pal, int midimapping = -1) {
 			category.push(cat);
 			name.push(t1);
 			voice.push(t2);
@@ -420,17 +419,17 @@ package {
 			listsize++;
 		}
 		
-		public function makesublist(cat:String):void {
+		void makesublist(std::string cat) {
 			//Make sublist based on category
 			sublistsize = 0;
-			for (var i:int = 0; i < listsize; i++) {
+			for (var int i = 0; i < listsize; i++) {
 				if (category[i] == cat) {
 					add(name[i], voice[i], palette[i]);
 				}
 			}
 		}
 		
-		public function add(t1:String, t2:String, pal:int):void {
+		void add(std::string t1, std::string t2, int pal) {
 			subname[sublistsize] = t1;
 			subvoice[sublistsize] = t2;
 			subpalette[sublistsize] = pal;
@@ -438,59 +437,59 @@ package {
 			sublistsize++;
 		}
 		
-		public function getfirst(cat:String):int {
+		int getfirst(std::string cat) {
 			//Return the index of the first member of this category
-			for (var i:int = 0; i < listsize; i++) {
+			for (var int i = 0; i < listsize; i++) {
 				if (category[i] == cat) return i;
 			}
 			return 0;
 		}
 		
-		public function getlast(cat:String):int {
+		int getlast(std::string cat) {
 			//Return the index of the last member of this category
-			for (var i:int = listsize - 1; i >= 0; i--) {
+			for (var int i = listsize - 1; i >= 0; i--) {
 				if (category[i] == cat) return i;
 			}
 			return 0;
 		}
 		
-		public function getvoice(n:String):int {
+		int getvoice(std::string n) {
 			//Get the voice by name, return index
-			for (var i:int = 0; i < listsize; i++) {
+			for (var int i = 0; i < listsize; i++) {
 				if (name[i] == n) return i;
 			}
 			return 0;
 		}
 		
-		public function getnext(current:int):int {
+		int getnext(int current) {
 			//Given current instrument, get the next instrument in this category
-			for (var i:int = current + 1; i < listsize; i++) {
+			for (var int i = current + 1; i < listsize; i++) {
 				if (category[i] == category[current]) return i;	
 			}
 			return getfirst(category[current]);
 		}
 		
-		public function getprevious(current:int):int {
+		int getprevious(int current) {
 			//Given current instrument, get the previous instrument in this category
-			for (var i:int = current - 1; i >= 0; i--) {
+			for (var int i = current - 1; i >= 0; i--) {
 				if (category[i] == category[current]) return i;	
 			}
 			return getlast(category[current]);
 		}
 		
-		public var category:Vector.<String> = new Vector.<String>;
-		public var name:Vector.<String> = new Vector.<String>;
-		public var voice:Vector.<String> = new Vector.<String>;
-		public var palette:Vector.<int> = new Vector.<int>;
-		public var midimap:Vector.<int> = new Vector.<int>;
+		var std::vector<std::string> category = new std::vector<std::string>;
+		var std::vector<std::string> name = new std::vector<std::string>;
+		var std::vector<std::string> voice = new std::vector<std::string>;
+		var std::vector<int> palette = new std::vector<int>;
+		var std::vector<int> midimap = new std::vector<int>;
 		
-		public var subname:Vector.<String> = new Vector.<String>;
-		public var subvoice:Vector.<String> = new Vector.<String>;
-		public var subpalette:Vector.<int> = new Vector.<int>;
-		public var sublistsize:int;
+		var std::vector<std::string> subname = new std::vector<std::string>;
+		var std::vector<std::string> subvoice = new std::vector<std::string>;
+		var std::vector<int> subpalette = new std::vector<int>;
+		var int sublistsize;
 		
-		public var listsize:int;
-		public var index:int;
-		public var pagenum:int;
+		var int listsize;
+		var int index;
+		var int pagenum;
 	}
 }

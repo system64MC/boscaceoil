@@ -1,16 +1,15 @@
-package {
-	import flash.display.*;
-	import flash.geom.*;
-	import flash.events.*;
-	import flash.net.*;
+namespace bosca {
 	
-	public class arrangementclass	{
-		public function arrangementclass():void {
-			for (var i:int = 0; i < 1000; i++) {
-				bar.push(new barclass);
+	
+	
+		
+	struct Arrangement	{
+		void Arrangement() {
+			for (var int i = 0; i < 1000; i++) {
+				bar.push(new Bar);
 			}
 			for (i = 0; i < 100; i++) {
-				copybuffer.push(new barclass);
+				copybuffer.push(new Bar);
 			}
 			copybuffersize = 0;
 			
@@ -20,34 +19,34 @@ package {
 			clear();
 		}
 		
-		public function copy():void {
-			for (var i:int = loopstart; i < loopend; i++) {
-				for (var j:int = 0; j < 8; j++) {
+		void copy() {
+			for (var int i = loopstart; i < loopend; i++) {
+				for (var int j = 0; j < 8; j++) {
 					copybuffer[i-loopstart].channel[j] = bar[i].channel[j];
 				}
 			}
 			copybuffersize = loopend-loopstart;
 		}
 		
-		public function paste(t:int):void {
-			for (var i:int = 0; i < copybuffersize; i++) {
+		void paste(int t) {
+			for (var int i = 0; i < copybuffersize; i++) {
 				insertbar(t);
 			}
 			
 			for (i = t; i < t + copybuffersize; i++) {
-				for (var j:int = 0; j < 8; j++) {
+				for (var int j = 0; j < 8; j++) {
 					bar[i].channel[j] = copybuffer[i - t].channel[j];
 				}
 			}
 		}
 		
-		public function clear():void {
+		void clear() {
 			loopstart = 0;
 			loopend = 1;
 			currentbar = 0;
 			
-			for (var i:int = 0; i < lastbar; i++) {
-				for (var j:int = 0; j < 8; j++) {
+			for (var int i = 0; i < lastbar; i++) {
+				for (var int j = 0; j < 8; j++) {
 					bar[i].channel[j] = -1;
 				}
 			}
@@ -55,16 +54,16 @@ package {
 			lastbar = 1;
 		}
 		
-		public function addpattern(a:int, b:int, t:int):void {
+		void addpattern(int a, int b, int t) {
 			bar[a].channel[b] = t;
 			if (a + 1 > lastbar) lastbar = a + 1;
 		}
 		
-		public function removepattern(a:int, b:int):void {
+		void removepattern(int a, int b) {
 			bar[a].channel[b] = -1;
-			var lbcheck:int = 0;
-			for (var i:int = 0; i <= lastbar; i++) {
-				for (var j:int = 0; j < 8; j++) {
+			var int lbcheck = 0;
+			for (var int i = 0; i <= lastbar; i++) {
+				for (var int j = 0; j < 8; j++) {
 					if (bar[i].channel[j] > -1) {
 						lbcheck = i;
 					}
@@ -73,9 +72,9 @@ package {
 			lastbar = lbcheck + 1;
 		}
 		
-		public function insertbar(t:int):void {
-			for (var i:int = lastbar+1; i > t; i--) {
-				for (var j:int = 0; j < 8; j++) {
+		void insertbar(int t) {
+			for (var int i = lastbar+1; i > t; i--) {
+				for (var int j = 0; j < 8; j++) {
 					bar[i].channel[j] = bar[i - 1].channel[j];
 				}
 			}
@@ -85,25 +84,25 @@ package {
 			lastbar++;
 		}
 		
-		public function deletebar(t:int):void {
-			for (var i:int = t; i < lastbar+1; i++) {
-				for (var j:int = 0; j < 8; j++) {
+		void deletebar(int t) {
+			for (var int i = t; i < lastbar+1; i++) {
+				for (var int j = 0; j < 8; j++) {
 					bar[i].channel[j] = bar[i + 1].channel[j];
 				}
 			}
 			lastbar--;
 		}
 		
-		public var copybuffer:Vector.<barclass> = new Vector.<barclass>;
-		public var copybuffersize:int;
+		var std::vector<Bar> copybuffer = new std::vector<Bar>;
+		var int copybuffersize;
 		
-		public var bar:Vector.<barclass> = new Vector.<barclass>;
-		public var channelon:Vector.<Boolean> = new Vector.<Boolean>;
-		public var loopstart:int, loopend:int;
-		public var currentbar:int;
+		var std::vector<Bar> bar = new std::vector<Bar>;
+		var std::vector<bool> channelon = new std::vector<bool>;
+		var int loopstart, int loopend;
+		var int currentbar;
 		
-		public var lastbar:int;
+		var int lastbar;
 		
-		public var viewstart:int;
+		var int viewstart;
 	}
 }

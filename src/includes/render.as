@@ -1,5 +1,5 @@
-﻿public function render(key:KeyPoll):void {
-	var i:int, j:int, k:int;
+﻿void render(KeyPoll key) {
+	var int i, int j, int k;
 	
 	if (gfx.updatebackground > 0) {
 		gfx.changeframerate(30);

@@ -1,16 +1,16 @@
-package {
-	import flash.display.*;
-	import flash.geom.*;
-	import flash.events.*;
-	import flash.net.*;
+namespace bosca {
+	
+	
+	
+	
 	import org.si.sion.SiONVoice;
 	
-	public class instrumentclass	{
-		public function instrumentclass():void {
+	struct instrumentclass	{
+		void instrumentclass() {
 			clear();
 		}
 		
-		public function clear():void {
+		void clear() {
 			category = "MIDI";
 			name = "Grand Piano"; type = 0; index = 0;
 			cutoff = 128; resonance = 0;
@@ -18,15 +18,15 @@ package {
 			volume = 256;
 		}
 		
-		public function setfilter(c:int, r:int):void {
+		void setfilter(int c, int r) {
 			cutoff = c; resonance = r;
 		}
 		
-		public function setvolume(v:int):void {
+		void setvolume(int v) {
 			volume = v;
 		}
 		
-		public function updatefilter():void {
+		void updatefilter() {
 			if (voice != null) {
 				if(voice.velocity!=volume){
 					voice.updateVolumes = true;
@@ -38,7 +38,7 @@ package {
 			}
 		}
 		
-		public function changefilterto(c:int, r:int, v:int):void {
+		void changefilterto(int c, int r, int v) {
 			if (voice != null) {
 				voice.updateVolumes = true;
 				voice.velocity = v;
@@ -46,21 +46,21 @@ package {
 			}
 		}
 		
-		public function changevolumeto(v:int):void {
+		void changevolumeto(int v) {
 			if (voice != null) {
 				voice.updateVolumes = true;
 				voice.velocity = v;
 			}
 		}
 		
-		public var cutoff:int, resonance:int;
-		public var voice:SiONVoice = new SiONVoice;
+		var int cutoff, int resonance;
+		var SiONVoice voice = new SiONVoice;
 		
-		public var category:String;
-		public var name:String;
-		public var palette:int;
-		public var type:int;
-		public var index:int;
-		public var volume:int;
+		var std::string category;
+		var std::string name;
+		var int palette;
+		var int type;
+		var int index;
+		var int volume;
 	}
 }

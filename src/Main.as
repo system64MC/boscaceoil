@@ -32,12 +32,12 @@
 
  */
 
-package
+namespace bosca
 {
-	import flash.display.*;
-	import flash.geom.*;
-	import flash.events.*;
-	import flash.net.*;
+	
+	
+	
+	
 	import flash.media.*;
 	import flash.ui.ContextMenu;
 	import flash.ui.ContextMenuItem;
@@ -57,14 +57,14 @@ package
 		import flash.external.ExternalInterface;
 	}
 	
-	public class Main extends Sprite
+	struct Main extends Sprite
 	{
 		include "keypoll.as";
 		include "includes/logic.as";
 		include "includes/input.as";
 		include "includes/render.as";
 		
-		public function Main():void
+		void Main()
 		{
 			control.versionnumber = "v2.1 unstable"; // Version number displayed beside logo
 			control.version = 3;						// Version number used by file
@@ -87,7 +87,7 @@ package
 				stage.addEventListener(Event.RESIZE, handleResize);
 			}
 			
-			var tempbmp:Bitmap;
+			var Bitmap tempbmp;
 			tempbmp = new im_icons();
 			gfx.buffer = tempbmp.bitmapData;
 			gfx.makeiconarray();
@@ -170,8 +170,8 @@ package
 						// If the container is not ready, set up a Timer to call the
 						// container at 100ms intervals. Once the container responds that
 						// it's ready, the timer will be stopped.
-						var containerIsReadyTimer:Timer = new Timer(100);
-						containerIsReadyTimer.addEventListener(TimerEvent.TIMER, function(e:TimerEvent):void
+						var Timer containerIsReadyTimer = new Timer(100);
+						containerIsReadyTimer.addEventListener(TimerEvent.TIMER, function(TimerEvent e):void
 						{
 							if (ExternalInterface.call("Bosca._isReady"))
 							{
@@ -185,10 +185,10 @@ package
 			}
 		}
 		
-		private function handleResize(e:Event):void
+		private void handleResize(Event e)
 		{
 			// adjust the gui to fit the new device resolution
-			var tempwidth:int, tempheight:int;
+			var int tempwidth, int tempheight;
 			if (e != null)
 			{
 				e.preventDefault();
@@ -213,7 +213,7 @@ package
 			
 			guiclass.changetab(control.currenttab);
 			
-			var temp:BitmapData = new BitmapData(gfx.windowwidth, gfx.windowheight, false, 0x000000);
+			var BitmapData temp = new BitmapData(gfx.windowwidth, gfx.windowheight, false, 0x000000);
 			gfx.updatebackground = 5;
 			gfx.backbuffercache = new BitmapData(gfx.windowwidth, gfx.windowheight, false, 0x000000);
 			temp.copyPixels(gfx.backbuffer, gfx.backbuffer.rect, gfx.tl);
@@ -249,12 +249,12 @@ package
 			_timer.start();
 		}
 		
-		private function __activate__($event:Event):void
+		private function __activate__($Event event):void
 		{
 			gfx.changeframerate(30);
 		}
 		
-		private function __deactivate__($event:Event):void
+		private function __deactivate__($Event event):void
 		{
 			gfx.changeframerate(1);
 		}
@@ -275,7 +275,7 @@ package
 			}
 		}
 		
-		public function _input():void
+		function _input():void
 		{
 			if (gfx.scalemode == 1)
 			{
@@ -291,7 +291,7 @@ package
 			input(key);
 		}
 		
-		public function _logic():void
+		function _logic():void
 		{
 			logic(key);
 			help.updateglow();
@@ -302,13 +302,13 @@ package
 			}
 		}
 		
-		public function _render():void
+		function _render():void
 		{
 			gfx.backbuffer.lock();
 			render(key);
 		}
 		
-		public function mainloop(e:TimerEvent):void
+		void mainloop(TimerEvent e)
 		{
 			_current = getTimer();
 			if (_last < 0) _last = _current;
@@ -332,7 +332,7 @@ package
 			}
 		}
 		
-		public function updategraphicsmode():void
+		void updategraphicsmode()
 		{
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;
@@ -351,7 +351,7 @@ package
 		
 		CONFIG::desktop
 		{
-			public function onInvokeEvent(event:InvokeEvent):void
+			void onInvokeEvent(InvokeEvent event)
 			{
 				if (event.arguments.length > 0)
 				{
@@ -374,46 +374,46 @@ package
 			}
 		}
 		
-		public var key:KeyPoll;
+		var KeyPoll key;
 		
 		// Timer information (a shout out to ChevyRay for the implementation)
-		public static const TARGET_FPS:Number = 30; // the fixed-FPS we want the control to run at
-		private var _rate:Number = 1000 / TARGET_FPS; // how long (in seconds) each frame is
-		private var _skip:Number = _rate * 10; // this tells us to allow a maximum of 10 frame skips
-		private var _last:Number = -1;
-		private var _current:Number = 0;
-		private var _delta:Number = 0;
-		private var _timer:Timer = new Timer(4);
+		static const Number TARGET_FPS = 30; // the fixed-FPS we want the control to run at
+		private var Number _rate = 1000 / TARGET_FPS; // how long (in seconds) each frame is
+		private var Number _skip = _rate * 10; // this tells us to allow a maximum of 10 frame skips
+		private var Number _last = -1;
+		private var Number _current = 0;
+		private var Number _delta = 0;
+		private var Timer _timer = new Timer(4);
 		
 		//Embedded resources:		
 		[Embed(source = 'graphics/icons.png')]
-		private var im_icons:Class;
+		private var Class im_icons;
 		[Embed(source = 'graphics/logo_blue.png')]
-		private var im_logo0:Class;
+		private var Class im_logo0;
 		[Embed(source = 'graphics/logo_purple.png')]
-		private var im_logo1:Class;
+		private var Class im_logo1;
 		[Embed(source = 'graphics/logo_red.png')]
-		private var im_logo2:Class;
+		private var Class im_logo2;
 		[Embed(source = 'graphics/logo_orange.png')]
-		private var im_logo3:Class;
+		private var Class im_logo3;
 		[Embed(source = 'graphics/logo_green.png')]
-		private var im_logo4:Class;
+		private var Class im_logo4;
 		[Embed(source = 'graphics/logo_cyan.png')]
-		private var im_logo5:Class;
+		private var Class im_logo5;
 		[Embed(source = 'graphics/logo_gray.png')]
-		private var im_logo6:Class;
+		private var Class im_logo6;
 		[Embed(source = 'graphics/logo_shadow.png')]
-		private var im_logo7:Class;
+		private var Class im_logo7;
 		
 		[Embed(source = 'graphics/tutorial_longnote.png')]
-		private var im_tutorialimage0:Class;
+		private var Class im_tutorialimage0;
 		[Embed(source = 'graphics/tutorial_drag.png')]
-		private var im_tutorialimage1:Class;
+		private var Class im_tutorialimage1;
 		[Embed(source = 'graphics/tutorial_timelinedrag.png')]
-		private var im_tutorialimage2:Class;
+		private var Class im_tutorialimage2;
 		[Embed(source = 'graphics/tutorial_patterndrag.png')]
-		private var im_tutorialimage3:Class;
+		private var Class im_tutorialimage3;
 		[Embed(source = 'graphics/tutorial_secret.png')]
-		private var im_tutorialimage4:Class;
+		private var Class im_tutorialimage4;
 	}
 }
