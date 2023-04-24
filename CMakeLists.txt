@@ -18,7 +18,8 @@ set(src
     src/bar.cc
     src/palette.cc
     src/help.cc
-    # src/voicelist.cc
+    # src/musicphrase.cc # needs control
+    # src/voicelist.cc # needs gfx
 )
 source_group("" FILES ${src})
 add_executable(

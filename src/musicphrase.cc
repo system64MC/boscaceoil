@@ -1,17 +1,23 @@
-namespace bosca {
-	
-	
-	
-		
+#include <vector>
+
+namespace bosca
+{
+	struct Rectangle
+	{
+		int x; int y; int width; int height;
+		Rectangle(int, int, int, int);
+		void setTo(int, int, int, int);
+	};
+
 	struct musicphraseclass	{
-		void musicphraseclass() {
+		musicphraseclass() {
 			for (int i = 0; i < 129; i++) {
-				notes.push(new Rectangle(-1, 0, 0, 0));
+				notes.push_back(Rectangle(-1, 0, 0, 0));
 			}
-			for (i = 0; i < 16; i++) {
-				cutoffgraph.push(128);
-				resonancegraph.push(0);
-				volumegraph.push(256);
+			for (int i = 0; i < 16; i++) {
+				cutoffgraph.push_back(128);
+				resonancegraph.push_back(0);
+				volumegraph.push_back(256);
 			}
 			clear();
 		}
@@ -21,7 +27,7 @@ namespace bosca {
 				notes[i].setTo(-1, 0, 0, 0);
 			}
 			
-			for (i = 0; i < 16; i++) {
+			for (int i = 0; i < 16; i++) {
 				cutoffgraph[i] = 128;
 				resonancegraph[i] = 0;
 				volumegraph[i] = 256;
@@ -61,8 +67,8 @@ namespace bosca {
 		void transpose(int amount) {
 			for (int i = 0; i < numnotes; i++) {
 				if (notes[i].x != -1) {
-					if (control.invertpianoroll[notes[i].x] + amount != -1) {
-						notes[i].x = control.pianoroll[control.invertpianoroll[notes[i].x] + amount];
+					if (control::invertpianoroll[notes[i].x] + amount != -1) {
+						notes[i].x = control::pianoroll[control::invertpianoroll[notes[i].x] + amount];
 					}
 				}
 				if (notes[i].x < 0) notes[i].x = 0;
@@ -83,8 +89,8 @@ namespace bosca {
 			hash = (hash + (note * time)) % 2147483647;
 		}
 		
+		/// Returns true if there is a note that intersects the cursor position
 		bool noteat(int noteindex, int note) {
-			//Returns true if there is a note that intersects the cursor position
 			for (int i = 0; i < numnotes; i++) {
 				if (notes[i].x == note) {
 					if (noteindex >= notes[i].width && noteindex < notes[i].width + notes[i].y) {
@@ -95,8 +101,8 @@ namespace bosca {
 			return false;
 		}
 		
+		/// Remove any note that intersects that cursor position!
 		void removenote(int noteindex, int note) {
-			//Remove any note that intersects that cursor position!
 			for (int i = 0; i < numnotes; i++) {
 				if (notes[i].x == note) {
 					if (noteindex >= notes[i].width && noteindex < notes[i].width + notes[i].y) {
@@ -113,8 +119,8 @@ namespace bosca {
 			findtopnote(); findbottomnote(); notespan = topnote-bottomnote;
 		}
 		
+		/// Remove note t, rearrange note vector
 		void deletenote(int t) {
-			//Remove note t, rearrange note vector
 			for (int i = t; i < numnotes; i++) {
 				notes[i].x = notes[i + 1].x;
 				notes[i].y = notes[i + 1].y;
@@ -124,25 +130,18 @@ namespace bosca {
 			numnotes--;
 		}
 		
-		std::vector<Rectangle> notes = new std::vector<Rectangle>;
+		std::vector<Rectangle> notes;
 		int start;
 		int numnotes;
-		
 		std::vector<int> cutoffgraph;
 		std::vector<int> resonancegraph;
 		std::vector<int> volumegraph;
 		int recordfilter;
-		
-		int topnote, int bottomnote, Number notespan;
-		
-		int key, int scale;
-		
+		int topnote; int bottomnote; float notespan;
+		int key; int scale;
 		int instr;
-		
 		int palette;
-		
 		bool isplayed;
-		
 		int hash; //massively simplified thing
-	}
+	};
 }
