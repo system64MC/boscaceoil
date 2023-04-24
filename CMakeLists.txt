@@ -17,6 +17,7 @@ add_library(bosca::warnings ALIAS project_warnings)
 set(src
     src/bar.cc
     src/palette.cc
+    # src/voicelist.cc
 )
 source_group("" FILES ${src})
 add_executable(

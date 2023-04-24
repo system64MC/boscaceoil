@@ -1,15 +1,16 @@
+#include <vector>
+#include <string>
+
 namespace bosca {
-	
-	
-	
-		
 	struct voicelistclass	{
-		void voicelistclass() {
-			listsize = 0; sublistsize = 0; pagenum = 0;
-			for (var int i = 0; i < 256; i++) {
-				subname.push("");
-				subvoice.push("");
-				subpalette.push("");
+		voicelistclass() {
+			listsize = 0;
+			sublistsize = 0;
+			pagenum = 0;
+			for (int i = 0; i < 256; i++) {
+				subname.push_back("");
+				subvoice.push_back("");
+				subpalette.push_back(-1);
 			}
 			init();
 		}
@@ -397,32 +398,32 @@ namespace bosca {
 		
 		void fixlengths() {
 			//Fix the lengths of the names
-			for (var int i = 0; i < listsize; i++) {
+			for (int i = 0; i < listsize; i++) {
 				while (gfx.len(name[i]) > 190) {
-					name[i] = help.Left(name[i], name[i].length - 1)					
+					name[i] = help.Left(name[i], name[i].length - 1);
 				}
 			}
 		}
 		
 		void create(std::string cat, std::string t1, std::string t2, int pal, int midimapping = -1) {
-			category.push(cat);
-			name.push(t1);
-			voice.push(t2);
-			palette.push(pal);
+			category.push_back(cat);
+			name.push_back(t1);
+			voice.push_back(t2);
+			palette.push_back(pal);
 			
 			if (midimapping == -1) {
-				midimap.push(listsize % 128);
+				midimap.push_back(listsize % 128);
 			}else {
-				midimap.push(midimapping);
+				midimap.push_back(midimapping);
 			}
 			
 			listsize++;
 		}
 		
+		/// Make sublist based on category
 		void makesublist(std::string cat) {
-			//Make sublist based on category
 			sublistsize = 0;
-			for (var int i = 0; i < listsize; i++) {
+			for (int i = 0; i < listsize; i++) {
 				if (category[i] == cat) {
 					add(name[i], voice[i], palette[i]);
 				}
@@ -437,59 +438,59 @@ namespace bosca {
 			sublistsize++;
 		}
 		
+		/// Return the index of the first member of this category
 		int getfirst(std::string cat) {
-			//Return the index of the first member of this category
-			for (var int i = 0; i < listsize; i++) {
+			for (int i = 0; i < listsize; i++) {
 				if (category[i] == cat) return i;
 			}
 			return 0;
 		}
 		
+		/// Return the index of the last member of this category
 		int getlast(std::string cat) {
-			//Return the index of the last member of this category
-			for (var int i = listsize - 1; i >= 0; i--) {
+			for (int i = listsize - 1; i >= 0; i--) {
 				if (category[i] == cat) return i;
 			}
 			return 0;
 		}
 		
+		/// Get the voice by name, return index
 		int getvoice(std::string n) {
-			//Get the voice by name, return index
-			for (var int i = 0; i < listsize; i++) {
+			for (int i = 0; i < listsize; i++) {
 				if (name[i] == n) return i;
 			}
 			return 0;
 		}
 		
+		/// Given current instrument, get the next instrument in this category
 		int getnext(int current) {
-			//Given current instrument, get the next instrument in this category
-			for (var int i = current + 1; i < listsize; i++) {
+			for (int i = current + 1; i < listsize; i++) {
 				if (category[i] == category[current]) return i;	
 			}
 			return getfirst(category[current]);
 		}
 		
+		/// Given current instrument, get the previous instrument in this category
 		int getprevious(int current) {
-			//Given current instrument, get the previous instrument in this category
-			for (var int i = current - 1; i >= 0; i--) {
+			for (int i = current - 1; i >= 0; i--) {
 				if (category[i] == category[current]) return i;	
 			}
 			return getlast(category[current]);
 		}
 		
-		var std::vector<std::string> category = new std::vector<std::string>;
-		var std::vector<std::string> name = new std::vector<std::string>;
-		var std::vector<std::string> voice = new std::vector<std::string>;
-		var std::vector<int> palette = new std::vector<int>;
-		var std::vector<int> midimap = new std::vector<int>;
+		std::vector<std::string> category;
+		std::vector<std::string> name;
+		std::vector<std::string> voice;
+		std::vector<int> palette;
+		std::vector<int> midimap;
 		
-		var std::vector<std::string> subname = new std::vector<std::string>;
-		var std::vector<std::string> subvoice = new std::vector<std::string>;
-		var std::vector<int> subpalette = new std::vector<int>;
-		var int sublistsize;
+		std::vector<std::string> subname;
+		std::vector<std::string> subvoice;
+		std::vector<int> subpalette;
+		int sublistsize;
 		
-		var int listsize;
-		var int index;
-		var int pagenum;
-	}
+		int listsize;
+		int index;
+		int pagenum;
+	};
 }
