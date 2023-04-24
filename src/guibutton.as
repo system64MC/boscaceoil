@@ -29,19 +29,19 @@ namespace bosca {
 			pressed = 6;
 		}
 		
-		var Rectangle position;
-		var std::string text;
-		var std::string action;
-		var std::string style;
+		Rectangle position;
+		std::string text;
+		std::string action;
+		std::string style;
 		
-		var bool visable;
-		var bool mouseover;
-		var bool selected;
-		var bool active;
-		var bool moveable;
-		var bool onwindow;
+		bool visable;
+		bool mouseover;
+		bool selected;
+		bool active;
+		bool moveable;
+		bool onwindow;
 		
-		var int pressed;
-		var int textoffset;
+		int pressed;
+		int textoffset;
 	}
 }

@@ -29,9 +29,9 @@ namespace bosca {
 		
 		void writetimesig() {
 			currenttrack._msgList.push(new MetaItem());
-			var int t = currenttrack._msgList.length - 1;
+			int t = currenttrack._msgList.length - 1;
 			currenttrack._msgList[t].type = 0x58; // Time Signature
-			var ByteArray myba = new ByteArray();
+			ByteArray myba = new ByteArray();
 			myba.writeByte(0x04);
 			myba.writeByte(0x02);
 			myba.writeByte(0x18);
@@ -41,15 +41,15 @@ namespace bosca {
 		
 		void writetempo(int tempo) {
 			currenttrack._msgList.push(new MetaItem());
-			var int t = currenttrack._msgList.length - 1;
+			int t = currenttrack._msgList.length - 1;
 			currenttrack._msgList[t].type = 0x51; // Set Tempo
-			var int tempoinmidiformat = 60000000 / tempo;
+			int tempoinmidiformat = 60000000 / tempo;
 			
-			var int byte1 = (tempoinmidiformat >> 16) & 0xFF;
-			var int byte2 = (tempoinmidiformat >> 8) & 0xFF;
-			var int byte3 = tempoinmidiformat & 0xFF;
+			int byte1 = (tempoinmidiformat >> 16) & 0xFF;
+			int byte2 = (tempoinmidiformat >> 8) & 0xFF;
+			int byte3 = tempoinmidiformat & 0xFF;
 			
-			var ByteArray myba = new ByteArray();
+			ByteArray myba = new ByteArray();
 			myba.writeByte(byte1);
 			myba.writeByte(byte2);
 			myba.writeByte(byte3);
@@ -59,7 +59,7 @@ namespace bosca {
 		
 		void writeinstrument(int instr, int channel) {
 			currenttrack._msgList.push(new ChannelItem());
-			var int t = currenttrack._msgList.length - 1;
+			int t = currenttrack._msgList.length - 1;
 			currenttrack._msgList[t]._kind = 0xC0; // Program Change
 			currenttrack._msgList[t]._command = 192 + channel;
 			currenttrack._msgList[t]._data1 = instr;
@@ -72,7 +72,7 @@ namespace bosca {
 			currenttrack._msgList.push(new NoteItem(channel, pitch, volume, length, time)); 
 		}
 		
-		var MidiFile midifile;
-		var MidiTrack currenttrack;
+		MidiFile midifile;
+		MidiTrack currenttrack;
 	}
 }

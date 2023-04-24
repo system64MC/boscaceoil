@@ -53,14 +53,14 @@ namespace bosca {
 			}
 		}
 		
-		var int cutoff, int resonance;
-		var SiONVoice voice = new SiONVoice;
+		int cutoff, int resonance;
+		SiONVoice voice = new SiONVoice;
 		
-		var std::string category;
-		var std::string name;
-		var int palette;
-		var int type;
-		var int index;
-		var int volume;
+		std::string category;
+		std::string name;
+		int palette;
+		int type;
+		int index;
+		int volume;
 	}
 }

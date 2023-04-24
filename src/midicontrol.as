@@ -11,53 +11,53 @@ namespace bosca {
 	import org.si.sion.events.*;
 	
 	struct midicontrol {
-		static var int MIDIDRUM_35_Acoustic_Bass_Drum = 35;
-		static var int MIDIDRUM_36_Bass_Drum_1 = 36;
-		static var int MIDIDRUM_37_Side_Stick = 37;
-		static var int MIDIDRUM_38_Acoustic_Snare = 38;
-		static var int MIDIDRUM_39_Hand_Clap = 39;
-		static var int MIDIDRUM_40_Electric_Snare = 40;
-		static var int MIDIDRUM_41_Low_Floor_Tom = 41;
-		static var int MIDIDRUM_42_Closed_Hi_Hat = 42;
-		static var int MIDIDRUM_43_High_Floor_Tom = 43;
-		static var int MIDIDRUM_44_Pedal_Hi_Hat = 44;
-		static var int MIDIDRUM_45_Low_Tom = 45;
-		static var int MIDIDRUM_46_Open_Hi_Hat = 46;
-		static var int MIDIDRUM_47_Low_Mid_Tom = 47;
-		static var int MIDIDRUM_48_Hi_Mid_Tom = 48;
-		static var int MIDIDRUM_49_Crash_Cymbal_1 = 49;
-		static var int MIDIDRUM_50_High_Tom = 50;
-		static var int MIDIDRUM_51_Ride_Cymbal_1 = 51;
-		static var int MIDIDRUM_52_Chinese_Cymbal = 52;
-		static var int MIDIDRUM_53_Ride_Bell = 53;
-		static var int MIDIDRUM_54_Tambourine = 54;
-		static var int MIDIDRUM_55_Splash_Cymbal = 55;
-		static var int MIDIDRUM_56_Cowbell = 56;
-		static var int MIDIDRUM_57_Crash_Cymbal_2 = 57;
-		static var int MIDIDRUM_58_Vibraslap = 58;
-		static var int MIDIDRUM_59_Ride_Cymbal_2 = 59;
-		static var int MIDIDRUM_60_Hi_Bongo = 60;
-		static var int MIDIDRUM_61_Low_Bongo = 61;
-		static var int MIDIDRUM_62_Mute_Hi_Conga = 62;
-		static var int MIDIDRUM_63_Open_Hi_Conga = 63;
-		static var int MIDIDRUM_64_Low_Conga = 64;
-		static var int MIDIDRUM_65_High_Timbale = 65;
-		static var int MIDIDRUM_66_Low_Timbale = 66;
-		static var int MIDIDRUM_67_High_Agogo = 67;
-		static var int MIDIDRUM_68_Low_Agogo = 68;
-		static var int MIDIDRUM_69_Cabasa = 69;
-		static var int MIDIDRUM_70_Maracas = 70;
-		static var int MIDIDRUM_71_Short_Whistle = 71;
-		static var int MIDIDRUM_72_Long_Whistle = 72;
-		static var int MIDIDRUM_73_Short_Guiro = 73;
-		static var int MIDIDRUM_74_Long_Guiro = 74;
-		static var int MIDIDRUM_75_Claves = 75;
-		static var int MIDIDRUM_76_Hi_Wood_Block = 76;
-		static var int MIDIDRUM_77_Low_Wood_Block = 77;
-		static var int MIDIDRUM_78_Mute_Cuica = 78;
-		static var int MIDIDRUM_79_Open_Cuica = 79;
-		static var int MIDIDRUM_80_Mute_Triangle = 80;
-		static var int MIDIDRUM_81_Open_Triangle = 81;
+		static int MIDIDRUM_35_Acoustic_Bass_Drum = 35;
+		static int MIDIDRUM_36_Bass_Drum_1 = 36;
+		static int MIDIDRUM_37_Side_Stick = 37;
+		static int MIDIDRUM_38_Acoustic_Snare = 38;
+		static int MIDIDRUM_39_Hand_Clap = 39;
+		static int MIDIDRUM_40_Electric_Snare = 40;
+		static int MIDIDRUM_41_Low_Floor_Tom = 41;
+		static int MIDIDRUM_42_Closed_Hi_Hat = 42;
+		static int MIDIDRUM_43_High_Floor_Tom = 43;
+		static int MIDIDRUM_44_Pedal_Hi_Hat = 44;
+		static int MIDIDRUM_45_Low_Tom = 45;
+		static int MIDIDRUM_46_Open_Hi_Hat = 46;
+		static int MIDIDRUM_47_Low_Mid_Tom = 47;
+		static int MIDIDRUM_48_Hi_Mid_Tom = 48;
+		static int MIDIDRUM_49_Crash_Cymbal_1 = 49;
+		static int MIDIDRUM_50_High_Tom = 50;
+		static int MIDIDRUM_51_Ride_Cymbal_1 = 51;
+		static int MIDIDRUM_52_Chinese_Cymbal = 52;
+		static int MIDIDRUM_53_Ride_Bell = 53;
+		static int MIDIDRUM_54_Tambourine = 54;
+		static int MIDIDRUM_55_Splash_Cymbal = 55;
+		static int MIDIDRUM_56_Cowbell = 56;
+		static int MIDIDRUM_57_Crash_Cymbal_2 = 57;
+		static int MIDIDRUM_58_Vibraslap = 58;
+		static int MIDIDRUM_59_Ride_Cymbal_2 = 59;
+		static int MIDIDRUM_60_Hi_Bongo = 60;
+		static int MIDIDRUM_61_Low_Bongo = 61;
+		static int MIDIDRUM_62_Mute_Hi_Conga = 62;
+		static int MIDIDRUM_63_Open_Hi_Conga = 63;
+		static int MIDIDRUM_64_Low_Conga = 64;
+		static int MIDIDRUM_65_High_Timbale = 65;
+		static int MIDIDRUM_66_Low_Timbale = 66;
+		static int MIDIDRUM_67_High_Agogo = 67;
+		static int MIDIDRUM_68_Low_Agogo = 68;
+		static int MIDIDRUM_69_Cabasa = 69;
+		static int MIDIDRUM_70_Maracas = 70;
+		static int MIDIDRUM_71_Short_Whistle = 71;
+		static int MIDIDRUM_72_Long_Whistle = 72;
+		static int MIDIDRUM_73_Short_Guiro = 73;
+		static int MIDIDRUM_74_Long_Guiro = 74;
+		static int MIDIDRUM_75_Claves = 75;
+		static int MIDIDRUM_76_Hi_Wood_Block = 76;
+		static int MIDIDRUM_77_Low_Wood_Block = 77;
+		static int MIDIDRUM_78_Mute_Cuica = 78;
+		static int MIDIDRUM_79_Open_Cuica = 79;
+		static int MIDIDRUM_80_Mute_Triangle = 80;
+		static int MIDIDRUM_81_Open_Triangle = 81;
 		
 		static void openfile() {
 			control.stopmusic();	
@@ -125,15 +125,15 @@ namespace bosca {
 			
 			smfData.loadBytes(mididata);
 			
-			var SMFTrack track;
-			var SMFEvent event;
+			SMFTrack track;
+			SMFEvent event;
 			
 			clearnotes();
 			resetinstruments();
 			
 			//trace(smfData.toString());
 			
-			for (var int trackn = 0; trackn < smfData.numTracks; trackn++) {
+			for (int trackn = 0; trackn < smfData.numTracks; trackn++) {
 				//trace("Reading track " + std::string(trackn) + ": " + std::string(smfData.tracks[trackn].sequence.length));
 				for each(event in smfData.tracks[trackn].sequence) {
 					//trace("msg: " + std::string(event.time) + ": " + event.toString());
@@ -179,7 +179,7 @@ namespace bosca {
 		}
 		
 		static function clone(Object source):* { 
-			var ByteArray myBA = new ByteArray(); 
+			ByteArray myBA = new ByteArray(); 
 			myBA.writeObject(source); 
 			myBA.position = 0; 
 			return(myBA.readObject()); 
@@ -187,7 +187,7 @@ namespace bosca {
 		
 		static void resetinstruments() {
 			if (channelinstrument.length == 0) {
-				for (var int i = 0; i < 16; i++) {
+				for (int i = 0; i < 16; i++) {
 					channelinstrument.push(-1);
 					channelvolume.push(0);
 				}
@@ -211,10 +211,10 @@ namespace bosca {
 		
 		static void changenotelength(int time, int note, int instr) {
 			//Find the first note of that pitch and instrument BEFORE given time.
-			var int timedist = -1;
-			var int currenttimedist = 0;
-			var int matchingnote = -1;
-			for (var int i = 0; i < unmatchednotes.length; i++) {
+			int timedist = -1;
+			int currenttimedist = 0;
+			int matchingnote = -1;
+			for (int i = 0; i < unmatchednotes.length; i++) {
 				if (unmatchednotes[i].y == note && unmatchednotes[i].height == instr) {
 					currenttimedist = time - unmatchednotes[i].x;
 					if (currenttimedist >= 0) {
@@ -240,7 +240,7 @@ namespace bosca {
 				
 				//Swap matching note with last note, and pop it off
 				if (matchingnote != unmatchednotes.length - 1) {					
-					var int swp;
+					int swp;
 					
 					swp = unmatchednotes[matchingnote].x;
 					unmatchednotes[matchingnote].x = unmatchednotes[unmatchednotes.length - 1].x;
@@ -273,7 +273,7 @@ namespace bosca {
 		
 		static int reversechannelinstrument(int t) {
 			//Given instrument number t, return first channel using it.
-			for (var int i = 0; i < 16; i++) {
+			for (int i = 0; i < 16; i++) {
 				if (channelinstrument[i] == t) return i;
 			}
 			return -1;
@@ -293,7 +293,7 @@ namespace bosca {
 			}
 			
 			
-			for (var int i = 0; i < 8; i++) {
+			for (int i = 0; i < 8; i++) {
 				if(control.arrange.bar[currentpattern].channel[i] == -1) {
 					return i;
 				}else {
@@ -309,7 +309,7 @@ namespace bosca {
 		
 		static int getmusicbox(int currentpattern, int chan) {
 			//Find (or create a new) music box at the position we're placing the note.
-			var int top = gettopbox(currentpattern, chan);
+			int top = gettopbox(currentpattern, chan);
 			
 			if (top > -1) {
 				if (control.arrange.bar[currentpattern].channel[top] == -1) {
@@ -341,8 +341,8 @@ namespace bosca {
 		}
 		
 		static void replaceontimeline(int _old, int _new) {
-			for (var int i = 0; i < numpatterns; i++) {
-				for (var int j = 0; j < 8; j++) {
+			for (int i = 0; i < numpatterns; i++) {
+				for (int j = 0; j < 8; j++) {
 					if (control.arrange.bar[i].channel[j] == _old) {
 						control.arrange.bar[i].channel[j] = _new;
 					}
@@ -353,7 +353,7 @@ namespace bosca {
 		static bool musicboxmatch(int a, int b) {
 			if (control.musicbox[a].numnotes == control.musicbox[b].numnotes) {
 				if (control.musicbox[a].instr == control.musicbox[b].instr) {
-					for (var int i = 0; i < control.musicbox[a].numnotes; i++) {
+					for (int i = 0; i < control.musicbox[a].numnotes; i++) {
 						if (control.musicbox[a].notes[i].x != control.musicbox[b].notes[i].x) {
 							return false;
 						}
@@ -372,7 +372,7 @@ namespace bosca {
 			control._driver.bpm = control.bpm;
 			control._driver.play(null, false);
 			
-			//for (var int tst = 0; tst < 16; tst++) {
+			//for (int tst = 0; tst < 16; tst++) {
 			//	trace("channel " + std::string(tst) + " uses instrument " + std::string(channelinstrument[tst]) + " at volume " + std::string(channelvolume[tst]));
 			//}
 			
@@ -385,13 +385,13 @@ namespace bosca {
 			}
 			if (numnotes > 16) control.doublesize = true;
 			
-			var int boxsize = resolution;
+			int boxsize = resolution;
 			numpatterns = getsonglength();
 			control.numboxes = 0;
 			control.arrange.bar[0].channel[0] = -1;
 			
 			control.numinstrument = 16;
-			for (var int j = 0; j < 16; j++) {
+			for (int j = 0; j < 16; j++) {
 				control.currentinstrument = j;
 				control.voicelist.index = 132; //Set to chiptune noise if not used
 				control.changeinstrumentvoice(control.voicelist.name[control.voicelist.index]);
@@ -408,10 +408,10 @@ namespace bosca {
 				}
 			}
 			
-			var int i;
-			var int note;
-			var int notelength;
-			var int currentpattern;
+			int i;
+			int note;
+			int notelength;
+			int currentpattern;
 			
 			for (i = 0; i < midinotes.length; i++) {
 				//Drums
@@ -424,7 +424,7 @@ namespace bosca {
 					notelength = (((midinotes[i].width - midinotes[i].x - 1) * numnotes) / boxsize) + 1;
 					currentpattern = int((midinotes[i].x	- (midinotes[i].x % boxsize)) / boxsize);
 					
-					var int drumnote = 0;
+					int drumnote = 0;
 					
 					//0 "Bass Drum 1"
 					//1 "Bass Drum 2"
@@ -500,7 +500,7 @@ namespace bosca {
 			
 			//Optimising stage: Check for duplicate patterns and remove unused ones.
 			for (i = 0; i < control.numboxes; i++) {
-				var int currenthash = control.musicbox[i].hash;
+				int currenthash = control.musicbox[i].hash;
 				if (currenthash != -1) {
 					for (j = i + 1; j < control.numboxes; j++) {
 						if (control.musicbox[j].hash == currenthash) {
@@ -537,19 +537,19 @@ namespace bosca {
 			//midifile = new MidiFile();
 			/*
 			trace("num tracks:" + midifile.tracks);
-			for (var int sel = 0 ; sel < midifile.tracks ; sel++) {
+			for (int sel = 0 ; sel < midifile.tracks ; sel++) {
 				trace("track " + std::string(sel + 1) + ", data:" + std::string(midifile.track(sel).trackChannel) + ", channel:" + std::string(midifile.track(sel).trackChannel));
-				for (var int i = 0 ; i < midifile.track(sel).msgList.length ; i++) {
+				for (int i = 0 ; i < midifile.track(sel).msgList.length ; i++) {
 					if (midifile.track(sel).msgList[i] is ChannelItem) {
 						trace(i, "command: " + std::string(midifile.track(sel).msgList[i]._command) + ", data1:" + std::string(midifile.track(sel).msgList[i]._data1));
 					}
-					var uint index = i+1;
-					var uint time = midifile.track(sel).msgList[i].timeline;
-					var uint len = midifile.track(sel).msgList[i] is NoteItem? midifile.track(sel).msgList[i].duration : null;
-					var uint channel = midifile.track(sel).msgList[i] is NoteItem?midifile.track(sel).msgList[i].channel+1 : midifile.track(sel).trackChannel+1;
-					var std::string type = MidiEnum.getMessageName(midifile.track(sel).msgList[i].kind);
-					var std::string param = midifile.track(sel).msgList[i] is NoteItem? midifile.track(sel).msgList[i].pitchName : "else";
-					var uint value = midifile.track(sel).msgList[i] is NoteItem? midifile.track(sel).msgList[i].velocity : null;
+					uint index = i+1;
+					uint time = midifile.track(sel).msgList[i].timeline;
+					uint len = midifile.track(sel).msgList[i] is NoteItem? midifile.track(sel).msgList[i].duration : null;
+					uint channel = midifile.track(sel).msgList[i] is NoteItem?midifile.track(sel).msgList[i].channel+1 : midifile.track(sel).trackChannel+1;
+					std::string type = MidiEnum.getMessageName(midifile.track(sel).msgList[i].kind);
+					std::string param = midifile.track(sel).msgList[i] is NoteItem? midifile.track(sel).msgList[i].pitchName : "else";
+					uint value = midifile.track(sel).msgList[i] is NoteItem? midifile.track(sel).msgList[i].velocity : null;
 					trace("index:" + std::string(index) + ", time:" + std::string(time) + ", len:+" + std::string(len) + ", channel:" + std::string(channel) + ", event:" + std::string(type) + ", param:" + std::string(param) + ", value:" + std::string(value));
 				}				
 			}
@@ -564,7 +564,7 @@ namespace bosca {
 			
 			//Write all the instruments to each channel.
 			//In MIDI, channel 9 is special.
-			for (var int j = 0; j < control.numinstrument; j++) {
+			for (int j = 0; j < control.numinstrument; j++) {
 				midiexporter.writeinstrument(instrumentconverttomidi(control.instrument[j].index), j);
 			}
 			
@@ -584,12 +584,12 @@ namespace bosca {
 			
 			//Write notes
 			for (j = 0; j < control.arrange.lastbar; j++) {
-				for (var int i = 0; i < 8; i++) {
+				for (int i = 0; i < 8; i++) {
 					if (control.arrange.bar[j].channel[i] != -1) {
-						var int t = control.arrange.bar[j].channel[i];
+						int t = control.arrange.bar[j].channel[i];
 						//Do normal instruments first
 						if (control.instrument[control.musicbox[control.arrange.bar[j].channel[i]].instr].type == 0) {
-							for (var int k = 0; k < control.musicbox[t].numnotes; k++) {
+							for (int k = 0; k < control.musicbox[t].numnotes; k++) {
 								midiexporter.writenote(control.musicbox[t].instr, 
 																			 control.musicbox[t].notes[k].x, 
 																			 ((j * control.boxcount) + control.musicbox[t].notes[k].width) * 30, 
@@ -607,9 +607,9 @@ namespace bosca {
 				for (i = 0; i < 8; i++) {
 					if (control.arrange.bar[j].channel[i] != -1) {
 						t = control.arrange.bar[j].channel[i];
-						var int drumkit = control.musicbox[control.arrange.bar[j].channel[i]].instr;
+						int drumkit = control.musicbox[control.arrange.bar[j].channel[i]].instr;
 						//Now do drum kits
-						if (help.Left(control.voicelist.voice[control.instrument[drumkit].index], 7) == "drumkit") {
+						if (help::Left(control.voicelist.voice[control.instrument[drumkit].index], 7) == "drumkit") {
 							for (k = 0; k < control.musicbox[t].numnotes; k++) {
 								midiexporter.writenote(9, 
 																			 convertdrumtonote(control.musicbox[t].notes[k].x, control.instrument[drumkit].index), 
@@ -628,7 +628,7 @@ namespace bosca {
 			writenote(0, 67, 240, 120, 255);
 			writenote(0, 72, 360, 120, 255);
 			
-			for (var int j = 0; j < 4; j++) {
+			for (int j = 0; j < 4; j++) {
 				writenote(0, 60 - 24, 0 + (120 * j), 30, 255);
 				writenote(0, 63 - 24, 30 + (120 * j), 30, 255);
 				writenote(0, 67 - 24, 60 + (120 * j), 30, 255);
@@ -662,8 +662,8 @@ namespace bosca {
 		static int convertdrumtonote(int note, int drumkit) {
 			//Takes a drum beat from control.createdrumkit()'s list and converts it
 			//to a drum beat from the General Midi list (http://www.midi.org/techspecs/gm1sound.php)
-			var int i;
-			var std::string voicename = "";
+			int i;
+			std::string voicename = "";
 			if (control.voicelist.name[drumkit] == "Simple Drumkit") {
 				voicename = control.drumkit[0].voicename[note];
 				
@@ -751,26 +751,26 @@ namespace bosca {
 		}
 		
 		CONFIG::desktop {
-			static var File file, FileStream stream;
+			static File file, FileStream stream;
 		}
 		
-		static var ByteArray mididata;
-		static var Number resolution;
-		static var Number signature;
-		static var int numnotes;
-		static var int numpatterns;
+		static ByteArray mididata;
+		static Number resolution;
+		static Number signature;
+		static int numnotes;
+		static int numpatterns;
 		
-		static var FileFilter midiFilter = new FileFilter("Standard MIDI File", "*.mid;*.midi;");
+		static FileFilter midiFilter = new FileFilter("Standard MIDI File", "*.mid;*.midi;");
 		
-		static var std::vector<Rectangle> unmatchednotes = new std::vector<Rectangle>;
-		static var std::vector<Rectangle> midinotes = new std::vector<Rectangle>;
-		static var std::vector<int> channelinstrument = new std::vector<int>;
-		static var std::vector<int> channelvolume = new std::vector<int>;
-		static var SMFData smfData = new SMFData();
+		static std::vector<Rectangle> unmatchednotes = new std::vector<Rectangle>;
+		static std::vector<Rectangle> midinotes = new std::vector<Rectangle>;
+		static std::vector<int> channelinstrument;
+		static std::vector<int> channelvolume;
+		static SMFData smfData = new SMFData();
 		
 		//Stuff for exporting
-		static var ByteArray tempbytes;
-		static var Midiexporter midiexporter;
+		static ByteArray tempbytes;
+		static Midiexporter midiexporter;
 	}
 }
 }

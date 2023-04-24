@@ -11,7 +11,7 @@ namespace bosca {
 		function guiclass() {}
 		
 		static void init() {
-			for (var int i = 0; i < 250; i++) {
+			for (int i = 0; i < 250; i++) {
 				button.push(new guibutton());
 			}
 			
@@ -659,12 +659,12 @@ namespace bosca {
 				addtextlabel(windowx + 10 + windowxoffset, windowy + 30 + windowyoffset + (gfx.linesize * windowline), line, 0, true);
 				if (high != "") {
 					tx = line.indexOf(high);
-					tx = gfx.len(help.Left(line, tx));
+					tx = gfx.len(help::Left(line, tx));
 					addtextlabel(windowx + 10 + tx + windowxoffset, windowy + 30 + windowyoffset + (gfx.linesize * windowline), high, 18, true);
 				}
 				if (high2 != "") {
 					tx = line.indexOf(high2);
-					tx = gfx.len(help.Left(line, tx));
+					tx = gfx.len(help::Left(line, tx));
 					addtextlabel(windowx + 10 + tx + windowxoffset, windowy + 30 + windowyoffset + (gfx.linesize * windowline), high2, 18, true);
 				}
 			}
@@ -845,7 +845,7 @@ namespace bosca {
 		static void addguipart(int x, int y, int w, int h, std::string contents, std::string act = "", std::string sty = "normal", int toffset = 0) {
 			if (button.length == 0) init();
 			
-			var int i, int z;
+			int i, int z;
 			if(numbuttons == 0) {
 				//If there are no active buttons, Z=0;
 				z = 0; 
@@ -872,7 +872,7 @@ namespace bosca {
 		}
 		
 		static void clear() {
-			for (var int i = 0; i < numbuttons; i++) {
+			for (int i = 0; i < numbuttons; i++) {
 				button[i].active = false;
 			}
 			numbuttons = 0;
@@ -880,7 +880,7 @@ namespace bosca {
 		
 		static bool buttonexists(std::string t) {
 			//Return true if there is an active button with action t
-			for (var int i = 0; i < numbuttons; i++) {
+			for (int i = 0; i < numbuttons; i++) {
 				if (button[i].active) {
 					if (button[i].action == t) {
 						return true;
@@ -897,17 +897,17 @@ namespace bosca {
 			}
 			//Do window stuff first
 			overwindow = false;
-			for (var int i = 0; i < numbuttons; i++) {
+			for (int i = 0; i < numbuttons; i++) {
 				if (button[i].active && button[i].visable) {
 					if (button[i].action == "window") {
-						if (help.inboxw(control.mx, control.my, button[i].position.x, button[i].position.y, button[i].position.width, button[i].position.height)) {
+						if (help::inboxw(control.mx, control.my, button[i].position.x, button[i].position.y, button[i].position.width, button[i].position.height)) {
 							button[i].mouseover = true;
 							overwindow = true;
 						}
 						
 						if (key.press && !control.clicklist) {
 							if (button[i].moveable) {
-								if (help.inboxw(control.mx, control.my, button[i].position.x - 20, button[i].position.y - 20, button[i].position.width + 40, button[i].position.height + 40)) {
+								if (help::inboxw(control.mx, control.my, button[i].position.x - 20, button[i].position.y - 20, button[i].position.width + 40, button[i].position.height + 40)) {
 									dobuttonmoveaction(i);
 								}
 							}
@@ -919,7 +919,7 @@ namespace bosca {
 			for (i = 0; i < numbuttons; i++) {
 				if (button[i].active && button[i].visable) {
 					if (!overwindow || button[i].onwindow) {
-						if (help.inboxw(control.mx, control.my, button[i].position.x, button[i].position.y, button[i].position.width, button[i].position.height)) {
+						if (help::inboxw(control.mx, control.my, button[i].position.x, button[i].position.y, button[i].position.width, button[i].position.height)) {
 							button[i].mouseover = true;
 						}else {
 							button[i].mouseover = false;
@@ -944,7 +944,7 @@ namespace bosca {
 							windowx = button[i].position.x;
 							windowy = button[i].position.y;
 							
-							for (var int j = 0; j < numbuttons; j++) {
+							for (int j = 0; j < numbuttons; j++) {
 								if (button[j].active && button[j].visable) {
 									if (button[j].onwindow) {
 										button[j].position.x -= windowddx;
@@ -957,7 +957,7 @@ namespace bosca {
 						if (!overwindow || button[i].onwindow) {
 							if (key.press && !control.clicklist) {
 								if (button[i].moveable) {
-									if (help.inboxw(control.mx, control.my, button[i].position.x - 20, button[i].position.y - 20, button[i].position.width + 40, button[i].position.height + 40)) {
+									if (help::inboxw(control.mx, control.my, button[i].position.x - 20, button[i].position.y - 20, button[i].position.width + 40, button[i].position.height + 40)) {
 										dobuttonmoveaction(i);
 									}
 								}
@@ -978,12 +978,12 @@ namespace bosca {
 		}
 		
 		static void cleanup() {
-			var int i = 0;
+			int i = 0;
 			i = numbuttons - 1; while (i >= 0 && !button[i].active) { numbuttons--; i--; }
 		}
 		
 		static void drawbuttons() {
-			for (var int i = 0; i < numbuttons; i++) {
+			for (int i = 0; i < numbuttons; i++) {
 				if (button[i].active && button[i].visable) {
 					if (button[i].style == "normal") {
 						gfx.fillrect(button[i].position.x, button[i].position.y, button[i].position.width, button[i].position.height, 12);
@@ -1009,7 +1009,7 @@ namespace bosca {
 						
 						gfx.print(tx, ty, button[i].text, 0, false, true);
 					}else if (button[i].style == "blackout") {
-						for (var int j = 0; j < gfx.screenheight; j++) {
+						for (int j = 0; j < gfx.screenheight; j++) {
 							if (j % 4 == 0) {
 								gfx.fillrect(0, j, gfx.screenwidth, 2, 12);
 							}
@@ -1128,7 +1128,7 @@ namespace bosca {
 							gfx.print(button[i].position.x, button[i].position.y, std::string(control.buffersize), button[i].position.width, false, true);
 						}else if (button[i].action == "buffersizealert") {
 							if (control.buffersize != control.currentbuffersize) {
-								if (help.slowsine >= 32) {
+								if (help::slowsine >= 32) {
 									gfx.print(button[i].position.x, button[i].position.y, "REQUIRES RESTART", 0);
 								}else {
 									gfx.print(button[i].position.x, button[i].position.y, "REQUIRES RESTART", 15);
@@ -1185,7 +1185,7 @@ namespace bosca {
 		
 		static void deleteall(std::string t = "") {
 			if (t == "") {
-				for (var int i = 0; i < numbuttons; i++) button[i].active = false;
+				for (int i = 0; i < numbuttons; i++) button[i].active = false;
 				numbuttons = 0;
 			}else{
 				//Deselect any buttons with style t
@@ -1201,7 +1201,7 @@ namespace bosca {
 		
 		static void selectbutton(std::string t) {
 			//select any buttons with action t
-			for (var int i = 0; i < numbuttons; i++) {
+			for (int i = 0; i < numbuttons; i++) {
 				if (button[i].active) {
 					if (button[i].action == t) {
 						dobuttonaction(i);
@@ -1213,7 +1213,7 @@ namespace bosca {
 		
 		static void deselect(std::string t) {
 			//Deselect any buttons with action t
-			for (var int i = 0; i < numbuttons; i++) {
+			for (int i = 0; i < numbuttons; i++) {
 				if (button[i].active) {
 					if (button[i].action == t) {
 						button[i].selected = false;
@@ -1224,7 +1224,7 @@ namespace bosca {
 		
 		static void deselectall(std::string t) {
 			//Deselect any buttons with style t
-			for (var int i = 0; i < numbuttons; i++) {
+			for (int i = 0; i < numbuttons; i++) {
 				if (button[i].active) {
 					if (button[i].style == t) {
 						button[i].selected = false;
@@ -1234,7 +1234,7 @@ namespace bosca {
 		}
 		
 		static int findbuttonbyaction(std::string t) {
-			for (var int i = 0; i < numbuttons; i++) {
+			for (int i = 0; i < numbuttons; i++) {
 				if (button[i].active) {
 					if (button[i].action == t) {
 						return i;
@@ -1399,7 +1399,7 @@ namespace bosca {
 				}
 			}else	if (currentbutton == "currenteffect") {
 				if (control.mx >= button[i].position.x - 5	- 20 && control.mx < button[i].position.x + button[i].position.width + 20 && control.my >= button[i].position.y - 4 - 20 && control.my <= button[i].position.y + gfx.buttonheight + 4 + 20) {
-					var int barposition = control.mx - (button[i].position.x + 5);
+					int barposition = control.mx - (button[i].position.x + 5);
 					if (barposition < 0) barposition = 0; 
 					if (barposition > button[i].position.width) barposition = button[i].position.width;
 					
@@ -1666,33 +1666,33 @@ namespace bosca {
 			}
 		}
 		
-		static var std::vector<guibutton> button = new std::vector<guibutton>;
-		static var int numbuttons;
-		static var int maxbuttons;
+		static std::vector<guibutton> button = new std::vector<guibutton>;
+		static int numbuttons;
+		static int maxbuttons;
 		
-		static var int tx, int ty, int timage;
-		static var int tw, int th;
-		static var std::string currentbutton;
-		static var int lastbutton;
-		static var int highlightflash;
+		static int tx, int ty, int timage;
+		static int tw, int th;
+		static std::string currentbutton;
+		static int lastbutton;
+		static int highlightflash;
 		
-		static var bool windowcheck;
-		static var bool windowdrag = false;
-		static var bool overwindow = false;
-		static var int windowddx, int windowddy;
-		static var int windowdx, int windowdy;
-		static var int windowx, int windowy;
-		static var int windowwidth, int windowheight;
-		static var int windowline;
-		static var int windowxoffset;
-		static var int windowyoffset;
-		static var std::string windowtext;
+		static bool windowcheck;
+		static bool windowdrag = false;
+		static bool overwindow = false;
+		static int windowddx, int windowddy;
+		static int windowdx, int windowdy;
+		static int windowx, int windowy;
+		static int windowwidth, int windowheight;
+		static int windowline;
+		static int windowxoffset;
+		static int windowyoffset;
+		static std::string windowtext;
 		
-		static var std::string helpwindow;
+		static std::string helpwindow;
 		
-		static var std::string helpcondition_check;
-		static var std::string helpcondition_set;
+		static std::string helpcondition_check;
+		static std::string helpcondition_set;
 		
-		static var bool firstrun = false;
+		static bool firstrun = false;
 	}
 }

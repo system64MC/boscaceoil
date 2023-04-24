@@ -5,7 +5,7 @@ namespace bosca {
 		
 	struct musicphraseclass	{
 		void musicphraseclass() {
-			for (var int i = 0; i < 129; i++) {
+			for (int i = 0; i < 129; i++) {
 				notes.push(new Rectangle(-1, 0, 0, 0));
 			}
 			for (i = 0; i < 16; i++) {
@@ -17,7 +17,7 @@ namespace bosca {
 		}
 		
 		void clear() {
-			for (var int i = 0; i < 128; i++) {
+			for (int i = 0; i < 128; i++) {
 				notes[i].setTo(-1, 0, 0, 0);
 			}
 			
@@ -42,7 +42,7 @@ namespace bosca {
 		
 		void findtopnote() {
 			topnote = -1;
-			for (var int i = 0; i < numnotes; i++) {
+			for (int i = 0; i < numnotes; i++) {
 				if (notes[i].x > topnote) {
 					topnote = notes[i].x;
 				}
@@ -51,7 +51,7 @@ namespace bosca {
 		
 		void findbottomnote() {
 			bottomnote = 250;
-			for (var int i = 0; i < numnotes; i++) {
+			for (int i = 0; i < numnotes; i++) {
 				if (notes[i].x < bottomnote) {
 					bottomnote = notes[i].x;
 				}
@@ -59,7 +59,7 @@ namespace bosca {
 		}
 		
 		void transpose(int amount) {
-			for (var int i = 0; i < numnotes; i++) {
+			for (int i = 0; i < numnotes; i++) {
 				if (notes[i].x != -1) {
 					if (control.invertpianoroll[notes[i].x] + amount != -1) {
 						notes[i].x = control.pianoroll[control.invertpianoroll[notes[i].x] + amount];
@@ -85,7 +85,7 @@ namespace bosca {
 		
 		bool noteat(int noteindex, int note) {
 			//Returns true if there is a note that intersects the cursor position
-			for (var int i = 0; i < numnotes; i++) {
+			for (int i = 0; i < numnotes; i++) {
 				if (notes[i].x == note) {
 					if (noteindex >= notes[i].width && noteindex < notes[i].width + notes[i].y) {
 						return true;
@@ -97,7 +97,7 @@ namespace bosca {
 		
 		void removenote(int noteindex, int note) {
 			//Remove any note that intersects that cursor position!
-			for (var int i = 0; i < numnotes; i++) {
+			for (int i = 0; i < numnotes; i++) {
 				if (notes[i].x == note) {
 					if (noteindex >= notes[i].width && noteindex < notes[i].width + notes[i].y) {
 						deletenote(i);
@@ -115,7 +115,7 @@ namespace bosca {
 		
 		void deletenote(int t) {
 			//Remove note t, rearrange note vector
-			for (var int i = t; i < numnotes; i++) {
+			for (int i = t; i < numnotes; i++) {
 				notes[i].x = notes[i + 1].x;
 				notes[i].y = notes[i + 1].y;
 				notes[i].width = notes[i + 1].width;
@@ -124,25 +124,25 @@ namespace bosca {
 			numnotes--;
 		}
 		
-		var std::vector<Rectangle> notes = new std::vector<Rectangle>;
-		var int start;
-		var int numnotes;
+		std::vector<Rectangle> notes = new std::vector<Rectangle>;
+		int start;
+		int numnotes;
 		
-		var std::vector<int> cutoffgraph = new std::vector<int>;
-		var std::vector<int> resonancegraph = new std::vector<int>;
-		var std::vector<int> volumegraph = new std::vector<int>;
-		var int recordfilter;
+		std::vector<int> cutoffgraph;
+		std::vector<int> resonancegraph;
+		std::vector<int> volumegraph;
+		int recordfilter;
 		
-		var int topnote, int bottomnote, Number notespan;
+		int topnote, int bottomnote, Number notespan;
 		
-		var int key, int scale;
+		int key, int scale;
 		
-		var int instr;
+		int instr;
 		
-		var int palette;
+		int palette;
 		
-		var bool isplayed;
+		bool isplayed;
 		
-		var int hash; //massively simplified thing
+		int hash; //massively simplified thing
 	}
 }

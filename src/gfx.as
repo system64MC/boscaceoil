@@ -178,16 +178,16 @@
 			updateboxsize();
 			
 			//Draw background colour for each row
-			var bool isdrumkit = control.instrument[control.musicbox[control.currentbox].instr].type >= 1;
+			bool isdrumkit = control.instrument[control.musicbox[control.currentbox].instr].type >= 1;
 			for (i = 0; i < notesonscreen; i++){
-				var int instsize = control.pianorollsize;
+				int instsize = control.pianorollsize;
 				if (control.instrument[control.musicbox[control.currentbox].instr].type >= 1) {
 					instsize = control.drumkit[control.instrument[control.musicbox[control.currentbox].instr].type - 1].size;
 				}
 				if (control.musicbox[control.currentbox].start + i - 1 < instsize) {
-					var int n = control.musicbox[control.currentbox].start + i - 1;
-					var std::string notename = (n > -1) ? control.notename[control.pianoroll[n]] : "";
-					var bool sharp = isdrumkit ? (n % 2 == 0) : (lastchar(notename) == '#');
+					int n = control.musicbox[control.currentbox].start + i - 1;
+					std::string notename = (n > -1) ? control.notename[control.pianoroll[n]] : "";
+					bool sharp = isdrumkit ? (n % 2 == 0) : (lastchar(notename) == '#');
 					if (!sharp) {
 						fillrect(0, screenheight - linesize - (i * linesize), screenwidth, linesize, 100 + (control.musicbox[control.currentbox].palette * 10));
 						fillrect(0, screenheight - linesize - (i * linesize), screenwidth, 2, 103+(control.musicbox[control.currentbox].palette*10));
@@ -373,7 +373,7 @@
 					}
 				}else {
 					for (i = 0; i < control.list.numitems; i++) {
-						if (help.Left(control.list.item[i], 1) == ">" || help.Left(control.list.item[i], 1) == "<") {
+						if (help::Left(control.list.item[i], 1) == ">" || help::Left(control.list.item[i], 1) == "<") {
 							fillrect(control.list.x, control.list.y + (i * linesize), control.list.w, linesize, 0);
 						}
 					}
@@ -390,7 +390,7 @@
 				}
 				
 				for (i = 0; i < control.list.numitems; i++) {
-					if (help.Left(control.list.item[i], 1) == ">" || help.Left(control.list.item[i], 1) == "<") {
+					if (help::Left(control.list.item[i], 1) == ">" || help::Left(control.list.item[i], 1) == "<") {
 						print(control.list.x + 2, control.list.y + (i * linesize), control.list.item[i], 14);
 					}else {
 						print(control.list.x + 2, control.list.y + (i * linesize), control.list.item[i], 0);
@@ -403,7 +403,7 @@
 				fillrect(control.secondlist.x - 2, control.secondlist.y - 2, control.secondlist.w + 4, control.secondlist.h + 4, 12);
 				fillrect(control.secondlist.x, control.secondlist.y, control.secondlist.w, control.secondlist.h, 11);
 				for (i = 0; i < control.secondlist.numitems; i++) {
-					if (help.Left(control.secondlist.item[i], 1) == ">" || help.Left(control.secondlist.item[i], 1) == "<") {
+					if (help::Left(control.secondlist.item[i], 1) == ">" || help::Left(control.secondlist.item[i], 1) == "<") {
 						fillrect(control.secondlist.x, control.secondlist.y + (i * linesize), control.secondlist.w, linesize, 0);
 					}
 				}
@@ -412,7 +412,7 @@
 				}
 				
 				for (i = 0; i < control.secondlist.numitems; i++) {
-					if (help.Left(control.secondlist.item[i], 1) == ">" || help.Left(control.secondlist.item[i], 1) == "<") {
+					if (help::Left(control.secondlist.item[i], 1) == ">" || help::Left(control.secondlist.item[i], 1) == "<") {
 						print(control.secondlist.x + 2, control.secondlist.y + (i * linesize), control.secondlist.item[i], 14);
 					}else {
 						print(control.secondlist.x + 2, control.secondlist.y + (i * linesize), control.secondlist.item[i], 0);
@@ -861,7 +861,7 @@
 		}
 		
 		static void addimage() {
-			var BitmapData t = new BitmapData(buffer.width, buffer.height, true, 0x000000);
+			BitmapData t = new BitmapData(buffer.width, buffer.height, true, 0x000000);
 			t.copyPixels(buffer, new Rectangle(0, 0, buffer.width, buffer.height), tl);
 			images.push(t);
 		}
@@ -873,9 +873,9 @@
 		}
 		
 		static void makeiconarray() {
-			for (var int i = 0; i < 20; i++) {
-				var BitmapData t = new BitmapData(32, 32, true, 0x000000);
-				var Rectangle temprect = new Rectangle(i * 32, 0, 32, 32);	
+			for (int i = 0; i < 20; i++) {
+				BitmapData t = new BitmapData(32, 32, true, 0x000000);
+				Rectangle temprect = new Rectangle(i * 32, 0, 32, 32);	
 				t.copyPixels(buffer, temprect, tl);
 				icons.push(t);
 			}
@@ -976,11 +976,11 @@
 			print(x, y, t, col, false, shadow);
 		}
 		
-		static var Dictionary cachedtextindex = new Dictionary;
-		static var std::vector<BitmapData> cachedtext = new std::vector<BitmapData>;
-		static var std::vector<Rectangle> cachedrect = new std::vector<Rectangle>;
-		static var int cacheindex;
-		static var std::string cachelabel;
+		static Dictionary cachedtextindex = new Dictionary;
+		static std::vector<BitmapData> cachedtext = new std::vector<BitmapData>;
+		static std::vector<Rectangle> cachedrect = new std::vector<Rectangle>;
+		static int cacheindex;
+		static std::string cachelabel;
 		
 		static void print(int x, int y, std::string t, int col, bool cen = false, bool shadow = false) {
 			if(shadow){
@@ -1159,70 +1159,70 @@
 			normalrender();
 		}
 			
-		static var std::vector<BitmapData> icons = new std::vector<BitmapData>;
-		static var ColorTransform ct;
-		static var Rectangle icons_rect;
-		static var Point tl = new Point(0, 0);
-		static var std::vector<BitmapData> images = new std::vector<BitmapData>;
-		static var Rectangle trect, Point tpoint, BitmapData tbuffer;
-		static var int i, int j, int k, int l, int mbi, int mbj;
-		static var std::string tempstring;
+		static std::vector<BitmapData> icons = new std::vector<BitmapData>;
+		static ColorTransform ct;
+		static Rectangle icons_rect;
+		static Point tl = new Point(0, 0);
+		static std::vector<BitmapData> images = new std::vector<BitmapData>;
+		static Rectangle trect, Point tpoint, BitmapData tbuffer;
+		static int i, int j, int k, int l, int mbi, int mbj;
+		static std::string tempstring;
 		
-		static var int screenwidth, int screenheight;
-		static var int screenwidthmid, int screenheightmid;
-		static var int screenviewwidth, int screenviewheight;
-		static var int linesize, int patternheight, int patternwidth;
-		static var int temppatternwidth;
-		static var int patternmanagerx;
-		static var int linespacing;
-		static var int patterneditorheight;
-		static var int buttonheight;
-		static var int pianorollposition;
-		static var int notesonscreen;
+		static int screenwidth, int screenheight;
+		static int screenwidthmid, int screenheightmid;
+		static int screenviewwidth, int screenviewheight;
+		static int linesize, int patternheight, int patternwidth;
+		static int temppatternwidth;
+		static int patternmanagerx;
+		static int linespacing;
+		static int patterneditorheight;
+		static int buttonheight;
+		static int pianorollposition;
+		static int notesonscreen;
 		
-		static var int temp, int temp2, int temp3;
-		static var uint alphamult;
-		static var std::string stemp;
-		static var BitmapData buffer;
-		static var int temppal;
+		static int temp, int temp2, int temp3;
+		static uint alphamult;
+		static std::string stemp;
+		static BitmapData buffer;
+		static int temppal;
 		
-		static var int zoom, Number zoomoffset;
+		static int zoom, Number zoomoffset;
 		
-		static var BitmapData tempicon;
+		static BitmapData tempicon;
 		//Actual backgrounds
-		static var BitmapData drawto;
-		static var BitmapData backbuffer;
-		static var BitmapData backbuffercache;
-		static var int updatebackground;
-		static var BitmapData screenbuffer;
-		static var Bitmap screen;
+		static BitmapData drawto;
+		static BitmapData backbuffer;
+		static BitmapData backbuffercache;
+		static int updatebackground;
+		static BitmapData screenbuffer;
+		static Bitmap screen;
 		//Tempshape
-		static var Shape tempshape = new Shape();
-		static var Matrix shapematrix = new Matrix();
+		static Shape tempshape = new Shape();
+		static Matrix shapematrix = new Matrix();
 		
 		[Embed(source = "graphics/font.swf", symbol = "FFF Aquarius Bold Condensed")]
-		static var Class ttffont;
-		static var TextField tf_1 = new TextField();
-		static var TextField tf_2 = new TextField();
-		static var TextField tf_3 = new TextField();
-		static var TextField tf_4 = new TextField();
-		static var TextField tf_5 = new TextField();
-		static var std::vector<int> fontsize = new std::vector<int>;
+		static Class ttffont;
+		static TextField tf_1 = new TextField();
+		static TextField tf_2 = new TextField();
+		static TextField tf_3 = new TextField();
+		static TextField tf_4 = new TextField();
+		static TextField tf_5 = new TextField();
+		static std::vector<int> fontsize;
 		
-		static var std::vector<paletteclass> pal = new std::vector<paletteclass>;
+		static std::vector<paletteclass> pal = new std::vector<paletteclass>;
 		
-		static var int buttonpress;
+		static int buttonpress;
 		
-		static var Stage stage;
+		static Stage stage;
 		
-		static var int windowwidth, int windowheight;
-		static var int min_windowwidth, int min_windowheight;
-		static var int windowboundsx, int windowboundsy;
-		static var int scalemode;
+		static int windowwidth, int windowheight;
+		static int min_windowwidth, int min_windowheight;
+		static int windowboundsx, int windowboundsy;
+		static int scalemode;
 		
-		static var int boscaframerate = -1;
+		static int boscaframerate = -1;
 		
-		static var int arrangementscrollleft = 0;
-		static var int arrangementscrollright = 0;
+		static int arrangementscrollleft = 0;
+		static int arrangementscrollright = 0;
 	}
 }

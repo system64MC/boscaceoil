@@ -1,5 +1,5 @@
 ﻿void input(KeyPoll key) {
-	var int i, int j, int k;
+	int i, int j, int k;
 	
 	generickeypoll();
 	if (key.click || key.press 
@@ -207,12 +207,12 @@
 						}
 					}
 					if (control.list.type == control.LIST_INSTRUMENT) {
-						if (help.Left(control.list.item[control.list.selection], 2) == "<<") {
+						if (help::Left(control.list.item[control.list.selection], 2) == "<<") {
 							control.voicelist.pagenum = 0;
 							control.list.close();
 							control.filllist(control.LIST_INSTRUMENT);
 							control.list.init(470, (gfx.linesize * 3) + 6);
-						}else if (help.Left(control.list.item[control.list.selection], 2) == ">>") {
+						}else if (help::Left(control.list.item[control.list.selection], 2) == ">>") {
 							control.voicelist.pagenum++;
 							if (control.voicelist.pagenum == 15) control.voicelist.pagenum = 0;
 							control.list.close();

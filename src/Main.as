@@ -87,7 +87,7 @@ namespace bosca
 				stage.addEventListener(Event.RESIZE, handleResize);
 			}
 			
-			var Bitmap tempbmp;
+			Bitmap tempbmp;
 			tempbmp = new im_icons();
 			gfx.buffer = tempbmp.bitmapData;
 			gfx.makeiconarray();
@@ -170,7 +170,7 @@ namespace bosca
 						// If the container is not ready, set up a Timer to call the
 						// container at 100ms intervals. Once the container responds that
 						// it's ready, the timer will be stopped.
-						var Timer containerIsReadyTimer = new Timer(100);
+						Timer containerIsReadyTimer = new Timer(100);
 						containerIsReadyTimer.addEventListener(TimerEvent.TIMER, function(TimerEvent e):void
 						{
 							if (ExternalInterface.call("Bosca._isReady"))
@@ -188,7 +188,7 @@ namespace bosca
 		private void handleResize(Event e)
 		{
 			// adjust the gui to fit the new device resolution
-			var int tempwidth, int tempheight;
+			int tempwidth, int tempheight;
 			if (e != null)
 			{
 				e.preventDefault();
@@ -213,7 +213,7 @@ namespace bosca
 			
 			guiclass.changetab(control.currenttab);
 			
-			var BitmapData temp = new BitmapData(gfx.windowwidth, gfx.windowheight, false, 0x000000);
+			BitmapData temp = new BitmapData(gfx.windowwidth, gfx.windowheight, false, 0x000000);
 			gfx.updatebackground = 5;
 			gfx.backbuffercache = new BitmapData(gfx.windowwidth, gfx.windowheight, false, 0x000000);
 			temp.copyPixels(gfx.backbuffer, gfx.backbuffer.rect, gfx.tl);
@@ -294,7 +294,7 @@ namespace bosca
 		function _logic():void
 		{
 			logic(key);
-			help.updateglow();
+			help::updateglow();
 			if (control.forceresize)
 			{
 				control.forceresize = false;
@@ -374,46 +374,46 @@ namespace bosca
 			}
 		}
 		
-		var KeyPoll key;
+		KeyPoll key;
 		
 		// Timer information (a shout out to ChevyRay for the implementation)
 		static const Number TARGET_FPS = 30; // the fixed-FPS we want the control to run at
-		private var Number _rate = 1000 / TARGET_FPS; // how long (in seconds) each frame is
-		private var Number _skip = _rate * 10; // this tells us to allow a maximum of 10 frame skips
-		private var Number _last = -1;
-		private var Number _current = 0;
-		private var Number _delta = 0;
-		private var Timer _timer = new Timer(4);
+		private Number _rate = 1000 / TARGET_FPS; // how long (in seconds) each frame is
+		private Number _skip = _rate * 10; // this tells us to allow a maximum of 10 frame skips
+		private Number _last = -1;
+		private Number _current = 0;
+		private Number _delta = 0;
+		private Timer _timer = new Timer(4);
 		
 		//Embedded resources:		
 		[Embed(source = 'graphics/icons.png')]
-		private var Class im_icons;
+		private Class im_icons;
 		[Embed(source = 'graphics/logo_blue.png')]
-		private var Class im_logo0;
+		private Class im_logo0;
 		[Embed(source = 'graphics/logo_purple.png')]
-		private var Class im_logo1;
+		private Class im_logo1;
 		[Embed(source = 'graphics/logo_red.png')]
-		private var Class im_logo2;
+		private Class im_logo2;
 		[Embed(source = 'graphics/logo_orange.png')]
-		private var Class im_logo3;
+		private Class im_logo3;
 		[Embed(source = 'graphics/logo_green.png')]
-		private var Class im_logo4;
+		private Class im_logo4;
 		[Embed(source = 'graphics/logo_cyan.png')]
-		private var Class im_logo5;
+		private Class im_logo5;
 		[Embed(source = 'graphics/logo_gray.png')]
-		private var Class im_logo6;
+		private Class im_logo6;
 		[Embed(source = 'graphics/logo_shadow.png')]
-		private var Class im_logo7;
+		private Class im_logo7;
 		
 		[Embed(source = 'graphics/tutorial_longnote.png')]
-		private var Class im_tutorialimage0;
+		private Class im_tutorialimage0;
 		[Embed(source = 'graphics/tutorial_drag.png')]
-		private var Class im_tutorialimage1;
+		private Class im_tutorialimage1;
 		[Embed(source = 'graphics/tutorial_timelinedrag.png')]
-		private var Class im_tutorialimage2;
+		private Class im_tutorialimage2;
 		[Embed(source = 'graphics/tutorial_patterndrag.png')]
-		private var Class im_tutorialimage3;
+		private Class im_tutorialimage3;
 		[Embed(source = 'graphics/tutorial_secret.png')]
-		private var Class im_tutorialimage4;
+		private Class im_tutorialimage4;
 	}
 }

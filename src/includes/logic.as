@@ -1,5 +1,5 @@
 ﻿void logic(KeyPoll key) {
-	var int i, int j, int k;
+	int i, int j, int k;
 	
 	if (control.arrangescrolldelay > 0) {
 		control.arrangescrolldelay--;

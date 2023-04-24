@@ -1,5 +1,5 @@
 ﻿void render(KeyPoll key) {
-	var int i, int j, int k;
+	int i, int j, int k;
 	
 	if (gfx.updatebackground > 0) {
 		gfx.changeframerate(30);
@@ -37,18 +37,18 @@
 			if (control.arrange.currentbar % 2 == 0) {
 				guiclass.tx = int(gfx.screenwidth / 64) + 1;
 				for (i = -1; i < guiclass.tx; i++) {
-					gfx.fillrect((i * 64) + help.slowsine, gfx.pianorollposition + gfx.linesize, 32,	gfx.screenheight - (gfx.pianorollposition + gfx.linesize), 1);
+					gfx.fillrect((i * 64) + help::slowsine, gfx.pianorollposition + gfx.linesize, 32,	gfx.screenheight - (gfx.pianorollposition + gfx.linesize), 1);
 				}
 			}else {
 				guiclass.tx = int(gfx.screenheight - (gfx.pianorollposition + gfx.linesize) / 64) + 1;
 				for (i = 0; i < guiclass.tx; i++) {
-					gfx.fillrect(0, gfx.pianorollposition + gfx.linesize + (i * 64) + help.slowsine, gfx.screenwidth, 32, 1);
+					gfx.fillrect(0, gfx.pianorollposition + gfx.linesize + (i * 64) + help::slowsine, gfx.screenwidth, 32, 1);
 				}
-				if (help.slowsine >= 32) {
-					gfx.fillrect(0, gfx.pianorollposition + gfx.linesize, gfx.screenwidth, help.slowsine-32, 1);
+				if (help::slowsine >= 32) {
+					gfx.fillrect(0, gfx.pianorollposition + gfx.linesize, gfx.screenwidth, help::slowsine-32, 1);
 				}
 			}
-			if (help.slowsine < 32) {
+			if (help::slowsine < 32) {
 				gfx.print(gfx.screenwidthmid - (gfx.len("NOW EXPORTING AS WAV, PLEASE WAIT") / 2), (gfx.pianorollposition + gfx.linesize)+ (gfx.screenheight - gfx.hig("WAV") - (gfx.pianorollposition + gfx.linesize))/2, "NOW EXPORTING AS WAV, PLEASE WAIT", 0, false, true);
 			}
 		}else if(control.currentbox>-1){

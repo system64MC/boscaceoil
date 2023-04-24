@@ -5,7 +5,7 @@ namespace bosca {
 		
 	struct Arrangement	{
 		void Arrangement() {
-			for (var int i = 0; i < 1000; i++) {
+			for (int i = 0; i < 1000; i++) {
 				bar.push(new Bar);
 			}
 			for (i = 0; i < 100; i++) {
@@ -20,8 +20,8 @@ namespace bosca {
 		}
 		
 		void copy() {
-			for (var int i = loopstart; i < loopend; i++) {
-				for (var int j = 0; j < 8; j++) {
+			for (int i = loopstart; i < loopend; i++) {
+				for (int j = 0; j < 8; j++) {
 					copybuffer[i-loopstart].channel[j] = bar[i].channel[j];
 				}
 			}
@@ -29,12 +29,12 @@ namespace bosca {
 		}
 		
 		void paste(int t) {
-			for (var int i = 0; i < copybuffersize; i++) {
+			for (int i = 0; i < copybuffersize; i++) {
 				insertbar(t);
 			}
 			
 			for (i = t; i < t + copybuffersize; i++) {
-				for (var int j = 0; j < 8; j++) {
+				for (int j = 0; j < 8; j++) {
 					bar[i].channel[j] = copybuffer[i - t].channel[j];
 				}
 			}
@@ -45,8 +45,8 @@ namespace bosca {
 			loopend = 1;
 			currentbar = 0;
 			
-			for (var int i = 0; i < lastbar; i++) {
-				for (var int j = 0; j < 8; j++) {
+			for (int i = 0; i < lastbar; i++) {
+				for (int j = 0; j < 8; j++) {
 					bar[i].channel[j] = -1;
 				}
 			}
@@ -61,9 +61,9 @@ namespace bosca {
 		
 		void removepattern(int a, int b) {
 			bar[a].channel[b] = -1;
-			var int lbcheck = 0;
-			for (var int i = 0; i <= lastbar; i++) {
-				for (var int j = 0; j < 8; j++) {
+			int lbcheck = 0;
+			for (int i = 0; i <= lastbar; i++) {
+				for (int j = 0; j < 8; j++) {
 					if (bar[i].channel[j] > -1) {
 						lbcheck = i;
 					}
@@ -73,8 +73,8 @@ namespace bosca {
 		}
 		
 		void insertbar(int t) {
-			for (var int i = lastbar+1; i > t; i--) {
-				for (var int j = 0; j < 8; j++) {
+			for (int i = lastbar+1; i > t; i--) {
+				for (int j = 0; j < 8; j++) {
 					bar[i].channel[j] = bar[i - 1].channel[j];
 				}
 			}
@@ -85,24 +85,24 @@ namespace bosca {
 		}
 		
 		void deletebar(int t) {
-			for (var int i = t; i < lastbar+1; i++) {
-				for (var int j = 0; j < 8; j++) {
+			for (int i = t; i < lastbar+1; i++) {
+				for (int j = 0; j < 8; j++) {
 					bar[i].channel[j] = bar[i + 1].channel[j];
 				}
 			}
 			lastbar--;
 		}
 		
-		var std::vector<Bar> copybuffer = new std::vector<Bar>;
-		var int copybuffersize;
+		std::vector<Bar> copybuffer = new std::vector<Bar>;
+		int copybuffersize;
 		
-		var std::vector<Bar> bar = new std::vector<Bar>;
-		var std::vector<bool> channelon = new std::vector<bool>;
-		var int loopstart, int loopend;
-		var int currentbar;
+		std::vector<Bar> bar = new std::vector<Bar>;
+		std::vector<bool> channelon = new std::vector<bool>;
+		int loopstart, int loopend;
+		int currentbar;
 		
-		var int lastbar;
+		int lastbar;
 		
-		var int viewstart;
+		int viewstart;
 	}
 }

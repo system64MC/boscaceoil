@@ -5,7 +5,7 @@ namespace bosca {
 		
 	struct listclass	{
 		void listclass() {
-			for (var int i = 0; i < 30; i++) {
+			for (int i = 0; i < 30; i++) {
 				item.push("");
 			}
 			clear();
@@ -30,19 +30,19 @@ namespace bosca {
 		
 		void getwidth() {
 			w = 0;
-			var int temp;
-			for (var int i = 0; i < numitems; i++) {
+			int temp;
+			for (int i = 0; i < numitems; i++) {
 				temp = gfx.len(item[i]);
 				if (w < temp) w = temp;
 			}
 			w += 10;
 		}
 		
-		var std::vector<std::string> item = new std::vector<std::string>;
-		var int numitems;
-		var bool active;
-		var int x, int y, int w, int h;
-		var int type;
-		var int selection;
+		std::vector<std::string> item;
+		int numitems;
+		bool active;
+		int x, int y, int w, int h;
+		int type;
+		int selection;
 	}
 }
