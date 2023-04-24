@@ -3,9 +3,9 @@ CONFIG::desktop {
 package {
 	import flash.display.*;
 	import flash.geom.*;
-  import flash.events.*;
+	import flash.events.*;
 	import flash.utils.*;
-  import flash.net.*;
+	import flash.net.*;
 	import flash.filesystem.*;
 	import org.si.sion.midi.*;
 	import org.si.sion.events.*;
@@ -67,7 +67,7 @@ package {
 				control.filepath = control.defaultDirectory;
 			}
 			file = control.filepath.resolvePath("");
-		  file.addEventListener(Event.SELECT, onloadmidi);
+			file.addEventListener(Event.SELECT, onloadmidi);
 			file.browseForOpen("Load .mid File", [midiFilter]);
 			
 			control.fixmouseclicks = true;
@@ -81,13 +81,13 @@ package {
 				control.filepath = control.defaultDirectory;
 			}
 			file = control.filepath.resolvePath("*.mid");
-      file.addEventListener(Event.SELECT, onsavemidi);
+			file.addEventListener(Event.SELECT, onsavemidi);
 			file.browseForSave("Save .mid File");
 			
 			control.fixmouseclicks = true;
 		}
 		
-		private static function onsavemidi(e:Event):void {    
+		private static function onsavemidi(e:Event):void {		
 			file = e.currentTarget as File;
 			
 			if (!control.fileHasExtension(file, "mid")) {
@@ -109,7 +109,7 @@ package {
 			control.savefilesettings();
 		}
 		
-		private static function onloadmidi(e:Event):void {  
+		private static function onloadmidi(e:Event):void {	
 			mididata = new ByteArray();
 			file = e.currentTarget as File;
 			
@@ -170,9 +170,9 @@ package {
 			/*
 			control._driver.setBeatCallbackInterval(1);
 			control._driver.setTimerInterruption(1, null);
-      control._driver.play(smfData, false);
+			control._driver.play(smfData, false);
 			*/
-      
+			
 			control.showmessage("MIDI IMPORTED");
 			control.fixmouseclicks = true;
 			control.savefilesettings();
@@ -233,12 +233,12 @@ package {
 			
 			if (matchingnote != -1) {
 				unmatchednotes[matchingnote].width = -1;
-			  midinotes.push(new Rectangle(unmatchednotes[matchingnote].x, 
+				midinotes.push(new Rectangle(unmatchednotes[matchingnote].x, 
 																		 unmatchednotes[matchingnote].y, 
 																		 time, 
 																		 unmatchednotes[matchingnote].height));
 				
-        //Swap matching note with last note, and pop it off
+				//Swap matching note with last note, and pop it off
 				if (matchingnote != unmatchednotes.length - 1) {					
 					var swp:int;
 					
@@ -392,7 +392,7 @@ package {
 			
 			control.numinstrument = 16;
 			for (var j:int = 0; j < 16; j++) {
-			  control.currentinstrument = j;
+				control.currentinstrument = j;
 				control.voicelist.index = 132; //Set to chiptune noise if not used
 				control.changeinstrumentvoice(control.voicelist.name[control.voicelist.index]);
 					
@@ -420,14 +420,14 @@ package {
 					//y = note
 					//w = length
 					//h = instrument
-				  note = ((midinotes[i].x * numnotes) / boxsize);
+					note = ((midinotes[i].x * numnotes) / boxsize);
 					notelength = (((midinotes[i].width - midinotes[i].x - 1) * numnotes) / boxsize) + 1;
-					currentpattern = int((midinotes[i].x  - (midinotes[i].x % boxsize)) / boxsize);
+					currentpattern = int((midinotes[i].x	- (midinotes[i].x % boxsize)) / boxsize);
 					
 					var drumnote:int = 0;
 					
 					//0 "Bass Drum 1"
-				  //1 "Bass Drum 2"
+					//1 "Bass Drum 2"
 					//2 "Bass Drum 3"
 					//3 "Snare Drum"
 					//4 "Snare Drum 2"
@@ -491,8 +491,8 @@ package {
 					//w = length
 					//h = instrument
 					note = ((midinotes[i].x * numnotes) / boxsize);
-			    notelength = (((midinotes[i].width - midinotes[i].x - 1) * numnotes) / boxsize) + 1;
-					currentpattern = int((midinotes[i].x  - (midinotes[i].x % boxsize)) / boxsize);
+					notelength = (((midinotes[i].width - midinotes[i].x - 1) * numnotes) / boxsize) + 1;
+					currentpattern = int((midinotes[i].x	- (midinotes[i].x % boxsize)) / boxsize);
 					
 					addnotetoceol(currentpattern, note - (numnotes * currentpattern), midinotes[i].y, notelength, midinotes[i].height);
 				}
@@ -522,7 +522,7 @@ package {
 						control.deletemusicbox(i);
 					}
 				}
-			  i--;	
+				i--;	
 			}
 			
 			control.arrange.loopstart = 0;
@@ -533,7 +533,7 @@ package {
 		}
 		
 		public static function convertceoltomidi():void {
-		  //Export the song currently loaded as a midi.
+			//Export the song currently loaded as a midi.
 			//midifile = new MidiFile();
 			/*
 			trace("num tracks:" + midifile.tracks);
@@ -565,7 +565,7 @@ package {
 			//Write all the instruments to each channel.
 			//In MIDI, channel 9 is special.
 			for (var j:int = 0; j < control.numinstrument; j++) {
-			  midiexporter.writeinstrument(instrumentconverttomidi(control.instrument[j].index), j);
+				midiexporter.writeinstrument(instrumentconverttomidi(control.instrument[j].index), j);
 			}
 			
 			//Cover the entire song
@@ -766,7 +766,7 @@ package {
 		public static var midinotes:Vector.<Rectangle> = new Vector.<Rectangle>;
 		public static var channelinstrument:Vector.<int> = new Vector.<int>;
 		public static var channelvolume:Vector.<int> = new Vector.<int>;
-    public static var smfData:SMFData = new SMFData();
+		public static var smfData:SMFData = new SMFData();
 		
 		//Stuff for exporting
 		public static var tempbytes:ByteArray;

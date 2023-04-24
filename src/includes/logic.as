@@ -9,7 +9,7 @@
 		control.messagedelay -= 2;
 		if (control.messagedelay < 0) control.messagedelay = 0;
 	}
-  if (control.doubleclickcheck > 0) {
+	if (control.doubleclickcheck > 0) {
 		control.doubleclickcheck -= 2;
 		if (control.doubleclickcheck < 0) control.doubleclickcheck = 0;
 	}

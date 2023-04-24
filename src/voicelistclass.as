@@ -1,10 +1,10 @@
 package {
 	import flash.display.*;
 	import flash.geom.*;
-  import flash.events.*;
-  import flash.net.*;
+	import flash.events.*;
+	import flash.net.*;
 	
-	public class voicelistclass  {
+	public class voicelistclass	{
 		public function voicelistclass():void {
 			listsize = 0; sublistsize = 0; pagenum = 0;
 			for (var i:int = 0; i < 256; i++) {
@@ -465,7 +465,7 @@ package {
 		public function getnext(current:int):int {
 			//Given current instrument, get the next instrument in this category
 			for (var i:int = current + 1; i < listsize; i++) {
-			  if (category[i] == category[current]) return i;	
+				if (category[i] == category[current]) return i;	
 			}
 			return getfirst(category[current]);
 		}
@@ -473,7 +473,7 @@ package {
 		public function getprevious(current:int):int {
 			//Given current instrument, get the previous instrument in this category
 			for (var i:int = current - 1; i >= 0; i--) {
-			  if (category[i] == category[current]) return i;	
+				if (category[i] == category[current]) return i;	
 			}
 			return getlast(category[current]);
 		}

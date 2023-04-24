@@ -1,10 +1,10 @@
 package {
 	import flash.display.*;
 	import flash.geom.*;
-  import flash.events.*;
-  import flash.net.*;
+	import flash.events.*;
+	import flash.net.*;
 	
-	public class musicphraseclass  {
+	public class musicphraseclass	{
 		public function musicphraseclass():void {
 			for (var i:int = 0; i < 129; i++) {
 				notes.push(new Rectangle(-1, 0, 0, 0));
@@ -118,9 +118,9 @@ package {
 			//Remove note t, rearrange note vector
 			for (var i:int = t; i < numnotes; i++) {
 				notes[i].x = notes[i + 1].x;
-        notes[i].y = notes[i + 1].y;
-        notes[i].width = notes[i + 1].width;
-        notes[i].height = notes[i + 1].height;
+				notes[i].y = notes[i + 1].y;
+				notes[i].width = notes[i + 1].width;
+				notes[i].height = notes[i + 1].height;
 			}
 			numnotes--;
 		}
@@ -130,7 +130,7 @@ package {
 		public var numnotes:int;
 		
 		public var cutoffgraph:Vector.<int> = new Vector.<int>;
-    public var resonancegraph:Vector.<int> = new Vector.<int>;
+		public var resonancegraph:Vector.<int> = new Vector.<int>;
 		public var volumegraph:Vector.<int> = new Vector.<int>;
 		public var recordfilter:int;
 		

@@ -313,13 +313,13 @@
 				}
 			}
 		/*
-		   effectname.push("DELAY");
-		   effectname.push("CHORUS");
-		   effectname.push("REVERB");
-		   effectname.push("DISTORTION");
-		   effectname.push("LOW BOOST");
-		   effectname.push("COMPRESSOR");
-		   effectname.push("HIGH PASS");  */
+			 effectname.push("DELAY");
+			 effectname.push("CHORUS");
+			 effectname.push("REVERB");
+			 effectname.push("DISTORTION");
+			 effectname.push("LOW BOOST");
+			 effectname.push("COMPRESSOR");
+			 effectname.push("HIGH PASS");	*/
 		}
 		
 		public static function _onTimerInterruption():void

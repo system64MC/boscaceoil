@@ -23,13 +23,13 @@
 	control.secondlist.selection = -1;
 	
 	if(control.clicklist){
-	  if (!key.press) {
+		if (!key.press) {
 			control.clicklist = false;
 		}
 	}
 	
 	if(control.clicksecondlist){
-	  if (!key.press) {
+		if (!key.press) {
 			control.clicksecondlist = false;
 		}
 	}
@@ -37,7 +37,7 @@
 	guiclass.checkinput(key);
 	
 	if (guiclass.windowdrag) {
-	  key.click = false;
+		key.click = false;
 		key.press = false;
 	}
 	
@@ -113,7 +113,7 @@
 	
 	if (control.timelinecurx > -1) {
 		if (key.ctrlheld && !control.copykeyheld) {
-		  if (key.isDown(Keyboard.V)) {
+			if (key.isDown(Keyboard.V)) {
 				gfx.updatebackground = 5;
 				control.copykeyheld = true;
 				control.arrange.paste(control.arrange.viewstart + control.timelinecurx);
@@ -187,7 +187,7 @@
 				if (control.list.selection > -1) {
 					//List selection stuff here
 					if (control.list.type == control.LIST_CATEGORY) {
-					  control.list.close();
+						control.list.close();
 						control.instrument[control.currentinstrument].category = control.list.item[control.list.selection];
 						control.voicelist.index = control.voicelist.getfirst(control.instrument[control.currentinstrument].category);
 						control.changeinstrumentvoice(control.voicelist.name[control.voicelist.index]);
@@ -285,7 +285,7 @@
 				control.clicklist = true;
 			}else if (control.my <= gfx.linesize) {
 				//Change tabs
-	      CONFIG::desktop {
+				CONFIG::desktop {
 					if (control.mx < (gfx.screenwidth - 40) / 4) {
 						control.changetab(control.MENUTAB_FILE);
 					}else if (control.mx < (2 * (gfx.screenwidth - 40)) / 4) {
@@ -293,7 +293,7 @@
 						guiclass.helpcondition_set = "changetab_arrangement"; //For interactive tutorial
 					}else if (control.mx < (3 * (gfx.screenwidth - 40)) / 4) {
 						control.changetab(control.MENUTAB_INSTRUMENTS);
-						guiclass.helpcondition_set = "changetab_instrument";  //For interactive tutorial
+						guiclass.helpcondition_set = "changetab_instrument";	//For interactive tutorial
 					}else if (control.mx >= gfx.screenwidth - 40) {
 						if (control.fullscreen) {control.fullscreen = false;
 						}else {control.fullscreen = true;}
@@ -346,8 +346,8 @@
 							j = control.patternmanagerview + control.patterncury;
 							if (j > -1 && j<control.numboxes) {
 								control.changemusicbox(j);
-							  control.dragaction = 2;
-							  control.dragpattern = j;
+								control.dragaction = 2;
+								control.dragpattern = j;
 								control.dragx = control.mx; control.dragy = control.my;
 							}
 						}
@@ -397,7 +397,7 @@
 						}else {
 							j = control.instrumentcury + control.instrumentmanagerview;
 							if (j < control.numinstrument) {
-							  control.currentinstrument = j;
+								control.currentinstrument = j;
 							}
 						}
 					}else {
@@ -423,7 +423,7 @@
 			}else if (control.notey > -1) {
 				//Play a single note
 				if (control.currentbox > -1) {
-				  if (control.instrument[control.musicbox[control.currentbox].instr].type == 0) {	
+					if (control.instrument[control.musicbox[control.currentbox].instr].type == 0) {	
 						//Normal instrument
 						j = control.musicbox[control.currentbox].start + control.notey - 1;
 						if (j >= 0 && j < 128) control._driver.noteOn(control.pianoroll[j], control.instrument[control.musicbox[control.currentbox].instr].voice, control.notelength);
@@ -482,8 +482,8 @@
 						k = 0;
 						if (control.currentbox > -1) {
 							if (control.musicbox[control.currentbox].recordfilter == 1) {
-					      if (control.musicbox[control.currentbox].instr == control.currentinstrument) {
-								  k = 1;
+								if (control.musicbox[control.currentbox].instr == control.currentinstrument) {
+									k = 1;
 								}
 							}
 						}
@@ -558,7 +558,7 @@
 						if (j > -1) {
 							control.addmusicbox();
 							control.copymusicbox(control.numboxes - 1, j);
-			        control.musicbox[control.numboxes - 1].setnotespan();
+							control.musicbox[control.numboxes - 1].setnotespan();
 							control.patternmanagerview = control.numboxes - 6;
 							control.changemusicbox(control.numboxes - 1);
 							
@@ -620,7 +620,7 @@
 			gfx.zoom--; if (gfx.zoom < 1) gfx.zoom = 1;
 			gfx.setzoomlevel(gfx.zoom);
 			key.mousewheel = 0;
-		}else if (key.mousewheel > 0  || (key.shiftheld && (control.press_up||control.press_right))) {
+		}else if (key.mousewheel > 0	|| (key.shiftheld && (control.press_up||control.press_right))) {
 			gfx.zoom++; if (gfx.zoom > 4) gfx.zoom = 4;
 			gfx.setzoomlevel(gfx.zoom);
 			key.mousewheel = 0;
@@ -678,7 +678,7 @@
 	}
 	
 	if (control.currentbox > -1) {
-	  if (!control.press_down && control.musicbox[control.currentbox].start == -1) {
+		if (!control.press_down && control.musicbox[control.currentbox].start == -1) {
 			control.musicbox[control.currentbox].start = 0;
 		}	
 	}
@@ -688,7 +688,7 @@
 			if (!control.musicplaying) {
 				control.startmusic();
 			}else {
-			  control.stopmusic();	
+				control.stopmusic();	
 			}
 			control.keyheld = true;
 		}

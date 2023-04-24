@@ -13,7 +13,7 @@ package {
 		public function init(x:int, y:int, w:int, h:int, contents:String, act:String = "", sty:String = "normal"):void {
 			position.setTo(x, y, w, h);
 			text = contents;
-		  action = act;
+			action = act;
 			style = sty;
 			
 			selected = false;

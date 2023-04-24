@@ -1,11 +1,11 @@
 package {
 	import flash.display.*;
 	import flash.geom.*;
-  import flash.events.*;
-  import flash.net.*;
+	import flash.events.*;
+	import flash.net.*;
 	import org.si.sion.SiONVoice;
 	
-	public class instrumentclass  {
+	public class instrumentclass	{
 		public function instrumentclass():void {
 			clear();
 		}
@@ -33,14 +33,14 @@ package {
 					voice.velocity = volume;
 				}
 				if(voice.channelParam.cutoff != cutoff || voice.channelParam.resonance != resonance){
-				  voice.setFilterEnvelop(0, cutoff, resonance);
+					voice.setFilterEnvelop(0, cutoff, resonance);
 				}
 			}
 		}
 		
 		public function changefilterto(c:int, r:int, v:int):void {
 			if (voice != null) {
-			  voice.updateVolumes = true;
+				voice.updateVolumes = true;
 				voice.velocity = v;
 				voice.setFilterEnvelop(0, c, r);
 			}
@@ -48,7 +48,7 @@ package {
 		
 		public function changevolumeto(v:int):void {
 			if (voice != null) {
-			  voice.updateVolumes = true;
+				voice.updateVolumes = true;
 				voice.velocity = v;
 			}
 		}

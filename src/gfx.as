@@ -1,8 +1,8 @@
 ﻿package{
 	import flash.display.*;
 	import flash.geom.*;
-  import flash.events.*;
-  import flash.net.*;
+	import flash.events.*;
+	import flash.net.*;
 	import flash.text.*;
 	import flash.utils.Dictionary;
 	CONFIG::desktop {
@@ -19,7 +19,7 @@
 			initpal();
 			
 			stage = _stage;
-    }
+		}
 		
 		public static function changeframerate(t:int):void {
 			if (t != boscaframerate) {
@@ -71,92 +71,92 @@
 		
 		public static function initpal():void {
 			//Initalise all the program's palettes here
-			pal[0].setto(255, 255, 255);      //Pure White
-			pal[1].setto(52, 66, 70);         //Background
-			pal[2].setto(188, 200, 204);      //Menu bar
-			pal[3].setto(146, 163, 170);      //Bar, Bright
-			pal[4].setto(109, 133, 141);      //Bar, Dark
-			pal[5].setto(80, 101, 106);       //Guideline  
-			pal[6].setto(52, 66, 70);         //Dark guideline
-			pal[7].setto(146, 185, 196);      //Note names
-			pal[8].setto(104, 0, 0);          //Note, dark part
-			pal[9].setto(160, 0, 0);          //Note, bright part
+			pal[0].setto(255, 255, 255);			//Pure White
+			pal[1].setto(52, 66, 70);				 //Background
+			pal[2].setto(188, 200, 204);			//Menu bar
+			pal[3].setto(146, 163, 170);			//Bar, Bright
+			pal[4].setto(109, 133, 141);			//Bar, Dark
+			pal[5].setto(80, 101, 106);			 //Guideline	
+			pal[6].setto(52, 66, 70);				 //Dark guideline
+			pal[7].setto(146, 185, 196);			//Note names
+			pal[8].setto(104, 0, 0);					//Note, dark part
+			pal[9].setto(160, 0, 0);					//Note, bright part
 			
-			pal[10].setto(255, 255, 255);     //Arrangement Bar (bright)
-			pal[11].setto(109, 133, 141);     //Arrangement Bar (dark)
-			pal[12].setto(0, 0, 0);           //Black
-			pal[13].setto(72, 0, 0);          //Dark Red
-			pal[14].setto(26, 33, 35);        //Very dark grey
-			pal[15].setto(255, 0, 0);         //Red
-			pal[16].setto(0, 132, 255);       //Cyan
-			pal[17].setto(0, 0, 140);         //Dark Blue
-			pal[18].setto(255, 255, 0);       //Yellow
-			pal[19].setto(222, 222, 0);       //Darker Yellow
+			pal[10].setto(255, 255, 255);		 //Arrangement Bar (bright)
+			pal[11].setto(109, 133, 141);		 //Arrangement Bar (dark)
+			pal[12].setto(0, 0, 0);					 //Black
+			pal[13].setto(72, 0, 0);					//Dark Red
+			pal[14].setto(26, 33, 35);				//Very dark grey
+			pal[15].setto(255, 0, 0);				 //Red
+			pal[16].setto(0, 132, 255);			 //Cyan
+			pal[17].setto(0, 0, 140);				 //Dark Blue
+			pal[18].setto(255, 255, 0);			 //Yellow
+			pal[19].setto(222, 222, 0);			 //Darker Yellow
 			
-			pal[20].setto(65, 82, 87);        //Background mouseover
+			pal[20].setto(65, 82, 87);				//Background mouseover
 			
 			//Blue
-			pal[100].setto(59, 39, 238);       //Bar, Bright
-			pal[101].setto(43, 33, 151);       //Bar, Dark
-			pal[102].setto(10, 14, 62);       //Guideline
-			pal[103].setto(5, 7, 31);         //Dark guideline
-			pal[104].setto(255,185,95);      //Note, dark part
-			pal[105].setto(255,255,192);      //Note, bright part
-			pal[106].setto(188,207,255);     //Octave change
+			pal[100].setto(59, 39, 238);			 //Bar, Bright
+			pal[101].setto(43, 33, 151);			 //Bar, Dark
+			pal[102].setto(10, 14, 62);			 //Guideline
+			pal[103].setto(5, 7, 31);				 //Dark guideline
+			pal[104].setto(255,185,95);			//Note, dark part
+			pal[105].setto(255,255,192);			//Note, bright part
+			pal[106].setto(188,207,255);		 //Octave change
 			
 			//Purple
-			pal[110].setto(156, 11, 240);      //Bar, Bright
-			pal[111].setto(91, 5, 143);      //Bar, Dark
-			pal[112].setto(10, 14, 62);       //Guideline
-			pal[113].setto(5, 7, 31);         //Dark guideline
-			pal[114].setto(255,185,95);      //Note, dark part
-			pal[115].setto(255,255,192);      //Note, bright part
-			pal[116].setto(224,185,255);     //Octave change
+			pal[110].setto(156, 11, 240);			//Bar, Bright
+			pal[111].setto(91, 5, 143);			//Bar, Dark
+			pal[112].setto(10, 14, 62);			 //Guideline
+			pal[113].setto(5, 7, 31);				 //Dark guideline
+			pal[114].setto(255,185,95);			//Note, dark part
+			pal[115].setto(255,255,192);			//Note, bright part
+			pal[116].setto(224,185,255);		 //Octave change
 			
 			//Red
-			pal[120].setto(210, 41, 58);      //Bar, Bright
-			pal[121].setto(124,23,35);      //Bar, Dark
-			pal[122].setto(62, 15, 10);       //Guideline
-			pal[123].setto(31, 8, 5);       //Dark guideline
-			pal[124].setto(255,185,95);       //Note, dark part
-			pal[125].setto(255,255,192);      //Note, bright part
-			pal[126].setto(244,193,201);     //Octave change
+			pal[120].setto(210, 41, 58);			//Bar, Bright
+			pal[121].setto(124,23,35);			//Bar, Dark
+			pal[122].setto(62, 15, 10);			 //Guideline
+			pal[123].setto(31, 8, 5);			 //Dark guideline
+			pal[124].setto(255,185,95);			 //Note, dark part
+			pal[125].setto(255,255,192);			//Note, bright part
+			pal[126].setto(244,193,201);		 //Octave change
 			
 			//Orange
-			pal[130].setto(210, 153, 41);     //Bar, Bright
-			pal[131].setto(124, 90, 23);     //Bar, Dark
-			pal[132].setto(62, 55, 10);       //Guideline
-			pal[133].setto(30, 27, 5);       //Dark guideline
-			pal[134].setto(255,185,95);       //Note, dark part
-			pal[135].setto(255,255,192);      //Note, bright part
-			pal[136].setto(244,224,193);      //Octave change
+			pal[130].setto(210, 153, 41);		 //Bar, Bright
+			pal[131].setto(124, 90, 23);		 //Bar, Dark
+			pal[132].setto(62, 55, 10);			 //Guideline
+			pal[133].setto(30, 27, 5);			 //Dark guideline
+			pal[134].setto(255,185,95);			 //Note, dark part
+			pal[135].setto(255,255,192);			//Note, bright part
+			pal[136].setto(244,224,193);			//Octave change
 			
 			//Green
-			pal[140].setto(54, 215, 36);      //Bar, Bright
-			pal[141].setto(32, 127, 20);      //Bar, Dark
-			pal[142].setto(10, 62, 23);       //Guideline
-			pal[143].setto(5, 30, 12);       //Dark guideline
-			pal[144].setto(255,185,95);      //Note, dark part
-			pal[145].setto(255,255,192);     //Note, bright part
-			pal[146].setto(200,246,191);      //Octave change
+			pal[140].setto(54, 215, 36);			//Bar, Bright
+			pal[141].setto(32, 127, 20);			//Bar, Dark
+			pal[142].setto(10, 62, 23);			 //Guideline
+			pal[143].setto(5, 30, 12);			 //Dark guideline
+			pal[144].setto(255,185,95);			//Note, dark part
+			pal[145].setto(255,255,192);		 //Note, bright part
+			pal[146].setto(200,246,191);			//Octave change
 			
 			//Cyan
-			pal[150].setto(19, 144, 232);      //Bar, Bright
-			pal[151].setto(10, 86, 138);      //Bar, Dark
-			pal[152].setto(10, 31, 62);       //Guideline
-			pal[153].setto(5, 14, 30);       //Dark guideline
-			pal[154].setto(255,185,95);      //Note, dark part
-			pal[155].setto(255,255,192);     //Note, bright part
-			pal[156].setto(186,227,250);     //Octave change
+			pal[150].setto(19, 144, 232);			//Bar, Bright
+			pal[151].setto(10, 86, 138);			//Bar, Dark
+			pal[152].setto(10, 31, 62);			 //Guideline
+			pal[153].setto(5, 14, 30);			 //Dark guideline
+			pal[154].setto(255,185,95);			//Note, dark part
+			pal[155].setto(255,255,192);		 //Note, bright part
+			pal[156].setto(186,227,250);		 //Octave change
 			
 			//Grayscale
-			pal[300].setto(140, 140, 140);      //Bar, Bright
-			pal[301].setto(96, 96, 96);      //Bar, Dark
-			pal[302].setto(31, 31, 31);       //Guideline
-			pal[303].setto(14, 14, 14);       //Dark guideline
-			pal[304].setto(255,185,95);       //Note, dark part
-			pal[305].setto(255,255,192);    //Note, bright part
-			pal[306].setto(227,227,227);     //Octave change
+			pal[300].setto(140, 140, 140);			//Bar, Bright
+			pal[301].setto(96, 96, 96);			//Bar, Dark
+			pal[302].setto(31, 31, 31);			 //Guideline
+			pal[303].setto(14, 14, 14);			 //Dark guideline
+			pal[304].setto(255,185,95);			 //Note, dark part
+			pal[305].setto(255,255,192);		//Note, bright part
+			pal[306].setto(227,227,227);		 //Octave change
 		}
 		
 		public static function updateboxsize():void {
@@ -203,7 +203,7 @@
 				fillrect(40 + (i * control.boxsize), pianorollposition + linesize, 2, (linesize * patterneditorheight), 102+(control.musicbox[control.currentbox].palette*10));
 			}
 			for (i = 0; i <= (control.boxcount / control.barcount) + 1; i++) {
-				fillrect(40 + (i * control.barsize)+2, pianorollposition + linesize, 2,  (linesize * patterneditorheight), 103+(control.musicbox[control.currentbox].palette*10));
+				fillrect(40 + (i * control.barsize)+2, pianorollposition + linesize, 2,	(linesize * patterneditorheight), 103+(control.musicbox[control.currentbox].palette*10));
 			}
 			
 			//Reduced patternsize? Just draw over it!
@@ -220,7 +220,7 @@
 			//Note names
 			fillrect(0, pianorollposition + linesize, 40, linesize * patterneditorheight, 4);
 			if (control.notey > -1) {
-				fillrect(0,  screenheight - linesize - (control.notey * linesize), 40, linesize, 6);
+				fillrect(0,	screenheight - linesize - (control.notey * linesize), 40, linesize, 6);
 			}
 			
 			//Print note names
@@ -231,7 +231,7 @@
 				for (i = 0; i < notesonscreen; i++) {
 					if (control.musicbox[control.currentbox].start + i - 1 < control.drumkit[j].size) {
 						if (control.musicbox[control.currentbox].start + i - 1 > -1) {
-						  print(3, screenheight - linesize - (i * linesize), control.drumkit[j].voicename[control.musicbox[control.currentbox].start + i - 1], 0, false, true);
+							print(3, screenheight - linesize - (i * linesize), control.drumkit[j].voicename[control.musicbox[control.currentbox].start + i - 1], 0, false, true);
 						}else {
 							if (control.musicbox[control.currentbox].recordfilter == 1) {
 								fillrect(0, screenheight - linesize - (i * linesize), screenwidth, linesize, 13);
@@ -246,7 +246,7 @@
 			}else {
 				for (i = 0; i < notesonscreen; i++) {
 					if (control.musicbox[control.currentbox].start + i - 1> -1) {
-					  print(3, screenheight - linesize - (i * linesize), control.notename[control.pianoroll[control.musicbox[control.currentbox].start + i - 1]], 0);
+						print(3, screenheight - linesize - (i * linesize), control.notename[control.pianoroll[control.musicbox[control.currentbox].start + i - 1]], 0);
 					}else {
 						if (control.musicbox[control.currentbox].recordfilter == 1) {
 							fillrect(0, screenheight - linesize - (i * linesize), screenwidth, linesize, 13);
@@ -309,7 +309,7 @@
 						}else {
 							fillrect(42 + (i * control.boxsize), screenheight - linesize - (control.drawnoteposition * linesize), control.drawnotelength, linesize, 105+(control.musicbox[control.currentbox].palette*10));
 							fillrect(42 + (i * control.boxsize), screenheight - linesize - (control.drawnoteposition * linesize) + 16, control.drawnotelength, 4, 104+(control.musicbox[control.currentbox].palette*10));
-							fillrect(42 + (i * control.boxsize) + control.drawnotelength - 4,  screenheight - linesize - (control.drawnoteposition * linesize), 4, linesize, 104 + (control.musicbox[control.currentbox].palette * 10));
+							fillrect(42 + (i * control.boxsize) + control.drawnotelength - 4,	screenheight - linesize - (control.drawnoteposition * linesize), 4, linesize, 104 + (control.musicbox[control.currentbox].palette * 10));
 							
 							tempstring = String(int(control.musicbox[control.currentbox].notes[j].y))
 							if (control.doublesize) {
@@ -352,7 +352,7 @@
 						drawbox(40 + (control.cursorx * control.boxsize), gfx.screenheight - linesize - (control.cursory * linesize), control.boxsize * control.notelength, linesize, 0);
 						if (control.notelength > control.boxcount) {
 							tempstring = String(control.notelength);
-							print(40 + (control.cursorx * control.boxsize), gfx.screenheight - linesize  - (control.cursory * linesize), tempstring, 0);
+							print(40 + (control.cursorx * control.boxsize), gfx.screenheight - linesize	- (control.cursory * linesize), tempstring, 0);
 						}
 					}
 				}
@@ -622,8 +622,8 @@
 				if (control.arrange.viewstart == -1 && control.timelinecurx == 0) {
 					drawbox(0, linesize, patternwidth, pianorollposition - 12, 0);
 				}else{
-			    drawbox(control.timelinecurx * patternwidth,  pianorollposition + 8, patternwidth, 12, 0);
-					print(control.timelinecurx * patternwidth,  pianorollposition + 8 - linesize, String(control.arrange.viewstart +control.timelinecurx + 1), 0, false, true);
+					drawbox(control.timelinecurx * patternwidth,	pianorollposition + 8, patternwidth, 12, 0);
+					print(control.timelinecurx * patternwidth,	pianorollposition + 8 - linesize, String(control.arrange.viewstart +control.timelinecurx + 1), 0, false, true);
 				}
 			}
 		}
@@ -643,7 +643,7 @@
 				}else {
 					//Normal
 					if (control.patternmanagerview + k < control.numboxes) {
-				    drawmusicbox(patternmanagerx + 3, linesize + 2 + (k * patternheight), control.patternmanagerview + k, true, 4);
+						drawmusicbox(patternmanagerx + 3, linesize + 2 + (k * patternheight), control.patternmanagerview + k, true, 4);
 					}
 				}
 			}
@@ -652,7 +652,7 @@
 		public static function drawpatternmanager_cursor():void {
 			//Draw the cursor
 			if (control.patterncury > -1) {
-			  drawbox(patternmanagerx + 3, linesize + 2 + (control.patterncury * patternheight), 108, patternheight, 0);
+				drawbox(patternmanagerx + 3, linesize + 2 + (control.patterncury * patternheight), 108, patternheight, 0);
 			}
 		}
 		
@@ -679,7 +679,7 @@
 			}
 			//Draw the cursor
 			if (control.instrumentcury > -1) {
-			  drawbox(4, linesize + 4 + (control.instrumentcury * patternheight), 272, patternheight, 0);
+				drawbox(4, linesize + 4 + (control.instrumentcury * patternheight), 272, patternheight, 0);
 			}
 		}
 		
@@ -700,7 +700,7 @@
 			if (control.currentbox > -1) {
 				if (control.musicbox[control.currentbox].recordfilter == 1) {
 					if(control.musicbox[control.currentbox].instr == control.currentinstrument){
-					  i = 1;
+						i = 1;
 					}
 				}
 			}
@@ -723,8 +723,8 @@
 				fillrect(screenwidth - 42 + 2, (linesize * 4) + j + 2, 16, 16, 100 + (control.instrument[control.currentinstrument].palette * 10));		
 				
 				i = int((control.musicbox[control.currentbox].cutoffgraph[control.looptime%control.boxcount] * (screenwidth - 368)) / 128);
-			  j = int((control.musicbox[control.currentbox].resonancegraph[control.looptime%control.boxcount] * 90) / 9);
-			  fillrect(286 + i, (linesize * 4) + j, 20, 20, 101 + (control.instrument[control.currentinstrument].palette * 10));
+				j = int((control.musicbox[control.currentbox].resonancegraph[control.looptime%control.boxcount] * 90) / 9);
+				fillrect(286 + i, (linesize * 4) + j, 20, 20, 101 + (control.instrument[control.currentinstrument].palette * 10));
 				fillrect(286 + i + 2, (linesize * 4) + j + 2, 16, 16, 100 + (control.instrument[control.currentinstrument].palette * 10));		
 			}else {
 				fillrect(286, (linesize * 4), screenwidth - 348, 110, 102 + (control.instrument[control.currentinstrument].palette * 10));
@@ -945,27 +945,27 @@
 		
 		//Text Functions
 		public static function initfont():void {			
-		  tf_1.embedFonts = true;
+			tf_1.embedFonts = true;
 			tf_1.defaultTextFormat = new TextFormat("FFF Aquarius Bold Condensed", fontsize[0], 0, true);
 			tf_1.width = screenwidth; tf_1.height = 200;
 			tf_1.antiAliasType = AntiAliasType.NORMAL;
 			
-		  tf_2.embedFonts = true;
+			tf_2.embedFonts = true;
 			tf_2.defaultTextFormat = new TextFormat("FFF Aquarius Bold Condensed", fontsize[1], 0, true);
 			tf_2.width = screenwidth; tf_2.height = 100;
 			tf_2.antiAliasType = AntiAliasType.NORMAL;
 			
-		  tf_3.embedFonts = true;
+			tf_3.embedFonts = true;
 			tf_3.defaultTextFormat = new TextFormat("FFF Aquarius Bold Condensed", fontsize[2], 0, true);
 			tf_3.width = screenwidth; tf_3.height = 100;
 			tf_3.antiAliasType = AntiAliasType.NORMAL;
 			
-		  tf_4.embedFonts = true;
+			tf_4.embedFonts = true;
 			tf_4.defaultTextFormat = new TextFormat("FFF Aquarius Bold Condensed", fontsize[3], 0, true);
 			tf_4.width = screenwidth; tf_4.height = 100;
 			tf_4.antiAliasType = AntiAliasType.NORMAL;
 			
-		  tf_5.embedFonts = true;
+			tf_5.embedFonts = true;
 			tf_5.defaultTextFormat = new TextFormat("FFF Aquarius Bold Condensed", fontsize[4], 0, true);
 			tf_5.width = screenwidth; tf_5.height = 100;
 			tf_5.antiAliasType = AntiAliasType.NORMAL;
@@ -1158,11 +1158,11 @@
 			
 			normalrender();
 		}
-		  
+			
 		public static var icons:Vector.<BitmapData> = new Vector.<BitmapData>;
 		public static var ct:ColorTransform;
-	  public static var icons_rect:Rectangle;
-	  public static var tl:Point = new Point(0, 0);
+		public static var icons_rect:Rectangle;
+		public static var tl:Point = new Point(0, 0);
 		public static var images:Vector.<BitmapData> = new Vector.<BitmapData>;
 		public static var trect:Rectangle, tpoint:Point, tbuffer:BitmapData;
 		public static var i:int, j:int, k:int, l:int, mbi:int, mbj:int;

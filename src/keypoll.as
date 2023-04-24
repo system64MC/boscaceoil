@@ -1,6 +1,6 @@
 public function generickeypoll():void {
 	control.press_up = false; control.press_down = false; 
-  control.press_left = false; control.press_right = false; 
+	control.press_left = false; control.press_right = false; 
 	control.press_space = false; control.press_enter = false;
 		
 	if (key.isDown(Keyboard.LEFT) || key.isDown(Keyboard.A)) control.press_left = true;
@@ -10,7 +10,7 @@ public function generickeypoll():void {
 	if (key.isDown(Keyboard.SPACE)) control.press_space = true;
 	if (key.isDown(Keyboard.ENTER)) control.press_enter = true;
 	
-  control.keypriority = 0;
+	control.keypriority = 0;
 	
 	if (control.keypriority == 3) {control.press_up = false; control.press_down = false;
 	}else if (control.keypriority == 4) { control.press_left = false; control.press_right = false; }
@@ -24,14 +24,14 @@ public function generickeypoll():void {
 	}
 	
 	if (control.fullscreentoggleheld) {
-	  if (!key.isDown(15) && !key.isDown(17) && !key.isDown(70)) {
+		if (!key.isDown(15) && !key.isDown(17) && !key.isDown(70)) {
 			control.fullscreentoggleheld = false;
 		}
 	}
 	
 	if (control.keyheld) {
 		if (control.press_space || control.press_right || control.press_left || control.press_enter ||
-		    control.press_down || control.press_up) {
+				control.press_down || control.press_up) {
 			control.press_space = false;
 			control.press_enter = false;
 			control.press_up = false;
@@ -44,7 +44,7 @@ public function generickeypoll():void {
 	}
 	
 	if (control.press_space || control.press_right || control.press_left || control.press_enter ||
-		  control.press_down || control.press_up) {
+			control.press_down || control.press_up) {
 		//Update screen when there is input.
 		gfx.updatebackground = 5;
 	}

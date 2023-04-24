@@ -19,7 +19,7 @@ package {
 			bpm = control.bpm;
 			lengthOfPattern = control.boxcount;
 
-			var emptyBarMML:String = "\n// empty bar\n" + StringUtil.repeat("  r   ", lengthOfPattern) + "\n";
+			var emptyBarMML:String = "\n// empty bar\n" + StringUtil.repeat("	r	 ", lengthOfPattern) + "\n";
 			var bar:uint;
 			var patternNum:int;
 			var numberOfPatterns:int = control.numboxes;
@@ -128,7 +128,7 @@ package {
 					var newOctave:int = _octaveFromSiONNoteNumber(sionNoteNum);
 					var mmlOctave:String = _mmlTransitionFromOctaveToOctave(octave, newOctave);
 					var mmlNoteName:String = _mmlNoteNameFromSiONNoteNumber(sionNoteNum);
-					var mmlSlur:String = (noteEndingAt > place) ? "& " : "  ";
+					var mmlSlur:String = (noteEndingAt > place) ? "& " : "	";
 
 					octave = newOctave;
 
@@ -138,7 +138,7 @@ package {
 					var emptyTrackSoFar:String = StringUtil.repeat(emptyNoteMML, place);
 					tracks.push(mmlToUseInstrument[pattern.instr] + "\n" + emptyTrackSoFar);
 				}
-				var emptyNoteMML:String = "  r   ";
+				var emptyNoteMML:String = "	r	 ";
 
 				for (var track:uint = 0; track < tracks.length; track++) {
 					var noteMML:String;
@@ -174,7 +174,7 @@ package {
 
 		protected function _mmlTransitionFromOctaveToOctave(oldOctave:int, newOctave:int):String {
 			if (oldOctave == newOctave) {
-				return "  ";
+				return "	";
 			}
 			if ((oldOctave + 1) == newOctave) {
 				return "< ";

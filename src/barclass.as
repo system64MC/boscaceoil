@@ -1,8 +1,8 @@
 package {
 	import flash.display.*;
 	import flash.geom.*;
-  import flash.events.*;
-  import flash.net.*;
+	import flash.events.*;
+	import flash.net.*;
 	
 	public class barclass  {
 		public function barclass():void {

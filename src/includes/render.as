@@ -37,7 +37,7 @@
 			if (control.arrange.currentbar % 2 == 0) {
 				guiclass.tx = int(gfx.screenwidth / 64) + 1;
 				for (i = -1; i < guiclass.tx; i++) {
-					gfx.fillrect((i * 64) + help.slowsine, gfx.pianorollposition + gfx.linesize, 32,  gfx.screenheight - (gfx.pianorollposition + gfx.linesize), 1);
+					gfx.fillrect((i * 64) + help.slowsine, gfx.pianorollposition + gfx.linesize, 32,	gfx.screenheight - (gfx.pianorollposition + gfx.linesize), 1);
 				}
 			}else {
 				guiclass.tx = int(gfx.screenheight - (gfx.pianorollposition + gfx.linesize) / 64) + 1;
@@ -125,7 +125,7 @@
 	
 	if (!control.nowexporting) {
 		if (control.currentbox > -1) {
-		  gfx.drawpatterneditor_cursor();
+			gfx.drawpatterneditor_cursor();
 		}
 	}
 	

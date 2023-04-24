@@ -1,9 +1,9 @@
 package {
 	import flash.display.*;
 	import flash.geom.*;
-  import flash.events.*;
+	import flash.events.*;
 	import flash.utils.*;
-  import flash.net.*;
+	import flash.net.*;
 	import ocean.midi.*;
 	import ocean.midi.event.*;
 	import ocean.midi.model.*;
@@ -23,7 +23,7 @@ package {
 			midifile.addTrack(new MidiTrack());
 		}
 		
-		public  function nexttrack():void {
+		public	function nexttrack():void {
 			addnewtrack();
 			currenttrack = midifile.track(midifile._trackArray.length - 1);
 		}

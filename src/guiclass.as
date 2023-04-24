@@ -2,9 +2,9 @@ package {
 	import flash.desktop.InteractiveIcon;
 	import flash.display.*;
 	import flash.geom.*;
-  import flash.events.*;
+	import flash.events.*;
 	import flash.utils.*;
-  import flash.net.*;
+	import flash.net.*;
 	import bigroom.input.KeyPoll;
 	
 	public class guiclass {
@@ -70,7 +70,7 @@ package {
 				break;
 				case "help2":
 					if (initalise) {
-						windowwidth = 400; windowheight =  (gfx.linesize * 2) + (gfx.linesize * 2) + 35;
+						windowwidth = 400; windowheight =	(gfx.linesize * 2) + (gfx.linesize * 2) + 35;
 						windowx = gfx.screenwidth - windowwidth - 30;	windowy = 97;
 						
 						windowtext = "HELP - Placing Notes";
@@ -89,7 +89,7 @@ package {
 				break;
 				case "help3":
 					if (initalise) {
-						windowwidth = 360; windowheight =  (gfx.linesize * 3) + (gfx.linesize * 2) + 35;
+						windowwidth = 360; windowheight =	(gfx.linesize * 3) + (gfx.linesize * 2) + 35;
 						windowx = gfx.screenwidth - windowwidth - 52;	windowy = 72;
 						
 						windowtext = "HELP - Placing Notes";
@@ -113,7 +113,7 @@ package {
 				break;
 				case "help4":
 					if (initalise) {
-						windowwidth = 700; windowheight =  (gfx.linesize * 5) + (gfx.linesize * 2) + 35;
+						windowwidth = 700; windowheight =	(gfx.linesize * 5) + (gfx.linesize * 2) + 35;
 						windowx = gfx.screenwidth - windowwidth - 37;	windowy = 11;
 						
 						windowtext = "HELP - Placing Notes";
@@ -139,7 +139,7 @@ package {
 				break;
 				case "help5":
 					if (initalise) {
-						windowwidth = 450; windowheight =  (gfx.linesize * 1) + (gfx.linesize * 2) + 35;
+						windowwidth = 450; windowheight =	(gfx.linesize * 1) + (gfx.linesize * 2) + 35;
 						windowx = (gfx.screenwidth - 40) / 4;	windowy = gfx.linesize+10;
 						
 						windowtext = "HELP - Arrangements";
@@ -158,7 +158,7 @@ package {
 				break;
 				case "help6":
 					if (initalise) {
-						windowwidth = 450; windowheight =  (gfx.linesize * 5) + (gfx.linesize * 2) + 35;
+						windowwidth = 450; windowheight =	(gfx.linesize * 5) + (gfx.linesize * 2) + 35;
 						windowx = gfx.screenwidth - windowwidth - 144;	windowy = 120;
 						
 						windowtext = "HELP - Arrangements";
@@ -319,7 +319,7 @@ package {
 				break;
 				case "help13":
 					if (initalise) {
-						windowwidth = 400; windowheight =  (gfx.linesize * 1) + (gfx.linesize * 2) + 35;
+						windowwidth = 400; windowheight =	(gfx.linesize * 1) + (gfx.linesize * 2) + 35;
 						windowx = ((gfx.screenwidth - 40) / 4)*2;	windowy = gfx.linesize+10;
 						
 						windowtext = "HELP - Instruments";
@@ -338,7 +338,7 @@ package {
 				break;
 				case "help14":
 					if (initalise) {
-						windowwidth = 450; windowheight =  (gfx.linesize * 3) + (gfx.linesize * 2) + 35;
+						windowwidth = 450; windowheight =	(gfx.linesize * 3) + (gfx.linesize * 2) + 35;
 						windowx = 300;	windowy = gfx.linespacing + gfx.pianorollposition - 28 - 5 - (gfx.linesize * 1.5);
 						
 						windowtext = "HELP - Instruments";
@@ -379,7 +379,7 @@ package {
 				break;
 				case "help16":
 					if (initalise) {
-						windowwidth = 400; windowheight =  (gfx.linesize * 3) + (gfx.linesize * 2) + 35;
+						windowwidth = 400; windowheight =	(gfx.linesize * 3) + (gfx.linesize * 2) + 35;
 						windowx = 250;	windowy = gfx.screenheight - windowheight - (gfx.linesize * 3);
 						
 						windowtext = "HELP - Instruments";
@@ -399,7 +399,7 @@ package {
 				break;
 				case "help17":
 					if (initalise) {
-						windowwidth = 530; windowheight =  (gfx.linesize * 7) + (gfx.linesize * 2) + 35;
+						windowwidth = 530; windowheight =	(gfx.linesize * 7) + (gfx.linesize * 2) + 35;
 						windowx = 10;	windowy = gfx.pianorollposition + (gfx.linesize * 2) - 5;
 						
 						windowtext = "HELP - Arrangements";
@@ -424,7 +424,7 @@ package {
 				break;
 				case "help18":
 					if (initalise) {
-						windowwidth = 430; windowheight =  (gfx.linesize * 5) + (gfx.linesize * 2) + 35;
+						windowwidth = 430; windowheight =	(gfx.linesize * 5) + (gfx.linesize * 2) + 35;
 						windowx = gfx.screenwidthmid - (windowwidth / 2);	windowy = gfx.pianorollposition + (gfx.linesize * 2) - 5;
 						
 						windowtext = "HELP - Tutorial Complete";
@@ -444,7 +444,7 @@ package {
 				break;
 				case "advancedhelp1":
 					if (initalise) {
-						windowwidth = 530; windowheight =  (gfx.linesize * 5) + (gfx.linesize * 2) + 35;
+						windowwidth = 530; windowheight =	(gfx.linesize * 5) + (gfx.linesize * 2) + 35;
 						windowx = gfx.screenwidthmid - (windowwidth / 2);	windowy = gfx.pianorollposition + (gfx.linesize * 2) - 5;
 						
 						windowtext = "HELP - Tips and Tricks";
@@ -585,7 +585,7 @@ package {
 				break;
 				case "advancedhelp7":
 					if (initalise) {
-						windowwidth = 430; windowheight =  (gfx.linesize * 3) + (gfx.linesize * 2) + 35;
+						windowwidth = 430; windowheight =	(gfx.linesize * 3) + (gfx.linesize * 2) + 35;
 						windowx = gfx.screenwidth - windowwidth - 144;	windowy = 60;
 						
 						windowtext = "HELP - Tips and Tricks";
@@ -605,7 +605,7 @@ package {
 				break;
 				case "advancedhelp8":
 					if (initalise) {
-						windowwidth = 500; windowheight =  (gfx.linesize * 13) + (gfx.linesize * 2) + 35;
+						windowwidth = 500; windowheight =	(gfx.linesize * 13) + (gfx.linesize * 2) + 35;
 						windowx = gfx.screenwidthmid - (windowwidth / 2);	windowy = (gfx.linesize * 3) - 5;
 						
 						windowtext = "HELP - Tips and Tricks";
@@ -633,7 +633,7 @@ package {
 				break;
 				case "advancedhelp9":
 					if (initalise) {
-						windowwidth = 430; windowheight =  (gfx.linesize * 2) + (gfx.linesize * 2) + 35;
+						windowwidth = 430; windowheight =	(gfx.linesize * 2) + (gfx.linesize * 2) + 35;
 						windowx = gfx.screenwidthmid - (windowwidth / 2);	windowy = gfx.pianorollposition + (gfx.linesize * 2) - 5;
 						
 						windowtext = "HELP - Tips and Tricks";
@@ -649,7 +649,7 @@ package {
 					addbutton(windowx + windowwidth - 150 - 15, windowy + windowheight - gfx.linesize - 15, 150, "FINISH", "endhelp", 0, true);
 				break;
 				default:
-				  helpwindow = "nothing";
+					helpwindow = "nothing";
 				break;
 			}
 		}
@@ -1119,13 +1119,13 @@ package {
 						}
 					}else if (button[i].style == "variable") {
 						if(button[i].action == "barcount"){
-						  gfx.print(button[i].position.x, button[i].position.y, String(control.barcount), button[i].position.width, false, true);
+							gfx.print(button[i].position.x, button[i].position.y, String(control.barcount), button[i].position.width, false, true);
 						}else if(button[i].action == "boxcount"){
-						  gfx.print(button[i].position.x, button[i].position.y, String(control.boxcount), button[i].position.width, false, true);
+							gfx.print(button[i].position.x, button[i].position.y, String(control.boxcount), button[i].position.width, false, true);
 						}else if(button[i].action == "bpm"){
-						  gfx.print(button[i].position.x, button[i].position.y, String(control.bpm), button[i].position.width, false, true);
+							gfx.print(button[i].position.x, button[i].position.y, String(control.bpm), button[i].position.width, false, true);
 						}else if(button[i].action == "buffersize"){
-						  gfx.print(button[i].position.x, button[i].position.y, String(control.buffersize), button[i].position.width, false, true);
+							gfx.print(button[i].position.x, button[i].position.y, String(control.buffersize), button[i].position.width, false, true);
 						}else if (button[i].action == "buffersizealert") {
 							if (control.buffersize != control.currentbuffersize) {
 								if (help.slowsine >= 32) {
@@ -1146,7 +1146,7 @@ package {
 							gfx.rprint(button[i].position.x, button[i].position.y, control.effectname[control.effecttype], button[i].position.width, true);
 						}else if (button[i].action == "currentinstrument") {
 							if (control.currentbox > -1) {
-								gfx.print(button[i].position.x, button[i].position.y, String(control.musicbox[control.currentbox].instr + 1) + "  " + control.instrument[control.musicbox[control.currentbox].instr].name, 0, false, true);
+								gfx.print(button[i].position.x, button[i].position.y, String(control.musicbox[control.currentbox].instr + 1) + "	" + control.instrument[control.musicbox[control.currentbox].instr].name, 0, false, true);
 							}
 						}else if (button[i].action == "currentkey") {
 							gfx.print(button[i].position.x, button[i].position.y, control.notename[control.key], 0, false, true);
@@ -1157,7 +1157,7 @@ package {
 						tx = button[i].position.x;
 						ty = button[i].position.y;
 						if(control.currentbox!=-1){
-						  timage = control.musicbox[control.currentbox].palette;
+							timage = control.musicbox[control.currentbox].palette;
 							if (timage > 6) timage = 6;
 						}else {
 							timage = 6;
@@ -1266,16 +1266,16 @@ package {
 					//addrect(42 + (32 * control.boxsize), gfx.pianorollposition + gfx.linesize, gfx.screenwidth - (42 + (32 * control.boxsize)), gfx.screenheight - gfx.linesize - 20 - gfx.pianorollposition - gfx.linesize, 12);
 					//addrect(42 + (32 * control.boxsize)+ 2, gfx.pianorollposition + gfx.linesize, gfx.screenwidth - (42 + (32 * control.boxsize))- 4, gfx.screenheight - gfx.linesize - 20 - gfx.pianorollposition - gfx.linesize, 4);
 					addscrollupbutton(42 + (32 * control.boxsize), gfx.pianorollposition + gfx.linesize, gfx.screenwidth - (42 + (32 * control.boxsize)), "notescrollup");
-				  addscrolldownbutton(42 + (32 * control.boxsize), gfx.screenheight - gfx.linesize - 20, gfx.screenwidth - (42 + (32 * control.boxsize)), "notescrolldown");
+					addscrolldownbutton(42 + (32 * control.boxsize), gfx.screenheight - gfx.linesize - 20, gfx.screenwidth - (42 + (32 * control.boxsize)), "notescrolldown");
 				}else {
-				  //addrect(42 + (16 * control.boxsize), gfx.pianorollposition + gfx.linesize, gfx.screenwidth - (42 + (16 * control.boxsize)), gfx.screenheight - gfx.linesize - 20 - gfx.pianorollposition - gfx.linesize, 12);
+					//addrect(42 + (16 * control.boxsize), gfx.pianorollposition + gfx.linesize, gfx.screenwidth - (42 + (16 * control.boxsize)), gfx.screenheight - gfx.linesize - 20 - gfx.pianorollposition - gfx.linesize, 12);
 					//addrect(42 + (16 * control.boxsize)+ 2, gfx.pianorollposition + gfx.linesize, gfx.screenwidth - (42 + (16 * control.boxsize))- 4, gfx.screenheight - gfx.linesize - 20 - gfx.pianorollposition - gfx.linesize, 4);
 					addscrollupbutton(42 + (16 * control.boxsize), gfx.pianorollposition + gfx.linesize, gfx.screenwidth - (42 + (16 * control.boxsize)), "notescrollup");
-				  addscrolldownbutton(42 + (16 * control.boxsize), gfx.screenheight - gfx.linesize - 20, gfx.screenwidth - (42 + (16 * control.boxsize)), "notescrolldown");
+					addscrolldownbutton(42 + (16 * control.boxsize), gfx.screenheight - gfx.linesize - 20, gfx.screenwidth - (42 + (16 * control.boxsize)), "notescrolldown");
 				}
 			}
 			
-		  switch(t) {
+			switch(t) {
 				case control.MENUTAB_FILE:
 					tx = (gfx.screenwidth - 768) / 4;
 					addlogo(24 + tx, (gfx.linespacing * 2));
@@ -1297,14 +1297,14 @@ package {
 					addcontrol(gfx.screenwidth - 340 - tx, (gfx.linespacing * 7) - 2, "changepatternlength");
 					addcontrol(gfx.screenwidth - 340 - tx, (gfx.linespacing * 9) - 2, "changebpm");
 					
-				  addrect(290 + tx, (gfx.linespacing * 9) - 6, 100, 26);
+					addrect(290 + tx, (gfx.linespacing * 9) - 6, 100, 26);
 					addplayarrow(300 + tx, (gfx.linespacing * 9) - 2, "play");
 					addpausebutton(330 + tx, (gfx.linespacing * 9) - 2, "pause");
 					addstopbutton(360 + tx, (gfx.linespacing * 9) - 2, "stop");
 				break;
 				case control.MENUTAB_CREDITS:
 					tx = (gfx.screenwidth - 768) / 4;
-				  addtextlabel(tx + 20, (gfx.linespacing * 1)+10, "SiON softsynth library by Kei Mesuda", 0);
+					addtextlabel(tx + 20, (gfx.linespacing * 1)+10, "SiON softsynth library by Kei Mesuda", 0);
 					addtextlabel(tx + 20, (gfx.linespacing * 2)+10, "sites.google.com/site/sioncenter/");
 					
 					addrighttextlabel(gfx.screenwidth - 20 - tx, (gfx.linespacing * 1)+10, "Midias library by Efishocean", 0);
@@ -1322,14 +1322,14 @@ package {
 					addtextlabel(tx + 20, (gfx.linespacing * 9) + 8, "Available under FreeBSD Licence", 0);
 					
 					addrighttextlabel(gfx.screenwidth - 20 - tx, (gfx.linespacing * 7) - 10, "Online version by Chris Kim", 0);
-				  addrighttextlabel(gfx.screenwidth - 20 - tx, (gfx.linespacing * 8) - 10, "dy-dx.com/");
+					addrighttextlabel(gfx.screenwidth - 20 - tx, (gfx.linespacing * 8) - 10, "dy-dx.com/");
 					
 					addbutton(gfx.screenwidth - 340 - tx, (gfx.linespacing * 9) + 8, 150, "MORE", "githubtab");
 					addbutton(gfx.screenwidth - 164 - tx, (gfx.linespacing * 9) + 8, 150, "BACK", "filetab");
 				break;
 				case control.MENUTAB_GITHUB:
 					tx = (gfx.screenwidth - 768) / 4;
-				  addtextlabel(tx + 20, (gfx.linespacing * 1)+10, "Github pull requsts:", 0);
+					addtextlabel(tx + 20, (gfx.linespacing * 1)+10, "Github pull requsts:", 0);
 					addtextlabel(tx + 20, (gfx.linespacing * 2) + 10, "Filepath memory by Ryusui");
 					addtextlabel(tx + 20, (gfx.linespacing * 3) + 10, "Pattern editor bugs fixed by thomcc");
 					
@@ -1337,27 +1337,27 @@ package {
 				break;
 				case control.MENUTAB_HELP:
 					tx = (gfx.screenwidth - 768) / 2;
-					addcentertextlabel(tx,  (gfx.linespacing * 2), 768, "Learn the basics of how to make a song in Bosca Ceoil:", 0);
+					addcentertextlabel(tx,	(gfx.linespacing * 2), 768, "Learn the basics of how to make a song in Bosca Ceoil:", 0);
 					addbutton(gfx.screenwidthmid - 126, (gfx.linespacing * 3)+10, 250, "BASIC GUIDE", "help1");
 					
-					addcentertextlabel(tx,  (gfx.linespacing * 6), 768, "Learn about some of the more advanced features:", 0);
+					addcentertextlabel(tx,	(gfx.linespacing * 6), 768, "Learn about some of the more advanced features:", 0);
 					addbutton(gfx.screenwidthmid - 125, (gfx.linespacing * 7)+10, 250, "TIPS AND TRICKS", "advancedhelp1");
 					
 					addbutton(gfx.screenwidth - 164 - tx, (gfx.linespacing * 9) + 8, 150, "BACK", "filetab");
 				break;
-			  case control.MENUTAB_ARRANGEMENTS:
-				  addbutton(gfx.patternmanagerx + 10, gfx.linespacing + gfx.pianorollposition - 28, gfx.screenwidth - (gfx.patternmanagerx) - 16, "ADD NEW", "addnewpattern");
-			  break;
-			  case control.MENUTAB_INSTRUMENTS:
-				  addbutton(10, gfx.linespacing + gfx.pianorollposition - 28, 264, "ADD NEW INSTRUMENT", "addnewinstrument");
+				case control.MENUTAB_ARRANGEMENTS:
+					addbutton(gfx.patternmanagerx + 10, gfx.linespacing + gfx.pianorollposition - 28, gfx.screenwidth - (gfx.patternmanagerx) - 16, "ADD NEW", "addnewpattern");
+				break;
+				case control.MENUTAB_INSTRUMENTS:
+					addbutton(10, gfx.linespacing + gfx.pianorollposition - 28, 264, "ADD NEW INSTRUMENT", "addnewinstrument");
 					addminusbutton(706, (gfx.linespacing * 2) + 6, "previousinstrument");
 					addplusbutton(726, (gfx.linespacing * 2) + 6, "nextinstrument");
 				break;
 				case control.MENUTAB_ADVANCED:
 					tx = (gfx.screenwidth - 768) / 4;
-				  addcontrol(40 + tx, (gfx.linespacing * 3) + 4, "changesoundbuffer");
+					addcontrol(40 + tx, (gfx.linespacing * 3) + 4, "changesoundbuffer");
 					addcontrol(40 + tx, (gfx.linespacing * 7) + 4, "swingcontrol");
-					addcontrol(gfx.screenwidth - 210 - tx,  (gfx.linespacing * 3) + 4, "globaleffects");
+					addcontrol(gfx.screenwidth - 210 - tx,	(gfx.linespacing * 3) + 4, "globaleffects");
 					
 					CONFIG::desktop {
 						if (gfx.scalemode == 0) {
@@ -1398,7 +1398,7 @@ package {
 					}
 				}
 			}else	if (currentbutton == "currenteffect") {
-				if (control.mx >= button[i].position.x - 5  - 20 && control.mx < button[i].position.x + button[i].position.width + 20 && control.my >= button[i].position.y - 4 - 20 && control.my <= button[i].position.y + gfx.buttonheight + 4 + 20) {
+				if (control.mx >= button[i].position.x - 5	- 20 && control.mx < button[i].position.x + button[i].position.width + 20 && control.my >= button[i].position.y - 4 - 20 && control.my <= button[i].position.y + gfx.buttonheight + 4 + 20) {
 					var barposition:int = control.mx - (button[i].position.x + 5);
 					if (barposition < 0) barposition = 0; 
 					if (barposition > button[i].position.width) barposition = button[i].position.width;
@@ -1436,21 +1436,21 @@ package {
 			
 			if (currentbutton == "newsong") {
 				control.newsong();
-			  button[i].press();
+				button[i].press();
 			}else if (currentbutton == "logo") {
 				if (!control.musicplaying) {
 					button[i].pressed = 0;
 				}
 			}else if (currentbutton == "play") {
-			  if (!control.musicplaying) {
+				if (!control.musicplaying) {
 					control.startmusic();
 				}
 			}else if (currentbutton == "pause") {
-			  if (control.musicplaying) {
+				if (control.musicplaying) {
 					control.pausemusic();
 				}
 			}else if (currentbutton == "stop") {
-			  if (control.musicplaying) {
+				if (control.musicplaying) {
 					control.stopmusic();
 				}
 			}else if (currentbutton == "exportlist") {
@@ -1461,7 +1461,7 @@ package {
 				}
 				
 				CONFIG::web {
-				  control.exportwav();
+					control.exportwav();
 				}
 			}else if (currentbutton == "loadceol") {
 				CONFIG::desktop {
@@ -1469,7 +1469,7 @@ package {
 				}
 			}else if (currentbutton == "saveceol") {
 				CONFIG::desktop {
-				  control.saveceol();
+					control.saveceol();
 				}
 			}else if (currentbutton == "filetab") {
 				control.changetab(control.MENUTAB_FILE);
@@ -1534,13 +1534,13 @@ package {
 					if (control.instrumentmanagerview < 0) control.instrumentmanagerview = 0;
 					control.currentinstrument = control.numinstrument - 1;
 					
-					helpcondition_set = "addnew_instrument";  //For interactive tutorial
+					helpcondition_set = "addnew_instrument";	//For interactive tutorial
 				}
 			}else if (currentbutton == "addnewpattern") {
 				control.addmusicbox();
 				control.patternmanagerview = control.numboxes - 6;
 				if (control.patternmanagerview < 0) control.patternmanagerview = 0;
-				helpcondition_set = "addnew_pattern";  //For interactive tutorial
+				helpcondition_set = "addnew_pattern";	//For interactive tutorial
 			}else if (currentbutton == "footer_instrumentlist") {
 				control.filllist(control.LIST_SELECTINSTRUMENT);
 				control.list.init(20, (gfx.screenheight - gfx.linesize) - (control.list.numitems * gfx.linesize));
@@ -1559,12 +1559,12 @@ package {
 			}else if (currentbutton == "previousinstrument") {
 				control.previousinstrument();
 			}else if (currentbutton == "loadmidi") {
-			  button[i].press();
+				button[i].press();
 				CONFIG::desktop {
 					midicontrol.openfile();
 				}
 			}else if (currentbutton == "changescale") {
-			  button[i].press();
+				button[i].press();
 				gfx.changescalemode(1 - gfx.scalemode);
 				changetab(control.MENUTAB_ADVANCED);
 			}else if (currentbutton == "closewindow") {

@@ -1,10 +1,10 @@
 package {
 	import flash.display.*;
 	import flash.geom.*;
-  import flash.events.*;
-  import flash.net.*;
+	import flash.events.*;
+	import flash.net.*;
 	
-	public class arrangementclass  {
+	public class arrangementclass	{
 		public function arrangementclass():void {
 			for (var i:int = 0; i < 1000; i++) {
 				bar.push(new barclass);

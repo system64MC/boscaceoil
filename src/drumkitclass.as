@@ -1,19 +1,19 @@
 package {
 	import flash.display.*;
 	import flash.geom.*;
-  import flash.events.*;
-  import flash.net.*;
+	import flash.events.*;
+	import flash.net.*;
 	import org.si.sion.SiONVoice;
 	
 	public class drumkitclass {
 		public function drumkitclass():void {
-		  size = 0;
+			size = 0;
 		}
 		
 		public function updatefilter(cutoff:int, resonance:int):void {
 			for (var i:int = 0; i < size; i++) {
 				if(voicelist[i].channelParam.cutoff != cutoff || voicelist[i].channelParam.resonance != resonance){
-			    voicelist[i].setFilterEnvelop(0, cutoff, resonance);
+					voicelist[i].setFilterEnvelop(0, cutoff, resonance);
 				}
 			}
 		}

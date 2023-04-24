@@ -1,10 +1,10 @@
 package {
 	import flash.display.*;
 	import flash.geom.*;
-  import flash.events.*;
-  import flash.net.*;
+	import flash.events.*;
+	import flash.net.*;
 	
-	public class listclass  {
+	public class listclass	{
 		public function listclass():void {
 			for (var i:int = 0; i < 30; i++) {
 				item.push("");
