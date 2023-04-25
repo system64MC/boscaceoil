@@ -377,12 +377,12 @@ namespace bosca
 		KeyPoll key;
 		
 		// Timer information (a shout out to ChevyRay for the implementation)
-		static const Number TARGET_FPS = 30; // the fixed-FPS we want the control to run at
-		private Number _rate = 1000 / TARGET_FPS; // how long (in seconds) each frame is
-		private Number _skip = _rate * 10; // this tells us to allow a maximum of 10 frame skips
-		private Number _last = -1;
-		private Number _current = 0;
-		private Number _delta = 0;
+		static const float TARGET_FPS = 30; // the fixed-FPS we want the control to run at
+		private float _rate = 1000 / TARGET_FPS; // how long (in seconds) each frame is
+		private float _skip = _rate * 10; // this tells us to allow a maximum of 10 frame skips
+		private float _last = -1;
+		private float _current = 0;
+		private float _delta = 0;
 		private Timer _timer = new Timer(4);
 		
 		//Embedded resources:		

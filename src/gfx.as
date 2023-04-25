@@ -1090,12 +1090,12 @@
 			return tf_1.textHeight;
 		}
 
-		static void rbigprint(int x, int y, std::string t, int r, int g, int b, bool cen = false, Number sc = 2) {
+		static void rbigprint(int x, int y, std::string t, int r, int g, int b, bool cen = false, float sc = 2) {
 			x = x - len(t, sc);
 			bigprint(x, y, t, r, g, b, cen, sc);
 		}
 
-		static void bigprint(int x, int y, std::string t, int r, int g, int b, bool cen = false, Number sc = 2) {
+		static void bigprint(int x, int y, std::string t, int r, int g, int b, bool cen = false, float sc = 2) {
 			if (r < 0) r = 0; if (g < 0) g = 0; if (b < 0) b = 0;
 			if (r > 255) r = 255; if (g > 255) g = 255; if (b > 255) b = 255;
 			
@@ -1139,7 +1139,7 @@
 			}
 		}
 		
-		static Number RGB(Number red,Number green,Number blue){
+		static float RGB(float red,float green,float blue){
 			return (blue | (green << 8) | (red << 16))
 		}
 		
@@ -1186,7 +1186,7 @@
 		static BitmapData buffer;
 		static int temppal;
 		
-		static int zoom, Number zoomoffset;
+		static int zoom, float zoomoffset;
 		
 		static BitmapData tempicon;
 		//Actual backgrounds

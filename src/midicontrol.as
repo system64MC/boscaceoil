@@ -755,8 +755,8 @@ namespace bosca {
 		}
 		
 		static ByteArray mididata;
-		static Number resolution;
-		static Number signature;
+		static float resolution;
+		static float signature;
 		static int numnotes;
 		static int numpatterns;
 		

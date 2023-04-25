@@ -415,7 +415,7 @@
 			
 			//swing goes from -10 to 10
 			//fswing goes from 0.2 - 1.8
-			Number fswing = 0.2 + (swing + 10) * (1.8 - 0.2) / 20.0;
+			float fswing = 0.2 + (swing + 10) * (1.8 - 0.2) / 20.0;
 			
 			if (swing == 0)
 			{
@@ -2027,7 +2027,7 @@
 		static bool doublesize;
 		static int arrangescrolldelay = 0;
 		
-		static Number barposition = 0;
+		static float barposition = 0;
 		static int drawnoteposition, int drawnotelength;
 		
 		static int cursorx, int cursory;
