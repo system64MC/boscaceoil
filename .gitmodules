@@ -1,0 +1,3 @@
+[submodule "external/sion"]
+	path = external/sion
+	url = git@github.com:keim/SiON.git
