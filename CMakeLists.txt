@@ -30,5 +30,8 @@ target_link_libraries(bosca
     PRIVATE
         project_options
         project_warnings
+        # si::sion
 )
 
+
+# add_subdirectory(external)
