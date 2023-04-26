@@ -9,7 +9,7 @@ namespace bosca
 		void setTo(int, int, int, int);
 	};
 
-	struct musicphraseclass	{
+	struct musicphraseclass {
 		musicphraseclass() {
 			for (int i = 0; i < 129; i++) {
 				notes.push_back(Rectangle(-1, 0, 0, 0));
@@ -21,12 +21,12 @@ namespace bosca
 			}
 			clear();
 		}
-		
+
 		void clear() {
 			for (int i = 0; i < 128; i++) {
 				notes[i].setTo(-1, 0, 0, 0);
 			}
-			
+
 			for (int i = 0; i < 16; i++) {
 				cutoffgraph[i] = 128;
 				resonancegraph[i] = 0;
@@ -36,16 +36,16 @@ namespace bosca
 			numnotes = 0;
 			instr = 0;
 			scale = 0; key = 0;
-			
+
 			palette = 0;
 			isplayed = false;
-			
+
 			recordfilter = 0;
 			topnote = -1; bottomnote = 250;
-			
+
 			hash = 0;
 		}
-		
+
 		void findtopnote() {
 			topnote = -1;
 			for (int i = 0; i < numnotes; i++) {
@@ -54,7 +54,7 @@ namespace bosca
 				}
 			}
 		}
-		
+
 		void findbottomnote() {
 			bottomnote = 250;
 			for (int i = 0; i < numnotes; i++) {
@@ -63,7 +63,7 @@ namespace bosca
 				}
 			}
 		}
-		
+
 		void transpose(int amount) {
 			for (int i = 0; i < numnotes; i++) {
 				if (notes[i].x != -1) {
@@ -75,20 +75,20 @@ namespace bosca
 				if (notes[i].x > 104) notes[i].x = 104;
 			}
 		}
-		
+
 		void addnote(int noteindex, int note, int time) {
 			if (numnotes < 128) {
 				notes[numnotes].setTo(note, time, noteindex, 0);
 				numnotes++;
 			}
-			
+
 			if (note > topnote) topnote = note;
 			if (note < bottomnote) bottomnote = note;
 			notespan = topnote - bottomnote;
-			
+
 			hash = (hash + (note * time)) % 2147483647;
 		}
-		
+
 		/// Returns true if there is a note that intersects the cursor position
 		bool noteat(int noteindex, int note) {
 			for (int i = 0; i < numnotes; i++) {
@@ -100,7 +100,7 @@ namespace bosca
 			}
 			return false;
 		}
-		
+
 		/// Remove any note that intersects that cursor position!
 		void removenote(int noteindex, int note) {
 			for (int i = 0; i < numnotes; i++) {
@@ -111,14 +111,14 @@ namespace bosca
 					}
 				}
 			}
-			
-			findtopnote(); findbottomnote(); notespan = topnote-bottomnote;
+
+			findtopnote(); findbottomnote(); notespan = topnote - bottomnote;
 		}
-		
+
 		void setnotespan() {
-			findtopnote(); findbottomnote(); notespan = topnote-bottomnote;
+			findtopnote(); findbottomnote(); notespan = topnote - bottomnote;
 		}
-		
+
 		/// Remove note t, rearrange note vector
 		void deletenote(int t) {
 			for (int i = t; i < numnotes; i++) {
@@ -129,7 +129,7 @@ namespace bosca
 			}
 			numnotes--;
 		}
-		
+
 		std::vector<Rectangle> notes;
 		int start;
 		int numnotes;
