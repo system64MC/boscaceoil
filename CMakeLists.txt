@@ -15,9 +15,10 @@ add_library(bosca::warnings ALIAS project_warnings)
 
 
 set(src
-    src/bar.cc
+    src/bar.cc src/bar.h
     src/palette.cc
     src/help.cc
+    src/arrangementclass.cc
     # src/musicphrase.cc # needs control
     # src/voicelist.cc # needs gfx
 )

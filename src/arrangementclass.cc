@@ -1,20 +1,20 @@
+#include "bar.h"
+
+
 namespace bosca {
-	
-	
-	
 		
 	struct Arrangement	{
-		void Arrangement() {
+		Arrangement() {
 			for (int i = 0; i < 1000; i++) {
-				bar.push(new Bar);
+				bar.push_back(Bar{});
 			}
-			for (i = 0; i < 100; i++) {
-				copybuffer.push(new Bar);
+			for (int i = 0; i < 100; i++) {
+				copybuffer.push_back(Bar{});
 			}
 			copybuffersize = 0;
 			
-			for (i = 0; i < 8; i++) {
-				channelon.push(true);
+			for (int i = 0; i < 8; i++) {
+				channelon.push_back(true);
 			}
 			clear();
 		}
@@ -33,7 +33,7 @@ namespace bosca {
 				insertbar(t);
 			}
 			
-			for (i = t; i < t + copybuffersize; i++) {
+			for (int i = t; i < t + copybuffersize; i++) {
 				for (int j = 0; j < 8; j++) {
 					bar[i].channel[j] = copybuffer[i - t].channel[j];
 				}
@@ -78,7 +78,7 @@ namespace bosca {
 					bar[i].channel[j] = bar[i - 1].channel[j];
 				}
 			}
-			for (j = 0; j < 8; j++) {
+			for (int j = 0; j < 8; j++) {
 				bar[t].channel[j] = -1;
 			}
 			lastbar++;
@@ -93,16 +93,17 @@ namespace bosca {
 			lastbar--;
 		}
 		
-		std::vector<Bar> copybuffer = new std::vector<Bar>;
+		std::vector<Bar> copybuffer;
 		int copybuffersize;
 		
-		std::vector<Bar> bar = new std::vector<Bar>;
-		std::vector<bool> channelon = new std::vector<bool>;
-		int loopstart, int loopend;
+		std::vector<Bar> bar;
+		std::vector<bool> channelon;
+		int loopstart;
+		int loopend;
 		int currentbar;
 		
 		int lastbar;
 		
 		int viewstart;
-	}
+	};
 }
