@@ -16,17 +16,19 @@ add_library(bosca::warnings ALIAS project_warnings)
 
 set(src
     src/si-voice.h
+    src/rect.h
 
     src/bar.cc src/bar.h
+
     src/palette.cc
     src/help.cc
     src/arrangementclass.cc
     src/drumkit.cc
     src/instrument.cc
     src/list.cc
-    
-    src/musicphrase.cc # needs control
-    src/voicelist.cc # needs gfx
+    src/musicphrase.cc
+    src/voicelist.cc
+    src/guibutton.cc
 )
 source_group("" FILES ${src})
 add_executable(

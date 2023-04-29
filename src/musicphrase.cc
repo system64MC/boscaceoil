@@ -1,14 +1,9 @@
 #include <vector>
 
+#include "rect.h"
+
 namespace bosca
 {
-	struct Rectangle
-	{
-		int x; int y; int width; int height;
-		Rectangle(int, int, int, int);
-		void setTo(int, int, int, int);
-	};
-
 	struct musicphraseclass {
 		musicphraseclass() {
 			for (int i = 0; i < 129; i++) {
