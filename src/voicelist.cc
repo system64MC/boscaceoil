@@ -399,9 +399,11 @@ namespace bosca {
 		void fixlengths() {
 			//Fix the lengths of the names
 			for (int i = 0; i < listsize; i++) {
+#ifdef GFX
 				while (gfx.len(name[i]) > 190) {
-					name[i] = help::Left(name[i], name[i].length - 1);
+					name[i] = help::Left(name[i], name[i].length() - 1);
 				}
+#endif
 			}
 		}
 		

@@ -25,8 +25,8 @@ set(src
     src/instrument.cc
     src/list.cc
     
-    # src/musicphrase.cc # needs control
-    # src/voicelist.cc # needs gfx
+    src/musicphrase.cc # needs control
+    src/voicelist.cc # needs gfx
 )
 source_group("" FILES ${src})
 add_executable(

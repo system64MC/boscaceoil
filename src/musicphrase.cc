@@ -67,9 +67,11 @@ namespace bosca
 		void transpose(int amount) {
 			for (int i = 0; i < numnotes; i++) {
 				if (notes[i].x != -1) {
+#ifdef CONTROL
 					if (control::invertpianoroll[notes[i].x] + amount != -1) {
 						notes[i].x = control::pianoroll[control::invertpianoroll[notes[i].x] + amount];
 					}
+#endif
 				}
 				if (notes[i].x < 0) notes[i].x = 0;
 				if (notes[i].x > 104) notes[i].x = 104;
