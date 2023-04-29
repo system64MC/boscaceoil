@@ -17,8 +17,8 @@ add_library(bosca::warnings ALIAS project_warnings)
 
 
 set(src
-    src/si-voice.h
-    src/rect.h
+    src/si-voice.cc src/si-voice.h
+    src/rect.cc src/rect.h
 
     src/bar.cc src/bar.h
 
