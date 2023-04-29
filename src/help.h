@@ -4,8 +4,15 @@
 
 namespace bosca::help
 {
-	void init();
-	void updateglow();
+	struct Glow
+	{
+		int glow = 0;
+		int slowsine = 0;
+		int glowdir = 0;
+
+		void init();
+		void updateglow();
+	};
 	bool inbox(int xc, int yc, int x1, int y1, int x2, int y2);
 	bool inboxw(int xc, int yc, int x1, int y1, int x2, int y2);
 	

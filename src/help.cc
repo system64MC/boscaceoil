@@ -2,11 +2,7 @@
 
 namespace bosca::help
 {
-	int glow = 0;
-	int slowsine = 0;
-	int glowdir = 0;
-
-	void init()
+	void Glow::init()
 	{
 		glow = 0;
 		glowdir = 0;
@@ -33,7 +29,7 @@ namespace bosca::help
 	}
 	*/
 	
-	void updateglow()
+	void Glow::updateglow()
 	{
 		slowsine += 2;
 		if (slowsine >= 64) slowsine = 0;
