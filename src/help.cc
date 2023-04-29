@@ -1,4 +1,4 @@
-﻿#include <string>
+﻿#include "help.h"
 
 namespace bosca::help
 {
@@ -74,22 +74,22 @@ namespace bosca::help
 		return false;
 	}
 	
-	int Instr(const std::string& s, const std::string& c, int start = 1)
+	int Instr(const std::string& s, const std::string& c, int start)
 	{
 		return (s.find(c, start - 1) + 1);
 	}
 	
-	std::string Mid(const std::string& s, int start = 0, int length = 1)
+	std::string Mid(const std::string& s, int start, int length)
 	{
 		return s.substr(start, length);
 	}
 	
-	std::string Left(const std::string& s, int length = 1)
+	std::string Left(const std::string& s, int length)
 	{
 		return s.substr(0, length);
 	}
 	
-	std::string Right(const std::string& s, int length = 1)
+	std::string Right(const std::string& s, int length)
 	{
 		return s.substr(s.length() - length, length);
 	}

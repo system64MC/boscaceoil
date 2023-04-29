@@ -22,15 +22,15 @@ set(src
 
     src/bar.cc src/bar.h
 
-    src/palette.cc
-    src/help.cc
-    src/arrangementclass.cc
-    src/drumkit.cc
-    src/instrument.cc
-    src/list.cc
-    src/musicphrase.cc
-    src/voicelist.cc
-    src/guibutton.cc
+    src/palette.cc src/palette.h
+    src/help.cc src/help.h
+    src/arrangement.cc src/arrangement.h
+    src/drumkit.cc src/drumkit.h
+    src/instrument.cc src/instrument.h
+    src/list.cc src/list.h
+    src/musicphrase.cc src/musicphrase.h
+    src/voicelist.cc src/voicelist.h
+    src/guibutton.cc src/guibutton.h
 
     src/sdl2-opengl-main.cc
 )
