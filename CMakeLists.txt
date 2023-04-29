@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.15)
 set_property(GLOBAL PROPERTY USE_FOLDERS OFF)
 project(bosca C CXX)
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules")
+
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 source_group("_cmake/rules" REGULAR_EXPRESSION "\\.rule$")
 source_group("_cmake" REGULAR_EXPRESSION "CMakeLists\.txt")
@@ -29,6 +31,8 @@ set(src
     src/musicphrase.cc
     src/voicelist.cc
     src/guibutton.cc
+
+    src/sdl2-opengl-main.cc
 )
 source_group("" FILES ${src})
 add_executable(
@@ -39,8 +43,8 @@ target_link_libraries(bosca
     PRIVATE
         project_options
         project_warnings
-        # si::sion
+        external::imgui
 )
 
 
-# add_subdirectory(external)
+add_subdirectory(external)
