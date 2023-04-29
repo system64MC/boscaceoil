@@ -1,23 +1,7 @@
 #include <string>
 #include <vector>
 
-namespace sion
-{
-	struct Voice
-	{
-		struct ChannelParam
-		{
-			int cutoff;
-			int resonance;
-		};
-
-		ChannelParam channelParam;
-		int velocity;
-		bool updateVolumes;
-
-		void setFilterEnvelop(int, int cutoff, int resonance);
-	};
-}
+#include "si-voice.h"
 
 namespace bosca {
 	struct Drumkit {

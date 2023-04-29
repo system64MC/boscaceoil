@@ -15,11 +15,14 @@ add_library(bosca::warnings ALIAS project_warnings)
 
 
 set(src
+    src/si-voice.h
+
     src/bar.cc src/bar.h
     src/palette.cc
     src/help.cc
     src/arrangementclass.cc
     src/drumkit.cc
+    
     # src/musicphrase.cc # needs control
     # src/voicelist.cc # needs gfx
 )
