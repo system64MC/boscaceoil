@@ -3,7 +3,7 @@ namespace bosca {
 	
 	
 	
-	import org.si.sion.SiONVoice;
+	import org.si.sion.sion::Voice;
 	
 	struct instrumentclass	{
 		void instrumentclass() {
@@ -54,7 +54,7 @@ namespace bosca {
 		}
 		
 		int cutoff, int resonance;
-		SiONVoice voice = new SiONVoice;
+		sion::Voice voice = new sion::Voice;
 		
 		std::string category;
 		std::string name;

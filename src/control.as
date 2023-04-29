@@ -9,7 +9,7 @@
 	import org.si.sion.SiONDriver;
 	import org.si.sion.SiONData;
 	import org.si.sion.utils.SiONPresetVoice;
-	import org.si.sion.SiONVoice;
+	import org.si.sion.sion::Voice;
 	import org.si.sion.sequencer.SiMMLTrack;
 	import org.si.sion.effector.*;
 	import org.si.sion.events.*;
