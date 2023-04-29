@@ -22,6 +22,7 @@ set(src
     src/help.cc
     src/arrangementclass.cc
     src/drumkit.cc
+    src/instrument.cc
     
     # src/musicphrase.cc # needs control
     # src/voicelist.cc # needs gfx
