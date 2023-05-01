@@ -1,118 +1,136 @@
-﻿namespace bosca
+﻿#include <string>
+#include <vector>
+#include <fstream>
+#include <sstream>
+
+#include "arrangement.h"
+#include "instrument.h"
+#include "musicphrase.h"
+#include "drumkit.h"
+#include "list.h"
+#include "voicelist.h"
+#include "help.h"
+
+
+namespace bosca
 {
-	
-	
-	
-	
-	
-	import ocean.midi.MidiFile;
-	import org.si.sion.SiONDriver;
-	import org.si.sion.SiONData;
-	import org.si.sion.utils.SiONPresetVoice;
-	import org.si.sion.sion::Voice;
-	import org.si.sion.sequencer.SiMMLTrack;
-	import org.si.sion.effector.*;
-	import org.si.sion.events.*;
-	import flash.filesystem.*;
-	import flash.net.FileFilter;
-	import flash.system.Capabilities;
-	CONFIG::web
+	template<typename T>
+	std::string to_string(T t)
 	{
-		import flash.external.ExternalInterface;
-		import mx.utils.Base64Encoder;
+		std::ostringstream ss;
+		ss << t;
+		return ss.str();
 	}
-	
-	struct control extends Sprite
+
+	template<typename T>
+	T to(const std::string& str)
 	{
-		static int SCALE_NORMAL = 0;
-		static int SCALE_MAJOR = 1;
-		static int SCALE_MINOR = 2;
-		static int SCALE_BLUES = 3;
-		static int SCALE_HARMONIC_MINOR = 4;
-		static int SCALE_PENTATONIC_MAJOR = 5;
-		static int SCALE_PENTATONIC_MINOR = 6;
-		static int SCALE_PENTATONIC_BLUES = 7;
-		static int SCALE_PENTATONIC_NEUTRAL = 8;
-		static int SCALE_ROMANIAN_FOLK = 9;
-		static int SCALE_SPANISH_GYPSY = 10;
-		static int SCALE_ARABIC_MAGAM = 11;
-		static int SCALE_CHINESE = 12;
-		static int SCALE_HUNGARIAN = 13;
-		static int CHORD_MAJOR = 14;
-		static int CHORD_MINOR = 15;
-		static int CHORD_5TH = 16;
-		static int CHORD_DOM_7TH = 17;
-		static int CHORD_MAJOR_7TH = 18;
-		static int CHORD_MINOR_7TH = 19;
-		static int CHORD_MINOR_MAJOR_7TH = 20;
-		static int CHORD_SUS4 = 21;
-		static int CHORD_SUS2 = 22;
-		
-		static int LIST_KEY = 0;
-		static int LIST_SCALE = 1;
-		static int LIST_INSTRUMENT = 2;
-		static int LIST_CATEGORY = 3;
-		static int LIST_SELECTINSTRUMENT = 4;
-		static int LIST_BUFFERSIZE = 5;
-		static int LIST_MOREEXPORTS = 6;
-		static int LIST_EFFECTS = 7;
-		static int LIST_EXPORTS = 8;
-		static int LIST_MIDIINSTRUMENT = 9;
-		static int LIST_MIDI_0_PIANO = 10;
-		static int LIST_MIDI_1_BELLS = 11;
-		static int LIST_MIDI_2_ORGAN = 12;
-		static int LIST_MIDI_3_GUITAR = 13;
-		static int LIST_MIDI_4_BASS = 14;
-		static int LIST_MIDI_5_STRINGS = 15;
-		static int LIST_MIDI_6_ENSEMBLE = 16;
-		static int LIST_MIDI_7_BRASS = 17;
-		static int LIST_MIDI_8_REED = 18;
-		static int LIST_MIDI_9_PIPE = 19;
-		static int LIST_MIDI_10_SYNTHLEAD = 20;
-		static int LIST_MIDI_11_SYNTHPAD = 21;
-		static int LIST_MIDI_12_SYNTHEFFECTS = 22;
-		static int LIST_MIDI_13_WORLD = 23;
-		static int LIST_MIDI_14_PERCUSSIVE = 24;
-		static int LIST_MIDI_15_SOUNDEFFECTS = 25;
-		
-		static int MENUTAB_FILE = 0;
-		static int MENUTAB_ARRANGEMENTS = 1;
-		static int MENUTAB_INSTRUMENTS = 2;
-		static int MENUTAB_ADVANCED = 3;
-		static int MENUTAB_CREDITS = 4;
-		static int MENUTAB_HELP = 5;
-		static int MENUTAB_GITHUB = 6;
-		
-		static void init()
+		std::istringstream ss(s);
+		T t;
+		ss >> t;
+		return t;
+	}
+
+	struct control
+	{
+		enum Scale
+		{
+			SCALE_NORMAL = 0,
+			SCALE_MAJOR = 1,
+			SCALE_MINOR = 2,
+			SCALE_BLUES = 3,
+			SCALE_HARMONIC_MINOR = 4,
+			SCALE_PENTATONIC_MAJOR = 5,
+			SCALE_PENTATONIC_MINOR = 6,
+			SCALE_PENTATONIC_BLUES = 7,
+			SCALE_PENTATONIC_NEUTRAL = 8,
+			SCALE_ROMANIAN_FOLK = 9,
+			SCALE_SPANISH_GYPSY = 10,
+			SCALE_ARABIC_MAGAM = 11,
+			SCALE_CHINESE = 12,
+			SCALE_HUNGARIAN = 13,
+			CHORD_MAJOR = 14,
+			CHORD_MINOR = 15,
+			CHORD_5TH = 16,
+			CHORD_DOM_7TH = 17,
+			CHORD_MAJOR_7TH = 18,
+			CHORD_MINOR_7TH = 19,
+			CHORD_MINOR_MAJOR_7TH = 20,
+			CHORD_SUS4 = 21,
+			CHORD_SUS2 = 22
+		};
+
+		enum ListType
+		{
+			LIST_KEY = 0,
+			LIST_SCALE = 1,
+			LIST_INSTRUMENT = 2,
+			LIST_CATEGORY = 3,
+			LIST_SELECTINSTRUMENT = 4,
+			LIST_BUFFERSIZE = 5,
+			LIST_MOREEXPORTS = 6,
+			LIST_EFFECTS = 7,
+			LIST_EXPORTS = 8,
+			LIST_MIDIINSTRUMENT = 9,
+			LIST_MIDI_0_PIANO = 10,
+			LIST_MIDI_1_BELLS = 11,
+			LIST_MIDI_2_ORGAN = 12,
+			LIST_MIDI_3_GUITAR = 13,
+			LIST_MIDI_4_BASS = 14,
+			LIST_MIDI_5_STRINGS = 15,
+			LIST_MIDI_6_ENSEMBLE = 16,
+			LIST_MIDI_7_BRASS = 17,
+			LIST_MIDI_8_REED = 18,
+			LIST_MIDI_9_PIPE = 19,
+			LIST_MIDI_10_SYNTHLEAD = 20,
+			LIST_MIDI_11_SYNTHPAD = 21,
+			LIST_MIDI_12_SYNTHEFFECTS = 22,
+			LIST_MIDI_13_WORLD = 23,
+			LIST_MIDI_14_PERCUSSIVE = 24,
+			LIST_MIDI_15_SOUNDEFFECTS = 25
+		};
+
+		enum Menutab
+		{
+			MENUTAB_FILE = 0,
+			MENUTAB_ARRANGEMENTS = 1,
+			MENUTAB_INSTRUMENTS = 2,
+			MENUTAB_ADVANCED = 3,
+			MENUTAB_CREDITS = 4,
+			MENUTAB_HELP = 5,
+			MENUTAB_GITHUB = 6
+		};
+
+		void init()
 		{
 			clicklist = false;
 			clicksecondlist = false;
 			midilistselection = -1;
 			savescreencountdown = 0;
-			
+
 			// default filepath
-			defaultDirectory = File.desktopDirectory;
-			
+			// defaultDirectory = File.desktopDirectory;
+
 			test = false;
 			teststring = "TEST = True";
 			patternmanagerview = 0;
 			dragaction = 0;
 			trashbutton = 0;
 			bpm = 120;
-			
-			for (i = 0; i < 144; i++) notename.push("");
+
+			for (i = 0; i < 144; i++) notename.push_back("");
 			for (j = 0; j < 12; j++)
 			{
-				scale.push(int(1));
+				scale.push_back(1);
 			}
-			
+
 			for (i = 0; i < 256; i++)
 			{
-				pianoroll.push(i);
-				invertpianoroll.push(i);
+				pianoroll.push_back(i);
+				invertpianoroll.push_back(i);
 			}
 			scalesize = 12;
-			
+
 			for (j = 0; j < 11; j++)
 			{
 				notename[(j * 12) + 0] = "C";
@@ -128,10 +146,10 @@
 				notename[(j * 12) + 10] = "A#";
 				notename[(j * 12) + 11] = "B";
 			}
-			
+
 			for (i = 0; i < 23; i++)
 			{
-				scalename.push("");
+				scalename.push_back("");
 			}
 			scalename[SCALE_NORMAL] = "Scale: Normal";
 			scalename[SCALE_MAJOR] = "Scale: Major";
@@ -156,32 +174,31 @@
 			scalename[CHORD_MINOR_MAJOR_7TH] = "Chord: Minor Major 7th";
 			scalename[CHORD_SUS4] = "Chord: Sus4";
 			scalename[CHORD_SUS2] = "Chord: sus2";
-			
+
 			looptime = 0;
 			swingoff = 0;
 			SetSwing(); //Swing functions submitted on gibhub via @increpare, cheers!
-			
-			_presets = new SiONPresetVoice();
-			voicelist = new voicelistclass();
-			
+
+			// _presets = SiONPresetVoice();
+
 			//Setup drumkits
-			drumkit.push(new Drumkit());
-			drumkit.push(new Drumkit());
-			drumkit.push(new Drumkit()); //Midi Drums
+			drumkit.push_back(Drumkit());
+			drumkit.push_back(Drumkit());
+			drumkit.push_back(Drumkit()); //Midi Drums
 			createdrumkit(0);
 			createdrumkit(1);
 			createdrumkit(2);
-			
+
 			for (i = 0; i < 16; i++)
 			{
-				instrument.push(new instrumentclass());
+				instrument.push_back(instrumentclass());
 				if (i == 0)
 				{
 					instrument[i].voice = _presets["midi.piano1"];
 				}
 				else
 				{
-					voicelist.index = int(Math.random() * voicelist.listsize);
+					voicelist.index = to<int>(Math.random() * voicelist.listsize);
 					instrument[i].index = voicelist.index;
 					instrument[i].voice = _presets[voicelist.voice[voicelist.index]];
 					instrument[i].category = voicelist.category[voicelist.index];
@@ -192,17 +209,17 @@
 			}
 			numinstrument = 1;
 			instrumentmanagerview = 0;
-			
+
 			for (i = 0; i < 4096; i++)
 			{
-				musicbox.push(new musicphraseclass());
+				musicbox.push_back(musicphraseclass());
 			}
 			numboxes = 1;
-			
+
 			arrange.loopstart = 0;
 			arrange.loopend = 1;
 			arrange.bar[0].channel[0] = 0;
-			
+
 			setscale(SCALE_NORMAL);
 			key = 0;
 			updatepianoroll();
@@ -210,119 +227,85 @@
 			{
 				musicbox[i].start = scalesize * 3;
 			}
-			
+
 			currentbox = 0;
 			notelength = 1;
 			currentinstrument = 0;
-			
+
 			boxcount = 16;
 			barcount = 4;
-			
-			programsettings = SharedObject.getLocal("boscaceoil_settings");
-			
-			if (programsettings.data.buffersize == undefined)
-			{
-				buffersize = 2048;
-				programsettings.data.buffersize = buffersize;
-				programsettings.flush();
-				programsettings.close();
-				programsettings.data.fullscreen = 0;
-				programsettings.data.windowsize = 2;
-			}
-			else
-			{
-				buffersize = programsettings.data.buffersize;
-				programsettings.flush();
-				programsettings.close();
-			}
-			
-			_driver = new SiONDriver(buffersize);
+
+			_driver = SiONDriver(buffersize);
 			currentbuffersize = buffersize;
 			_driver.setBeatCallbackInterval(1);
 			_driver.setTimerInterruption(1, _onTimerInterruption);
-			
+
 			effecttype = 0;
 			effectvalue = 0;
-			effectname.push("DELAY");
-			effectname.push("CHORUS");
-			effectname.push("REVERB");
-			effectname.push("DISTORTION");
-			effectname.push("LOW BOOST");
-			effectname.push("COMPRESSOR");
-			effectname.push("HIGH PASS");
-			
+			effectname.push_back("DELAY");
+			effectname.push_back("CHORUS");
+			effectname.push_back("REVERB");
+			effectname.push_back("DISTORTION");
+			effectname.push_back("LOW BOOST");
+			effectname.push_back("COMPRESSOR");
+			effectname.push_back("HIGH PASS");
+
 			_driver.addEventListener(SiONEvent.STREAM, onStream);
-			
+
 			_driver.bpm = bpm; //Default
-			_driver.play(null, false);
-			
+			_driver.play(nullptr, false);
+
 			startup = 1;
-			CONFIG::desktop
-			{
-				if (invokefile != "null")
-				{
-					invokeceol(invokefile);
-					invokefile = "null";
-				}
-			}
 		}
-		
-		static void notecut()
+
+		void notecut()
 		{
 			//This is broken, try to fix later
 			//for each (SiMMLTrack trk in _driver.sequencer.tracks) trk.keyOff();
 		}
-		
-		static void updateeffects()
+
+		void updateeffects()
 		{
 			//So, I can't see to figure out WHY only one effect at a time seems to work.
 			//If anyone else can, please, by all means update this code!
-			
+
 			//start by turning everything off:
 			_driver.effector.clear(0);
-			
+
 			if (effectvalue > 5)
 			{
 				if (effecttype == 0)
 				{
-					_driver.effector.connect(0, new SiEffectStereoDelay((300 * effectvalue) / 100, 0.1, false));
+					_driver.effector.connect(0, SiEffectStereoDelay((300 * effectvalue) / 100, 0.1, false));
 				}
 				else if (effecttype == 1)
 				{
-					_driver.effector.connect(0, new SiEffectStereoChorus(20, 0.2, 4, 10 + ((50 * effectvalue) / 100)));
+					_driver.effector.connect(0, SiEffectStereoChorus(20, 0.2, 4, 10 + ((50 * effectvalue) / 100)));
 				}
 				else if (effecttype == 2)
 				{
-					_driver.effector.connect(0, new SiEffectStereoReverb(0.7, 0.4 + ((0.5 * effectvalue) / 100), 0.8, 0.3));
+					_driver.effector.connect(0, SiEffectStereoReverb(0.7, 0.4 + ((0.5 * effectvalue) / 100), 0.8, 0.3));
 				}
 				else if (effecttype == 3)
 				{
-					_driver.effector.connect(0, new SiEffectDistortion(-20 - ((80 * effectvalue) / 100), 18, 2400, 1));
+					_driver.effector.connect(0, SiEffectDistortion(-20 - ((80 * effectvalue) / 100), 18, 2400, 1));
 				}
 				else if (effecttype == 4)
 				{
-					_driver.effector.connect(0, new SiFilterLowBoost(3000, 1, 4 + ((6 * effectvalue) / 100)));
+					_driver.effector.connect(0, SiFilterLowBoost(3000, 1, 4 + ((6 * effectvalue) / 100)));
 				}
 				else if (effecttype == 5)
 				{
-					_driver.effector.connect(0, new SiEffectCompressor(0.7, 50, 20, 20, -6, 0.2 + ((0.6 * effectvalue) / 100)));
+					_driver.effector.connect(0, SiEffectCompressor(0.7, 50, 20, 20, -6, 0.2 + ((0.6 * effectvalue) / 100)));
 				}
 				else if (effecttype == 6)
 				{
-					_driver.effector.connect(0, new SiCtrlFilterHighPass(((1.0 * effectvalue) / 100), 0.9));
+					_driver.effector.connect(0, SiCtrlFilterHighPass(((1.0 * effectvalue) / 100), 0.9));
 				}
 			}
-		/*
-			 effectname.push("DELAY");
-			 effectname.push("CHORUS");
-			 effectname.push("REVERB");
-			 effectname.push("DISTORTION");
-			 effectname.push("LOW BOOST");
-			 effectname.push("COMPRESSOR");
-			 effectname.push("HIGH PASS");	*/
 		}
-		
-		static function _onTimerInterruption():void
+
+		void _onTimerInterruption()
 		{
 			if (musicplaying)
 			{
@@ -340,7 +323,7 @@
 							savewav();
 						}
 					}
-					
+
 					for (i = 0; i < numboxes; i++)
 					{
 						musicbox[i].isplayed = false;
@@ -369,7 +352,9 @@
 											{
 												instrument[musicbox[i].instr].changefilterto(musicbox[i].cutoffgraph[looptime % boxcount], musicbox[i].resonancegraph[looptime % boxcount], musicbox[i].volumegraph[looptime % boxcount]);
 											}
-											_driver.noteOn(int(musicbox[i].notes[j].x), instrument[musicbox[i].instr].voice, int(musicbox[i].notes[j].y));
+											_driver.noteOn(musicbox[i].notes[j].x,
+												instrument[musicbox[i].instr].voice,
+												musicbox[i].notes[j].y);
 										}
 									}
 								}
@@ -391,10 +376,16 @@
 												//If pattern uses recorded values, update them
 												if (musicbox[i].recordfilter == 1)
 												{
-													drumkit[instrument[musicbox[i].instr].type - 1].updatefilter(musicbox[i].cutoffgraph[looptime % boxcount], musicbox[i].resonancegraph[looptime % boxcount]);
-													drumkit[instrument[musicbox[i].instr].type - 1].updatevolume(musicbox[i].volumegraph[looptime % boxcount]);
+													drumkit[instrument[musicbox[i].instr].type - 1]
+														.updatefilter(musicbox[i].cutoffgraph[looptime % boxcount], musicbox[i].resonancegraph[looptime % boxcount]);
+													drumkit[instrument[musicbox[i].instr].type - 1]
+														.updatevolume(musicbox[i].volumegraph[looptime % boxcount]);
 												}
-												_driver.noteOn(drumkit[instrument[musicbox[i].instr].type - 1].voicenote[int(musicbox[i].notes[j].x)], drumkit[instrument[musicbox[i].instr].type - 1].voicelist[int(musicbox[i].notes[j].x)], int(musicbox[i].notes[j].y));
+												_driver.noteOn(
+													drumkit[instrument[musicbox[i].instr].type - 1].voicenote[musicbox[i].notes[j].x],
+													drumkit[instrument[musicbox[i].instr].type - 1].voicelist[musicbox[i].notes[j].x],
+													musicbox[i].notes[j].y
+												);
 											}
 										}
 									}
@@ -403,20 +394,20 @@
 						}
 					}
 				}
-				
+
 				looptime = looptime + 1;
 				SetSwing();
 			}
 		}
-		
-		private static void SetSwing()
+
+		void SetSwing()
 		{
-			if (_driver == null) return;
-			
+			if (_driver == nullptr) return;
+
 			//swing goes from -10 to 10
 			//fswing goes from 0.2 - 1.8
 			float fswing = 0.2 + (swing + 10) * (1.8 - 0.2) / 20.0;
-			
+
 			if (swing == 0)
 			{
 				if (swingoff == 1)
@@ -438,153 +429,63 @@
 				}
 			}
 		}
-		
-		static void loadscreensettings()
+
+		void loadscreensettings()
 		{
-			programsettings = SharedObject.getLocal("boscaceoil_settings");
+			guiclass.firstrun = true;
+			fullscreen = false;
+			gfx->changescalemode(0);
 			
-			if (programsettings.data.firstrun == null)
-			{
-				guiclass.firstrun = true;
-				programsettings.data.firstrun = 1;
-			}
-			else
-			{
-				guiclass.firstrun = false;
-			}
-			
-			if (programsettings.data.fullscreen == 0)
-			{
-				fullscreen = false;
-			}
-			else
-			{
-				fullscreen = true;
-			}
-			
-			if (programsettings.data.scalemode == null)
-			{
-				gfx.changescalemode(0);
-			}
-			else
-			{
-				gfx.changescalemode(programsettings.data.scalemode);
-			}
-			
-			if (programsettings.data.windowwidth == null)
-			{
-				gfx.windowwidth = 768;
-				gfx.windowheight = 560;
-			}
-			else
-			{
-				gfx.windowwidth = programsettings.data.windowwidth;
-				gfx.windowheight = programsettings.data.windowheight;
-			}
-			
-			gfx.changewindowsize(gfx.windowwidth, gfx.windowheight);
-			
-			programsettings.flush();
-			programsettings.close();
+			gfx->windowwidth = 768;
+			gfx->windowheight = 560;
+			gfx->changewindowsize(gfx->windowwidth, gfx->windowheight);
 		}
-		
-		static void loadfilesettings()
+
+		void loadfilesettings()
 		{
-			programsettings = SharedObject.getLocal("boscaceoil_settings");
-			
-			// Add filepath memory
-			if (programsettings.data.filepath == null)
-			{
-				filepath = defaultDirectory.resolvePath("");
-			}
-			else
-			{
-				filepath = defaultDirectory.resolvePath(programsettings.data.filepath);
-			}
-			
-			programsettings.flush();
-			programsettings.close();
 		}
-		
-		static void savescreensettings()
+
+		void savescreensettings()
 		{
-			programsettings = SharedObject.getLocal("boscaceoil_settings");
-			
-			programsettings.data.firstrun = 1;
-			
-			if (!fullscreen)
-			{
-				programsettings.data.fullscreen = 0;
-			}
-			else
-			{
-				programsettings.data.fullscreen = 1;
-			}
-			
-			programsettings.data.scalemode = gfx.scalemode;
-			programsettings.data.windowwidth = gfx.windowwidth;
-			programsettings.data.windowheight = gfx.windowheight;
-			
-			programsettings.flush();
-			programsettings.close();
 		}
-		
-		static void savefilesettings()
-		{
-			programsettings = SharedObject.getLocal("boscaceoil_settings");
-			
-			// Add filepath memory
-			if (filepath != null)
-			{
-				programsettings.data.filepath = filepath.nativePath;
-			}
-			
-			programsettings.flush();
-			programsettings.close();
-		}
-		
-		static void setbuffersize(int t)
+
+		void setbuffersize(int t)
 		{
 			if (t == 0) buffersize = 2048;
 			if (t == 1) buffersize = 4096;
 			if (t == 2) buffersize = 8192;
-			
-			programsettings = SharedObject.getLocal("boscaceoil_settings");
-			programsettings.data.buffersize = buffersize;
-			programsettings.flush();
-			programsettings.close();
 		}
-		
-		static void adddrumkitnote(int t, std::string name, std::string voice, int note = 60)
+
+		void adddrumkitnote(int t, std::string name, std::string voice, int note = 60)
 		{
 			if (t == 2 && note == 60) note = 16;
-			drumkit[t].voicelist.push(_presets[voice]);
-			drumkit[t].voicename.push(name);
-			drumkit[t].voicenote.push(note);
+			drumkit[t].voicelist.push_back(_presets[voice]);
+			drumkit[t].voicename.push_back(name);
+			drumkit[t].voicenote.push_back(note);
 			if (t == 2)
 			{
 				//Midi drumkit
 				std::string voicenum = "";
 				bool afterdot = false;
-				for (int i = 0; i < voice.length; i++)
+				for (int i = 0; i < voice.length(); i++)
 				{
 					if (afterdot)
 					{
-						voicenum = voicenum + voice.charAt(i);
+						voicenum = voicenum + voice[i];
 					}
 					if (i >= 8) afterdot = true;
 				}
-				drumkit[t].midivoice.push(int(voicenum));
+				drumkit[t].midivoice.push_back(to<int>(voicenum));
 			}
 			drumkit[t].size++;
 		}
-		
-		static void createdrumkit(int t)
+
+		/// Create Drumkit t at index
+		void createdrumkit(int t)
 		{
-			//Create Drumkit t at index
 			switch (t)
 			{
-			case 0: 
+			case 0:
 				//Simple
 				drumkit[0].kitname = "Simple Drumkit";
 				adddrumkitnote(0, "Bass Drum 1", "valsound.percus1", 30);
@@ -596,7 +497,7 @@
 				adddrumkitnote(0, "Closed Hi-Hat", "valsound.percus23", 72);
 				adddrumkitnote(0, "Crash Cymbal", "valsound.percus8", 48);
 				break;
-			case 1: 
+			case 1:
 				//SiON Kit
 				drumkit[1].kitname = "SiON Drumkit";
 				adddrumkitnote(1, "Bass Drum 2", "valsound.percus1", 30);
@@ -638,7 +539,7 @@
 				adddrumkitnote(1, "Synth -DX7- Tom #4", "valsound.percus37");
 				adddrumkitnote(1, "Triangle 1 o5c", "valsound.percus38");
 				break;
-			case 2: 
+			case 2:
 				//MIDI DRUMS
 				drumkit[2].kitname = "Midi Drumkit";
 				adddrumkitnote(2, "Seq Click H", "midi.drum24", 24);
@@ -705,8 +606,8 @@
 				break;
 			}
 		}
-		
-		static void changekey(int t)
+
+		void changekey(int t)
 		{
 			int keyshift = t - key;
 			for (i = 0; i < musicbox[currentbox].numnotes; i++)
@@ -718,12 +619,12 @@
 			musicbox[currentbox].setnotespan();
 			updatepianoroll();
 		}
-		
-		static void changescale(int t)
+
+		void changescale(int t)
 		{
 			setscale(t);
 			updatepianoroll();
-			
+
 			//Delete notes not in scale
 			for (i = 0; i < musicbox[currentbox].numnotes; i++)
 			{
@@ -733,7 +634,7 @@
 					i--;
 				}
 			}
-			
+
 			musicbox[currentbox].scale = t;
 			if (musicbox[currentbox].bottomnote < 250)
 			{
@@ -746,14 +647,14 @@
 			}
 			musicbox[currentbox].setnotespan();
 		}
-		
-		static void changemusicbox(int t)
+
+		void changemusicbox(int t)
 		{
 			currentbox = t;
 			key = musicbox[t].key;
 			setscale(musicbox[t].scale);
 			updatepianoroll();
-			
+
 			if (instrument[musicbox[t].instr].type == 0)
 			{
 				if (musicbox[t].bottomnote < 250)
@@ -770,11 +671,11 @@
 			{
 				musicbox[t].start = 0;
 			}
-			
+
 			guiclass.changetab(currenttab);
 		}
-		
-		static function _setscale(int t1 = -1, int t2 = -1, int t3 = -1, int t4 = -1, int t5 = -1, int t6 = -1, int t7 = -1, int t8 = -1, int t9 = -1, int t10 = -1, int t11 = -1, int t12 = -1):void
+
+		void _setscale(int t1 = -1, int t2 = -1, int t3 = -1, int t4 = -1, int t5 = -1, int t6 = -1, int t7 = -1, int t8 = -1, int t9 = -1, int t10 = -1, int t11 = -1, int t12 = -1)
 		{
 			if (t1 == -1)
 			{
@@ -907,108 +808,108 @@
 				scalesize = 12;
 			}
 		}
-		
-		static void setscale(int t)
+
+		void setscale(int t)
 		{
 			currentscale = t;
 			switch (t)
 			{
-			case SCALE_MAJOR: 
+			case SCALE_MAJOR:
 				_setscale(2, 2, 1, 2, 2, 2, 1);
 				break;
-			case SCALE_MINOR: 
+			case SCALE_MINOR:
 				_setscale(2, 1, 2, 2, 2, 2, 1);
 				break;
-			case SCALE_BLUES: 
+			case SCALE_BLUES:
 				_setscale(3, 2, 1, 1, 3, 2);
 				break;
-			case SCALE_HARMONIC_MINOR: 
+			case SCALE_HARMONIC_MINOR:
 				_setscale(2, 1, 2, 2, 1, 3, 1);
 				break;
-			case SCALE_PENTATONIC_MAJOR: 
+			case SCALE_PENTATONIC_MAJOR:
 				_setscale(2, 3, 2, 2, 3);
 				break;
-			case SCALE_PENTATONIC_MINOR: 
+			case SCALE_PENTATONIC_MINOR:
 				_setscale(3, 2, 2, 3, 2);
 				break;
-			case SCALE_PENTATONIC_BLUES: 
+			case SCALE_PENTATONIC_BLUES:
 				_setscale(3, 2, 1, 1, 3, 2);
 				break;
-			case SCALE_PENTATONIC_NEUTRAL: 
+			case SCALE_PENTATONIC_NEUTRAL:
 				_setscale(2, 3, 2, 3, 2);
 				break;
-			case SCALE_ROMANIAN_FOLK: 
+			case SCALE_ROMANIAN_FOLK:
 				_setscale(2, 1, 3, 1, 2, 1, 2);
 				break;
-			case SCALE_SPANISH_GYPSY: 
+			case SCALE_SPANISH_GYPSY:
 				_setscale(2, 1, 3, 1, 2, 1, 2);
 				break;
-			case SCALE_ARABIC_MAGAM: 
+			case SCALE_ARABIC_MAGAM:
 				_setscale(2, 2, 1, 1, 2, 2, 2);
 				break;
-			case SCALE_CHINESE: 
+			case SCALE_CHINESE:
 				_setscale(4, 2, 1, 4, 1);
 				break;
-			case SCALE_HUNGARIAN: 
+			case SCALE_HUNGARIAN:
 				_setscale(2, 1, 3, 1, 1, 3, 1);
 				break;
-			case CHORD_MAJOR: 
+			case CHORD_MAJOR:
 				_setscale(4, 3, 5);
 				break;
-			case CHORD_MINOR: 
+			case CHORD_MINOR:
 				_setscale(3, 4, 5);
 				break;
-			case CHORD_5TH: 
+			case CHORD_5TH:
 				_setscale(7, 5);
 				break;
-			case CHORD_DOM_7TH: 
+			case CHORD_DOM_7TH:
 				_setscale(4, 3, 3, 2);
 				break;
-			case CHORD_MAJOR_7TH: 
+			case CHORD_MAJOR_7TH:
 				_setscale(4, 3, 4, 1);
 				break;
-			case CHORD_MINOR_7TH: 
+			case CHORD_MINOR_7TH:
 				_setscale(3, 4, 3, 2);
 				break;
-			case CHORD_MINOR_MAJOR_7TH: 
+			case CHORD_MINOR_MAJOR_7TH:
 				_setscale(3, 4, 4, 1);
 				break;
-			case CHORD_SUS4: 
+			case CHORD_SUS4:
 				_setscale(5, 2, 5);
 				break;
-			case CHORD_SUS2: 
+			case CHORD_SUS2:
 				_setscale(2, 5, 5);
 				break;
-			default: 
-			case SCALE_NORMAL: 
+			default:
+			case SCALE_NORMAL:
 				_setscale(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
 				break;
 			}
 		}
-		
-		static void updatepianoroll()
+
+		void updatepianoroll()
 		{
 			//Set piano roll based on currently loaded scale
-			int scaleiter = -1, int pianorolliter = 0, int lastnote = 0;
-			
+			int scaleiter = -1;  int pianoroll_iter = 0;  int lastnote = 0;
+
 			lastnote = key;
-			pianorollsize = 0;
-			
+			pianoroll_size = 0;
+
 			while (lastnote < 104)
 			{
-				pianoroll[pianorolliter] = lastnote;
-				pianorollsize++;
-				pianorolliter++;
+				pianoroll[pianoroll_iter] = lastnote;
+				pianoroll_size++;
+				pianoroll_iter++;
 				scaleiter++;
 				if (scaleiter >= scalesize) scaleiter -= scalesize;
-				
-				lastnote = pianoroll[pianorolliter - 1] + scale[scaleiter];
+
+				lastnote = pianoroll[pianoroll_iter - 1] + scale[scaleiter];
 			}
-			
+
 			for (i = 0; i < 104; i++)
 			{
 				invertpianoroll[i] = -1;
-				for (j = 0; j < pianorollsize; j++)
+				for (j = 0; j < pianoroll_size; j++)
 				{
 					if (pianoroll[j] == i)
 					{
@@ -1017,8 +918,8 @@
 				}
 			}
 		}
-		
-		static void addmusicbox()
+
+		void addmusicbox()
 		{
 			musicbox[numboxes].clear();
 			musicbox[numboxes].instr = currentinstrument;
@@ -1026,11 +927,11 @@
 			musicbox[numboxes].hash += currentinstrument;
 			numboxes++;
 		}
-		
-		static void copymusicbox(int a, int b)
+
+		void copymusicbox(int a, int b)
 		{
 			musicbox[a].numnotes = musicbox[b].numnotes;
-			
+
 			for (j = 0; j < musicbox[a].numnotes; j++)
 			{
 				musicbox[a].notes[j].x = musicbox[b].notes[j].x;
@@ -1038,19 +939,19 @@
 				musicbox[a].notes[j].width = musicbox[b].notes[j].width;
 				musicbox[a].notes[j].height = musicbox[b].notes[j].height;
 			}
-			
+
 			for (j = 0; j < 16; j++)
 			{
-				musicbox[a].cutoffgraph[j] = musicbox[b].cutoffgraph[j]
-				musicbox[a].resonancegraph[j] = musicbox[b].resonancegraph[j]
-				musicbox[a].volumegraph[j] = musicbox[b].volumegraph[j]
+				musicbox[a].cutoffgraph[j] = musicbox[b].cutoffgraph[j];
+				musicbox[a].resonancegraph[j] = musicbox[b].resonancegraph[j];
+				musicbox[a].volumegraph[j] = musicbox[b].volumegraph[j];
 			}
-			
+
 			musicbox[a].recordfilter = musicbox[b].recordfilter;
 			musicbox[a].topnote = musicbox[b].topnote;
 			musicbox[a].bottomnote = musicbox[b].bottomnote;
 			musicbox[a].notespan = musicbox[b].notespan;
-			
+
 			musicbox[a].start = musicbox[b].start;
 			musicbox[a].key = musicbox[b].key;
 			musicbox[a].instr = musicbox[b].instr;
@@ -1058,8 +959,8 @@
 			musicbox[a].scale = musicbox[b].scale;
 			musicbox[a].isplayed = musicbox[b].isplayed;
 		}
-		
-		static void deletemusicbox(int t)
+
+		void deletemusicbox(int t)
 		{
 			if (currentbox == t) currentbox--;
 			for (i = t; i < numboxes; i++)
@@ -1067,7 +968,7 @@
 				copymusicbox(i, i + 1);
 			}
 			numboxes--;
-			
+
 			for (j = 0; j < 8; j++)
 			{
 				for (i = 0; i < arrange.lastbar; i++)
@@ -1083,33 +984,33 @@
 				}
 			}
 		}
-		
-		static void seekposition(int t)
+
+		void seekposition(int t)
 		{
 			//Make this smoother someday maybe
 			barposition = t;
 		}
-		
-		static void filllist(int t)
+
+		void filllist(int t)
 		{
 			list.type = t;
 			switch (t)
 			{
-			case LIST_KEY: 
+			case LIST_KEY:
 				for (i = 0; i < 12; i++)
 				{
 					list.item[i] = notename[i];
 				}
 				list.numitems = 12;
 				break;
-			case LIST_SCALE: 
+			case LIST_SCALE:
 				for (i = 0; i < 23; i++)
 				{
 					list.item[i] = scalename[i];
 				}
 				list.numitems = 23;
 				break;
-			case LIST_CATEGORY: 
+			case LIST_CATEGORY:
 				list.item[0] = "MIDI";
 				list.item[1] = "DRUMKIT";
 				list.item[2] = "CHIPTUNE";
@@ -1125,7 +1026,7 @@
 				list.item[12] = "WORLD";
 				list.numitems = 13;
 				break;
-			case LIST_INSTRUMENT: 
+			case LIST_INSTRUMENT:
 				if (voicelist.sublistsize > 15)
 				{
 					//Need to split into several pages
@@ -1160,7 +1061,7 @@
 					list.numitems = voicelist.sublistsize;
 				}
 				break;
-			case LIST_MIDIINSTRUMENT: 
+			case LIST_MIDIINSTRUMENT:
 				midilistselection = -1;
 				list.item[0] = "> Piano";
 				list.item[1] = "> Bells";
@@ -1180,39 +1081,39 @@
 				list.item[15] = "> Effects";
 				list.numitems = 16;
 				break;
-			case LIST_SELECTINSTRUMENT: 
+			case LIST_SELECTINSTRUMENT:
 				//For choosing from existing instruments
 				for (i = 0; i < numinstrument; i++)
 				{
-					list.item[i] = std::string(i + 1) + " " + instrument[i].name;
+					list.item[i] = to_string(i + 1) + " " + instrument[i].name;
 				}
 				list.numitems = numinstrument;
 				break;
-			case LIST_BUFFERSIZE: 
+			case LIST_BUFFERSIZE:
 				list.item[0] = "2048 (default, high performance)";
 				list.item[1] = "4096 (try if you get cracking on wav exports)";
 				list.item[2] = "8192 (slow, not recommended)";
 				list.numitems = 3;
 				break;
-			case LIST_EFFECTS: 
+			case LIST_EFFECTS:
 				for (i = 0; i < 7; i++)
 				{
 					list.item[i] = effectname[i];
 				}
 				list.numitems = 7;
 				break;
-			case LIST_MOREEXPORTS: 
+			case LIST_MOREEXPORTS:
 				list.item[0] = "EXPORT .xm (wip)";
 				list.item[1] = "EXPORT .mml (wip)";
 				list.numitems = 2;
 				break;
-			case LIST_EXPORTS: 
+			case LIST_EXPORTS:
 				list.item[0] = "EXPORT .wav";
 				list.item[1] = "EXPORT .mid";
 				list.item[2] = "> More";
 				list.numitems = 3;
 				break;
-			default: 
+			default:
 				//Midi list
 				list.type = LIST_MIDIINSTRUMENT;
 				secondlist.type = t;
@@ -1224,13 +1125,13 @@
 				break;
 			}
 		}
-		
-		static void setinstrumenttoindex(int t)
+
+		void setinstrumenttoindex(int t)
 		{
 			voicelist.index = instrument[t].index;
 			if (help::Left(voicelist.voice[voicelist.index], 7) == "drumkit")
 			{
-				instrument[t].type = int(help::Right(voicelist.voice[voicelist.index]));
+				instrument[t].type = to<int>(help::Right(voicelist.voice[voicelist.index]));
 				instrument[t].updatefilter();
 				drumkit[instrument[t].type - 1].updatefilter(instrument[t].cutoff, instrument[t].resonance);
 			}
@@ -1240,37 +1141,37 @@
 				instrument[t].voice = _presets[voicelist.voice[voicelist.index]];
 				instrument[t].updatefilter();
 			}
-			
+
 			instrument[t].name = voicelist.name[voicelist.index];
 			instrument[t].category = voicelist.category[voicelist.index];
 			instrument[t].palette = voicelist.palette[voicelist.index];
 		}
-		
-		static void nextinstrument()
+
+		void nextinstrument()
 		{
 			//Change to the next instrument in a category
 			voicelist.index = voicelist.getnext(voicelist.getvoice(instrument[currentinstrument].name));
 			changeinstrumentvoice(voicelist.name[voicelist.index]);
 		}
-		
-		static void previousinstrument()
+
+		void previousinstrument()
 		{
 			//Change to the previous instrument in a category
 			voicelist.index = voicelist.getprevious(voicelist.getvoice(instrument[currentinstrument].name));
 			changeinstrumentvoice(voicelist.name[voicelist.index]);
 		}
-		
-		static void changeinstrumentvoice(std::string t)
+
+		void changeinstrumentvoice(std::string t)
 		{
 			instrument[currentinstrument].name = t;
 			voicelist.index = voicelist.getvoice(t);
 			instrument[currentinstrument].category = voicelist.category[voicelist.index];
 			if (help::Left(voicelist.voice[voicelist.index], 7) == "drumkit")
 			{
-				instrument[currentinstrument].type = int(help::Right(voicelist.voice[voicelist.index]));
+				instrument[currentinstrument].type = to<int>(help::Right(voicelist.voice[voicelist.index]));
 				instrument[currentinstrument].updatefilter();
 				drumkit[instrument[currentinstrument].type - 1].updatefilter(instrument[currentinstrument].cutoff, instrument[currentinstrument].resonance);
-				
+
 				if (currentbox > -1)
 				{
 					if (musicbox[currentbox].start > drumkit[instrument[currentinstrument].type - 1].size)
@@ -1285,10 +1186,10 @@
 				instrument[currentinstrument].voice = _presets[voicelist.voice[voicelist.index]];
 				instrument[currentinstrument].updatefilter();
 			}
-			
+
 			instrument[currentinstrument].palette = voicelist.palette[voicelist.index];
 			instrument[currentinstrument].index = voicelist.index;
-			
+
 			for (i = 0; i < numboxes; i++)
 			{
 				if (musicbox[i].instr == currentinstrument)
@@ -1297,69 +1198,69 @@
 				}
 			}
 		}
-		
-		static void makefilestring()
+
+		void makefilestring()
 		{
 			filestring = "";
-			filestring += std::string(version) + ",";
-			filestring += std::string(swing) + ",";
-			filestring += std::string(effecttype) + ",";
-			filestring += std::string(effectvalue) + ",";
-			filestring += std::string(bpm) + ",";
-			filestring += std::string(boxcount) + ",";
-			filestring += std::string(barcount) + ",";
+			filestring += to_string(version) + ",";
+			filestring += to_string(swing) + ",";
+			filestring += to_string(effecttype) + ",";
+			filestring += to_string(effectvalue) + ",";
+			filestring += to_string(bpm) + ",";
+			filestring += to_string(boxcount) + ",";
+			filestring += to_string(barcount) + ",";
 			//Instruments first!
-			filestring += std::string(numinstrument) + ",";
+			filestring += to_string(numinstrument) + ",";
 			for (i = 0; i < numinstrument; i++)
 			{
-				filestring += std::string(instrument[i].index) + ",";
-				filestring += std::string(instrument[i].type) + ",";
-				filestring += std::string(instrument[i].palette) + ",";
-				filestring += std::string(instrument[i].cutoff) + ",";
-				filestring += std::string(instrument[i].resonance) + ",";
-				filestring += std::string(instrument[i].volume) + ",";
+				filestring += to_string(instrument[i].index) + ",";
+				filestring += to_string(instrument[i].type) + ",";
+				filestring += to_string(instrument[i].palette) + ",";
+				filestring += to_string(instrument[i].cutoff) + ",";
+				filestring += to_string(instrument[i].resonance) + ",";
+				filestring += to_string(instrument[i].volume) + ",";
 			}
 			//Next, musicboxes
-			filestring += std::string(numboxes) + ",";
+			filestring += to_string(numboxes) + ",";
 			for (i = 0; i < numboxes; i++)
 			{
-				filestring += std::string(musicbox[i].key) + ",";
-				filestring += std::string(musicbox[i].scale) + ",";
-				filestring += std::string(musicbox[i].instr) + ",";
-				filestring += std::string(musicbox[i].palette) + ",";
-				filestring += std::string(musicbox[i].numnotes) + ",";
+				filestring += to_string(musicbox[i].key) + ",";
+				filestring += to_string(musicbox[i].scale) + ",";
+				filestring += to_string(musicbox[i].instr) + ",";
+				filestring += to_string(musicbox[i].palette) + ",";
+				filestring += to_string(musicbox[i].numnotes) + ",";
 				for (j = 0; j < musicbox[i].numnotes; j++)
 				{
-					filestring += std::string(musicbox[i].notes[j].x) + ",";
-					filestring += std::string(musicbox[i].notes[j].y) + ",";
-					filestring += std::string(musicbox[i].notes[j].width) + ",";
-					filestring += std::string(musicbox[i].notes[j].height) + ",";
+					filestring += to_string(musicbox[i].notes[j].x) + ",";
+					filestring += to_string(musicbox[i].notes[j].y) + ",";
+					filestring += to_string(musicbox[i].notes[j].width) + ",";
+					filestring += to_string(musicbox[i].notes[j].height) + ",";
 				}
-				filestring += std::string(musicbox[i].recordfilter) + ",";
+				filestring += to_string(musicbox[i].recordfilter) + ",";
 				if (musicbox[i].recordfilter == 1)
 				{
 					for (j = 0; j < 16; j++)
 					{
-						filestring += std::string(musicbox[i].volumegraph[j]) + ",";
-						filestring += std::string(musicbox[i].cutoffgraph[j]) + ",";
-						filestring += std::string(musicbox[i].resonancegraph[j]) + ",";
+						filestring += to_string(musicbox[i].volumegraph[j]) + ",";
+						filestring += to_string(musicbox[i].cutoffgraph[j]) + ",";
+						filestring += to_string(musicbox[i].resonancegraph[j]) + ",";
 					}
 				}
 			}
 			//Next, arrangements
-			filestring += std::string(arrange.lastbar) + ",";
-			filestring += std::string(arrange.loopstart) + ",";
-			filestring += std::string(arrange.loopend) + ",";
+			filestring += to_string(arrange.lastbar) + ",";
+			filestring += to_string(arrange.loopstart) + ",";
+			filestring += to_string(arrange.loopend) + ",";
 			for (i = 0; i < arrange.lastbar; i++)
 			{
 				for (j = 0; j < 8; j++)
 				{
-					filestring += std::string(arrange.bar[i].channel[j]) + ",";
+					filestring += to_string(arrange.bar[i].channel[j]) + ",";
 				}
 			}
 		}
-		
-		static void newsong()
+
+		void newsong()
 		{
 			changetab(MENUTAB_FILE);
 			bpm = 120;
@@ -1381,19 +1282,19 @@
 			instrumentmanagerview = 0;
 			patternmanagerview = 0;
 			// set instrument to grand piano
-			instrument[0] = new instrumentclass();
+			instrument[0] = instrumentclass();
 			instrument[0].voice = _presets["midi.piano1"];
 			instrument[0].updatefilter();
 			showmessage("NEW SONG CREATED");
 		}
-		
-		static int readfilestream()
+
+		int readfilestream()
 		{
 			fi++;
-			return filestream[fi - 1];
+			return to<int>(filestream[fi - 1]);
 		}
-		
-		static void convertfilestring()
+
+		void convertfilestring()
 		{
 			fi = 0;
 			version = readfilestream();
@@ -1470,408 +1371,91 @@
 			else
 			{
 				//opps, the file we're loading is out of date. Let's try to convert it
-				legacy_convertfilestring(version);
-				version = 3;
+				assert(false && "not handled")
+					version = 3;
 			}
 		}
-		
-		static function legacy_convertfilestring(int t):void
-		{
-			switch (t)
-			{
-			case 2: //Before effects and 32 note patterns
-				swing = readfilestream();
-				effecttype = 0;
-				effectvalue = 0;
-				bpm = readfilestream();
-				_driver.bpm = bpm;
-				boxcount = readfilestream();
-				doublesize = boxcount > 16;
-				barcount = readfilestream();
-				numinstrument = readfilestream();
-				for (i = 0; i < numinstrument; i++)
-				{
-					instrument[i].index = readfilestream();
-					setinstrumenttoindex(i);
-					instrument[i].type = readfilestream();
-					instrument[i].palette = readfilestream();
-					instrument[i].cutoff = readfilestream();
-					instrument[i].resonance = readfilestream();
-					instrument[i].volume = readfilestream();
-					instrument[i].updatefilter();
-					if (instrument[i].type > 0)
-					{
-						drumkit[instrument[i].type - 1].updatefilter(instrument[i].cutoff, instrument[i].resonance);
-						drumkit[instrument[i].type - 1].updatevolume(instrument[i].volume);
-					}
-				}
-				//Next, musicboxes
-				numboxes = readfilestream();
-				for (i = 0; i < numboxes; i++)
-				{
-					musicbox[i].key = readfilestream();
-					musicbox[i].scale = readfilestream();
-					musicbox[i].instr = readfilestream();
-					musicbox[i].palette = readfilestream();
-					musicbox[i].numnotes = readfilestream();
-					for (j = 0; j < musicbox[i].numnotes; j++)
-					{
-						musicbox[i].notes[j].x = readfilestream();
-						musicbox[i].notes[j].y = readfilestream();
-						musicbox[i].notes[j].width = readfilestream();
-						musicbox[i].notes[j].height = readfilestream();
-					}
-					musicbox[i].findtopnote();
-					musicbox[i].findbottomnote();
-					musicbox[i].notespan = musicbox[i].topnote - musicbox[i].bottomnote;
-					musicbox[i].recordfilter = readfilestream();
-					if (musicbox[i].recordfilter == 1)
-					{
-						for (j = 0; j < 16; j++)
-						{
-							musicbox[i].volumegraph[j] = readfilestream();
-							musicbox[i].cutoffgraph[j] = readfilestream();
-							musicbox[i].resonancegraph[j] = readfilestream();
-						}
-					}
-				}
-				//Next, arrangements
-				arrange.lastbar = readfilestream();
-				arrange.loopstart = readfilestream();
-				arrange.loopend = readfilestream();
-				for (i = 0; i < arrange.lastbar; i++)
-				{
-					for (j = 0; j < 8; j++)
-					{
-						arrange.bar[i].channel[j] = readfilestream();
-					}
-				}
-				break;
-			case 1: //Original release, had a bug where volume info wasn't saved
-				bpm = readfilestream();
-				_driver.bpm = bpm;
-				swing = 0;
-				effecttype = 0;
-				effectvalue = 0;
-				boxcount = readfilestream();
-				doublesize = boxcount > 16;
-				barcount = readfilestream();
-				numinstrument = readfilestream();
-				for (i = 0; i < numinstrument; i++)
-				{
-					instrument[i].index = readfilestream();
-					setinstrumenttoindex(i);
-					instrument[i].type = readfilestream();
-					instrument[i].palette = readfilestream();
-					instrument[i].cutoff = readfilestream();
-					instrument[i].resonance = readfilestream();
-					instrument[i].updatefilter();
-					if (instrument[i].type > 0)
-					{
-						drumkit[instrument[i].type - 1].updatefilter(instrument[i].cutoff, instrument[i].resonance);
-					}
-				}
-				//Next, musicboxes
-				numboxes = readfilestream();
-				for (i = 0; i < numboxes; i++)
-				{
-					musicbox[i].key = readfilestream();
-					musicbox[i].scale = readfilestream();
-					musicbox[i].instr = readfilestream();
-					musicbox[i].palette = readfilestream();
-					musicbox[i].numnotes = readfilestream();
-					for (j = 0; j < musicbox[i].numnotes; j++)
-					{
-						musicbox[i].notes[j].x = readfilestream();
-						musicbox[i].notes[j].y = readfilestream();
-						musicbox[i].notes[j].width = readfilestream();
-						musicbox[i].notes[j].height = readfilestream();
-					}
-					musicbox[i].findtopnote();
-					musicbox[i].findbottomnote();
-					musicbox[i].notespan = musicbox[i].topnote - musicbox[i].bottomnote;
-					musicbox[i].recordfilter = readfilestream();
-					if (musicbox[i].recordfilter == 1)
-					{
-						for (j = 0; j < 16; j++)
-						{
-							musicbox[i].volumegraph[j] = readfilestream();
-							musicbox[i].cutoffgraph[j] = readfilestream();
-							musicbox[i].resonancegraph[j] = readfilestream();
-						}
-					}
-				}
-				//Next, arrangements
-				arrange.lastbar = readfilestream();
-				arrange.loopstart = readfilestream();
-				arrange.loopend = readfilestream();
-				for (i = 0; i < arrange.lastbar; i++)
-				{
-					for (j = 0; j < 8; j++)
-					{
-						arrange.bar[i].channel[j] = readfilestream();
-					}
-				}
-				break;
-			}
-		}
-		
+
 		// File stuff
-		
-		CONFIG::desktop
+		void saveceol()
 		{
-			
-			static bool fileHasExtension(File file, std::string extension)
-			{
-				if (!file.extension || file.extension.toLowerCase() != extension)
-				{
-					return false;
-				}
-				return true;
-			}
-			
-			static void addExtensionToFile(File file, std::string extension)
-			{
-				file.url += "." + extension;
-			}
-			
-			static void saveceol()
-			{
-				if (!filepath)
-				{
-					filepath = defaultDirectory;
-				}
-				file = filepath.resolvePath("*.ceol");
-				file.addEventListener(Event.SELECT, onsaveceol);
-				file.browseForSave("Save .ceol File");
-				
-				fixmouseclicks = true;
-			}
-			
-			private static void onsaveceol(Event e)
-			{
-				file = e.currentTarget as File;
-				
-				if (!fileHasExtension(file, "ceol"))
-				{
-					addExtensionToFile(file, "ceol");
-				}
-				
-				makefilestring();
-				
-				stream = new FileStream();
-				stream.open(file, FileMode.WRITE);
-				stream.writeUTFBytes(filestring);
-				stream.close();
-				
-				fixmouseclicks = true;
-				showmessage("SONG SAVED");
-				savefilesettings();
-			}
-			
-			static void loadceol()
-			{
-				if (!filepath)
-				{
-					filepath = defaultDirectory;
-				}
-				file = filepath.resolvePath("");
-				file.addEventListener(Event.SELECT, onloadceol);
-				file.browseForOpen("Load .ceol File", [ceolFilter]);
-				
-				fixmouseclicks = true;
-			}
-			
-			static void invokeceol(std::string t)
-			{
-				file = new File();
-				file.nativePath = t;
-				
-				stream = new FileStream();
-				stream.open(file, FileMode.READ);
-				filestring = stream.readUTFBytes(stream.bytesAvailable);
-				stream.close();
-				
-				loadfilestring(filestring);
-				_driver.play(null, false);
-				
-				fixmouseclicks = true;
-				showmessage("SONG LOADED");
-			}
-			
-			private static void onloadceol(Event e)
-			{
-				file = e.currentTarget as File;
-				filepath = file.resolvePath("");
-				
-				stream = new FileStream();
-				stream.open(file, FileMode.READ);
-				filestring = stream.readUTFBytes(stream.bytesAvailable);
-				stream.close();
-				
-				loadfilestring(filestring);
-				_driver.play(null, false);
-				
-				fixmouseclicks = true;
-				showmessage("SONG LOADED");
-				savefilesettings();
-			}
-			
-			static void exportxm()
-			{
-				stopmusic();
-				
-				if (!filepath)
-				{
-					filepath = defaultDirectory;
-				}
-				file = filepath.resolvePath("*.xm");
-				file.addEventListener(Event.SELECT, onexportxm);
-				file.browseForSave("Export .XM module file");
-				
-				fixmouseclicks = true;
-			}
-			
-			private static void onexportxm(Event e)
-			{
-				file = e.currentTarget as File;
-				
-				if (!fileHasExtension(file, "xm"))
-				{
-					addExtensionToFile(file, "xm");
-				}
-				
-				TrackerModuleXM xm = new TrackerModuleXM();
-				xm.loadFromLiveBoscaCeoilModel(file.name);
-				
-				stream = new FileStream();
-				stream.open(file, FileMode.WRITE);
-				xm.writeToStream(stream);
-				stream.close();
-				
-				fixmouseclicks = true;
-				showmessage("SONG EXPORTED AS XM");
-				savefilesettings();
-			}
-			
-			static void exportmml()
-			{
-				stopmusic();
-				
-				if (!filepath)
-				{
-					filepath = defaultDirectory;
-				}
-				file = filepath.resolvePath("*.mml");
-				file.addEventListener(Event.SELECT, onexportmml);
-				file.browseForSave("Export MML music text file");
-				
-				fixmouseclicks = true;
-			}
-			
-			private static void onexportmml(Event e)
-			{
-				file = e.currentTarget as File;
-				
-				if (!fileHasExtension(file, "mml"))
-				{
-					addExtensionToFile(file, "mml");
-				}
-				
-				MMLSong song = new MMLSong();
-				song.loadFromLiveBoscaCeoilModel();
-				
-				stream = new FileStream();
-				stream.open(file, FileMode.WRITE);
-				song.writeToStream(stream);
-				stream.close();
-				
-				fixmouseclicks = true;
-				showmessage("SONG EXPORTED AS MML");
-				savefilesettings();
-			}
-			
-			private static void onsavewav(Event e)
-			{
-				file = e.currentTarget as File;
-				
-				if (!fileHasExtension(file, "wav"))
-				{
-					addExtensionToFile(file, "wav");
-				}
-				
-				stream = new FileStream();
-				stream.open(file, FileMode.WRITE);
-				stream.writeBytes(_wav, 0, _wav.length);
-				stream.close();
-				
-				fixmouseclicks = true;
-				showmessage("SONG EXPORTED AS WAV");
-				savefilesettings();
-			}
-		
+			// todo(Gustav): add file browsing
+			// "Save .ceol File"
+			// "*.ceol"
+			onsaveceol("song.ceol");
+
+			fixmouseclicks = true;
 		}
-		
-		CONFIG::web
+
+		void onsaveceol(const std::string& file)
 		{
-			static void invokeCeolWeb(std::string ceolStr)
-			{
-				changetab(MENUTAB_FILE);
-				if (ceolStr != "")
-				{
-					filestring = ceolStr;
-					loadfilestring(filestring);
-					showmessage("SONG LOADED");
-				}
-				else
-				{
-					newsong();
-				}
-				
-				_driver.play(null, false);
-			}
-			
-			static std getCeolString()::string
-			{
-				makefilestring();
-				return filestring;
-			}
+			makefilestring();
+
+			std::ofstream stream;
+			stream.open(file);
+			stream << filestring;
+			stream.close();
+
+			fixmouseclicks = true;
+			showmessage("SONG SAVED");
 		}
-		
-		private static void loadfilestring(std::string s)
+
+		void loadceol()
 		{
-			filestream = new Array();
-			filestream = s.split(",");
-			
+			// file.browseForOpen("Load .ceol File", FileFilter("Ceol", "*.ceol"));
+			onloadceol("my-song.ceol");
+
+			fixmouseclicks = true;
+		}
+
+		void onloadceol(const std::string& filepath)
+		{
+			std::ifstream stream;
+			stream.open(filepath);
+
+			std::stringstream buffer;
+			buffer << stream.rdbuf();
+			filestring = buffer.str();
+
+			stream.close();
+
+			loadfilestring(filestring);
+			_driver.play(nullptr, false);
+
+			fixmouseclicks = true;
+			showmessage("SONG LOADED");
+
+		}
+
+		std::vector<std::string> filestream;
+		void loadfilestring(std::string s)
+		{
+			auto ss = std::istringstream(s);
+
+			std::string str;
+			while (std::getline(ss, str, ' ')){
+				filestream.emplace_back(str);
+			}
+
 			numinstrument = 1;
 			numboxes = 0;
 			arrange.clear();
 			arrange.currentbar = 0;
 			arrange.viewstart = 0;
-			
+
 			convertfilestring();
-			
+
 			changemusicbox(0);
 			looptime = 0;
 		}
-		
-		static void showmessage(std::string t)
+
+		void showmessage(std::string t)
 		{
 			message = t;
 			messagedelay = 90;
 		}
-		
-		static void onStream(SiONEvent e)
-		{
-			e.streamBuffer.position = 0;
-			while (e.streamBuffer.bytesAvailable > 0)
-			{
-				int d = e.streamBuffer.readFloat() * 32767;
-				if (nowexporting) _data.writeShort(d);
-			}
-		}
-		
-		static void pausemusic()
+
+		void pausemusic()
 		{
 			if (musicplaying)
 			{
@@ -1879,8 +1463,8 @@
 				if (!musicplaying) notecut();
 			}
 		}
-		
-		static void stopmusic()
+
+		void stopmusic()
 		{
 			if (musicplaying)
 			{
@@ -1890,16 +1474,27 @@
 				if (!musicplaying) notecut();
 			}
 		}
-		
-		static void startmusic()
+
+		void startmusic()
 		{
 			if (!musicplaying)
 			{
 				musicplaying = !musicplaying;
 			}
 		}
-		
-		static void exportwav()
+
+#if 0
+		void onStream(SiONEvent e)
+		{
+			e.streamBuffer.position = 0;
+			while (e.streamBuffer.bytesAvailable > 0)
+			{
+				int d = e.streamBuffer.readFloat() * 32767;
+				if (nowexporting) _data.writeShort(d);
+			}
+		}
+
+		void exportwav()
 		{
 			changetab(MENUTAB_ARRANGEMENTS);
 			clicklist = true;
@@ -1909,21 +1504,21 @@
 			looptime = 0;
 			arrange.currentbar = arrange.loopstart;
 			SetSwing();
-			
+
 			//Clear the wav buffer
-			_data = new ByteArray();
+			_data = ByteArray();
 			_data.endian = Endian.LITTLE_ENDIAN;
-			
+
 			followmode = true;
 			nowexporting = true;
 		}
-		
-		static void savewav()
+
+		void savewav()
 		{
 			nowexporting = false;
 			followmode = false;
-			
-			_wav = new ByteArray();
+
+			_wav = ByteArray();
 			_wav.endian = Endian.LITTLE_ENDIAN;
 			_wav.writeUTFBytes("RIFF");
 			int len = _data.length;
@@ -1941,36 +1536,38 @@
 			_wav.writeInt(len);
 			_data.position = 0;
 			_wav.writeBytes(_data);
-			
-			CONFIG::desktop
+
+
+			if (!filepath)
 			{
-				if (!filepath)
-				{
-					filepath = defaultDirectory;
-				}
-				file = filepath.resolvePath("*.wav");
-				file.addEventListener(Event.SELECT, onsavewav);
-				file.browseForSave("Export .wav File");
+				filepath = defaultDirectory;
 			}
-			
-			CONFIG::web
-			{
-				Base64Encoder b64 = new Base64Encoder();
-				_wav.position = 0;
-				b64.encodeBytes(_wav);
-				ExternalInterface.call('Bosca._wavRecorded', b64.toString());
-			}
-			
+			file = filepath.resolvePath("*.wav");
+			file.addEventListener(Event.SELECT, onsavewav);
+			file.browseForSave("Export .wav File");
+
 			fixmouseclicks = true;
 		}
-		
-		static void changetab(int newtab)
+
+		void onsavewav(const std::string& file)
+		{
+			std::ofstream stream;
+			stream.open(file);
+			stream << _wav;
+			stream.close();
+
+			fixmouseclicks = true;
+			showmessage("SONG EXPORTED AS WAV");
+		}
+#endif
+
+		void changetab(int newtab)
 		{
 			currenttab = newtab;
 			guiclass.changetab(newtab);
 		}
-		
-		static function changetab_ifdifferent(int newtab):void
+
+		void changetab_ifdifferent(int newtab)
 		{
 			if (currenttab != newtab)
 			{
@@ -1978,123 +1575,119 @@
 				guiclass.changetab(newtab);
 			}
 		}
-		
-		CONFIG::desktop
-		{
-			static File file, FileStream stream;
-		}
-		static std::string filestring, int fi;
-		static Array filestream;
-		static FileFilter ceolFilter = new FileFilter("Ceol", "*.ceol");
-		
-		static int i, int j, int k;
-		
-		static bool fullscreen;
-		
-		static bool fullscreentoggleheld = false;
-		
-		static bool press_up, bool press_down, bool press_left, bool press_right, bool press_space, bool press_enter;
-		static int keypriority = 0;
-		static bool keyheld = false;
-		;
-		static bool clicklist;
-		static bool clicksecondlist;
-		static bool copykeyheld = false;
-		
-		static int keydelay, int keyboardpressed = 0;
-		static bool fixmouseclicks = false;
-		
-		static int mx, int my;
-		static bool test, std::string teststring;
-		
-		static SiONDriver _driver;
-		static SiONPresetVoice _presets;
-		static voicelistclass voicelist;
-		
-		static std::vector<instrumentclass> instrument = new std::vector<instrumentclass>;
-		static int numinstrument;
-		static int instrumentmanagerview;
-		
-		static std::vector<musicphraseclass> musicbox = new std::vector<musicphraseclass>;
-		static int numboxes;
-		static int looptime;
-		static int currentbox;
-		static int currentnote;
-		static int currentinstrument;
-		static int boxsize, int boxcount;
-		static int barsize, int barcount;
-		static int notelength;
-		static bool doublesize;
-		static int arrangescrolldelay = 0;
-		
-		static float barposition = 0;
-		static int drawnoteposition, int drawnotelength;
-		
-		static int cursorx, int cursory;
-		static int arrangecurx, int arrangecury;
-		static int patterncury, int timelinecurx;
-		static int instrumentcury;
-		static int notey;
-		
-		static std::vector<std::string> notename;
-		static std::vector<std::string> scalename;
-		
-		static int currentscale = 0;
-		static std::vector<int> scale;
-		static int key;
-		static int scalesize;
-		
-		static std::vector<int> pianoroll;
-		static std::vector<int> invertpianoroll;
-		static int pianorollsize;
-		
-		static Arrangement arrange = new Arrangement();
-		static std::vector<Drumkit> drumkit = new std::vector<Drumkit>;
-		
-		static int currenttab;
-		
-		static int dragaction, int dragx, int dragy, int dragpattern;
-		static int patternmanagerview;
-		
-		static int trashbutton;
-		
-		static listclass list = new listclass;
-		static listclass secondlist = new listclass;
-		static int midilistselection;
-		
-		static bool musicplaying = true;
-		static bool nowexporting = false;
-		static bool followmode = false;
-		static int bpm;
-		static int version;
-		static int swing;
-		static int swingoff;
-		
-		static int doubleclickcheck;
-		
-		static SharedObject programsettings;
-		static int buffersize, int currentbuffersize;
-		
-		private static ByteArray _data;
-		private static ByteArray _wav;
-		
-		static std::string message;
-		static int messagedelay = 0;
-		static int startup = 0, std::string invokefile = "null";
-		static std::string ctrl;
-		
+
+
+		// File file; FileStream stream;
+		std::string filestring; int fi;
+
+		int i; int j; int k;
+
+		bool fullscreen;
+
+		bool fullscreentoggleheld = false;
+
+		bool press_up; bool press_down; bool press_left; bool press_right; bool press_space; bool press_enter;
+		int keypriority = 0;
+		bool keyheld = false;
+
+		bool clicklist;
+		bool clicksecondlist;
+		bool copykeyheld = false;
+
+		int keydelay; int keyboardpressed = 0;
+		bool fixmouseclicks = false;
+
+		int mx; int my;
+		bool test; std::string teststring;
+
+		// SiONDriver _driver;
+		// SiONPresetVoice _presets;
+		voicelistclass voicelist;
+
+		std::vector<instrumentclass> instrument;
+		int numinstrument;
+		int instrumentmanagerview;
+
+		std::vector<musicphraseclass> musicbox;
+		int numboxes;
+		int looptime;
+		int currentbox;
+		int currentnote;
+		int currentinstrument;
+		int boxsize; int boxcount;
+		int barsize; int barcount;
+		int notelength;
+		bool doublesize;
+		int arrangescrolldelay = 0;
+
+		float barposition = 0;
+		int drawnoteposition; int drawnotelength;
+
+		int cursorx; int cursory;
+		int arrangecurx; int arrangecury;
+		int patterncury; int timelinecurx;
+		int instrumentcury;
+		int notey;
+
+		std::vector<std::string> notename;
+		std::vector<std::string> scalename;
+
+		int currentscale = 0;
+		std::vector<int> scale;
+		int key;
+		int scalesize;
+
+		std::vector<int> pianoroll;
+		std::vector<int> invertpianoroll;
+		int pianoroll_size;
+
+		Arrangement arrange;
+		std::vector<Drumkit> drumkit;
+
+		int currenttab;
+
+		int dragaction; int dragx; int dragy; int dragpattern;
+		int patternmanagerview;
+
+		int trashbutton;
+
+		listclass list;
+		listclass secondlist;
+		int midilistselection;
+
+		bool musicplaying = true;
+		bool nowexporting = false;
+		bool followmode = false;
+		int bpm;
+		int version;
+		int swing;
+		int swingoff;
+
+		int doubleclickcheck;
+
+		// SharedObject programsettings;
+		int buffersize; int currentbuffersize;
+
+		// ByteArray _data;
+		// ByteArray _wav;
+
+		std::string message;
+		int messagedelay = 0;
+		int startup = 0; std::string invokefile = "nullptr";
+		std::string ctrl;
+
 		// Add filepath memory
-		static File filepath = null;
-		static File defaultDirectory = null;
-		
+		// File filepath = nullptr;
+		// File defaultDirectory = nullptr;
+
 		//Global effects
-		static int effecttype;
-		static int effectvalue;
-		static std::vector<std::string> effectname;
-		
-		static std::string versionnumber;
-		static int savescreencountdown;
-		static int minresizecountdown;
-		static bool forceresize = false;
-	}
+		int effecttype;
+		int effectvalue;
+		std::vector<std::string> effectname;
+
+		std::string versionnumber;
+		int savescreencountdown;
+		int minresizecountdown;
+		bool forceresize = false;
+	};
 }

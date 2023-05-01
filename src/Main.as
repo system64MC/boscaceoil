@@ -48,7 +48,7 @@ namespace bosca
 	import flash.utils.Timer;
 	import flash.events.InvokeEvent;
 	
-	CONFIG::desktop
+	
 	{
 		import flash.desktop.NativeApplication;
 	}
@@ -70,7 +70,7 @@ namespace bosca
 			control.version = 3;						// Version number used by file
 			control.ctrl = "Ctrl"; //Set this to Cmd on Mac so that the tutorial is correct
 			
-			CONFIG::desktop
+			
 			{
 				NativeApplication.nativeApplication.setAsDefaultApplication("ceol");
 				NativeApplication.nativeApplication.addEventListener(InvokeEvent.INVOKE, onInvokeEvent);
@@ -80,79 +80,78 @@ namespace bosca
 			control.init();
 			
 			//Working towards resolution independence!
-			gfx.init(stage);
+			gfx->init(stage);
 			
-			CONFIG::desktop
+			
 			{
 				stage.addEventListener(Event.RESIZE, handleResize);
 			}
 			
 			Bitmap tempbmp;
 			tempbmp = new im_icons();
-			gfx.buffer = tempbmp.bitmapData;
-			gfx.makeiconarray();
+			gfx->buffer = tempbmp.bitmapData;
+			gfx->makeiconarray();
 			tempbmp = new im_logo0();
-			gfx.buffer = tempbmp.bitmapData;
-			gfx.addimage();
+			gfx->buffer = tempbmp.bitmapData;
+			gfx->addimage();
 			tempbmp = new im_logo1();
-			gfx.buffer = tempbmp.bitmapData;
-			gfx.addimage();
+			gfx->buffer = tempbmp.bitmapData;
+			gfx->addimage();
 			tempbmp = new im_logo2();
-			gfx.buffer = tempbmp.bitmapData;
-			gfx.addimage();
+			gfx->buffer = tempbmp.bitmapData;
+			gfx->addimage();
 			tempbmp = new im_logo3();
-			gfx.buffer = tempbmp.bitmapData;
-			gfx.addimage();
+			gfx->buffer = tempbmp.bitmapData;
+			gfx->addimage();
 			tempbmp = new im_logo4();
-			gfx.buffer = tempbmp.bitmapData;
-			gfx.addimage();
+			gfx->buffer = tempbmp.bitmapData;
+			gfx->addimage();
 			tempbmp = new im_logo5();
-			gfx.buffer = tempbmp.bitmapData;
-			gfx.addimage();
+			gfx->buffer = tempbmp.bitmapData;
+			gfx->addimage();
 			tempbmp = new im_logo6();
-			gfx.buffer = tempbmp.bitmapData;
-			gfx.addimage();
+			gfx->buffer = tempbmp.bitmapData;
+			gfx->addimage();
 			tempbmp = new im_logo7();
-			gfx.buffer = tempbmp.bitmapData;
-			gfx.addimage();
+			gfx->buffer = tempbmp.bitmapData;
+			gfx->addimage();
 			
 			tempbmp = new im_tutorialimage0();
-			gfx.buffer = tempbmp.bitmapData;
-			gfx.addimage();
+			gfx->buffer = tempbmp.bitmapData;
+			gfx->addimage();
 			tempbmp = new im_tutorialimage1();
-			gfx.buffer = tempbmp.bitmapData;
-			gfx.addimage();
+			gfx->buffer = tempbmp.bitmapData;
+			gfx->addimage();
 			tempbmp = new im_tutorialimage2();
-			gfx.buffer = tempbmp.bitmapData;
-			gfx.addimage();
+			gfx->buffer = tempbmp.bitmapData;
+			gfx->addimage();
 			tempbmp = new im_tutorialimage3();
-			gfx.buffer = tempbmp.bitmapData;
-			gfx.addimage();
+			gfx->buffer = tempbmp.bitmapData;
+			gfx->addimage();
 			tempbmp = new im_tutorialimage4();
-			gfx.buffer = tempbmp.bitmapData;
-			gfx.addimage();
-			gfx.buffer = new BitmapData(1, 1, false, 0x000000);
+			gfx->buffer = tempbmp.bitmapData;
+			gfx->addimage();
+			gfx->buffer = new BitmapData(1, 1, false, 0x000000);
 			
 			control.changetab(control.MENUTAB_FILE);
 			
 			control.voicelist.fixlengths();
-			stage.fullScreenSourceRect = null;
-			addChild(gfx.screen);
+			stage.fullScreenSourceRect = nullptr;
+			addChild(gfx->screen);
 			
 			control.loadscreensettings();
 			control.loadfilesettings();
 			updategraphicsmode();
 			
-			gfx.changescalemode(gfx.scalemode);
+			gfx->changescalemode(gfx->scalemode);
 			
 			if (guiclass.firstrun)
 			{
-				guiclass.changewindow("firstrun");
 				control.changetab(control.currenttab);
 				control.clicklist = true;
 			}
 			
-			CONFIG::desktop
+			
 			{
 				_startMainLoop();
 			}
@@ -189,7 +188,7 @@ namespace bosca
 		{
 			// adjust the gui to fit the new device resolution
 			int tempwidth, int tempheight;
-			if (e != null)
+			if (e != nullptr)
 			{
 				e.preventDefault();
 				tempwidth = e.target.stageWidth;
@@ -197,44 +196,44 @@ namespace bosca
 			}
 			else
 			{
-				tempwidth = gfx.windowwidth;
-				tempheight = gfx.windowheight;
+				tempwidth = gfx->windowwidth;
+				tempheight = gfx->windowheight;
 			}
 			
 			control.savescreencountdown = 30; //Half a second after a resize, save the settings
 			control.minresizecountdown = 5; //Force a minimum screensize
-			gfx.changewindowsize(tempwidth, tempheight);
+			gfx->changewindowsize(tempwidth, tempheight);
 			
-			gfx.patternmanagerx = gfx.screenwidth - 116;
-			gfx.patterneditorheight = (gfx.windowheight - (gfx.pianorollposition - (gfx.linesize + 2))) / 12;
-			gfx.notesonscreen = ((gfx.screenheight - gfx.pianorollposition - gfx.linesize) / gfx.linesize) + 1;
-			gfx.tf_1.width = gfx.windowwidth;
-			gfx.updateboxsize();
+			gfx->patternmanagerx = gfx->screenwidth - 116;
+			gfx->patterneditorheight = (gfx->windowheight - (gfx->pianorollposition - (gfx->linesize + 2))) / 12;
+			gfx->notesonscreen = ((gfx->screenheight - gfx->pianorollposition - gfx->linesize) / gfx->linesize) + 1;
+			gfx->tf_1.width = gfx->windowwidth;
+			gfx->updateboxsize();
 			
 			guiclass.changetab(control.currenttab);
 			
-			BitmapData temp = new BitmapData(gfx.windowwidth, gfx.windowheight, false, 0x000000);
-			gfx.updatebackground = 5;
-			gfx.backbuffercache = new BitmapData(gfx.windowwidth, gfx.windowheight, false, 0x000000);
-			temp.copyPixels(gfx.backbuffer, gfx.backbuffer.rect, gfx.tl);
-			gfx.backbuffer = temp;
-			//gfx.screen.bitmapData.dispose();
-			gfx.screen.bitmapData = gfx.backbuffer;
-			if (gfx.scalemode == 1)
+			BitmapData temp = new BitmapData(gfx->windowwidth, gfx->windowheight, false, 0x000000);
+			gfx->updatebackground = 5;
+			gfx->backbuffercache = new BitmapData(gfx->windowwidth, gfx->windowheight, false, 0x000000);
+			temp.copyPixels(gfx->backbuffer, gfx->backbuffer.rect, gfx->tl);
+			gfx->backbuffer = temp;
+			//gfx->screen.bitmapData.dispose();
+			gfx->screen.bitmapData = gfx->backbuffer;
+			if (gfx->scalemode == 1)
 			{
-				gfx.screen.scaleX = 1.5;
-				gfx.screen.scaleY = 1.5;
+				gfx->screen.scaleX = 1.5;
+				gfx->screen.scaleY = 1.5;
 			}
 			else
 			{
-				gfx.screen.scaleX = 1;
-				gfx.screen.scaleY = 1;
+				gfx->screen.scaleX = 1;
+				gfx->screen.scaleY = 1;
 			}
 		}
 		
 		private function _startMainLoop():void
 		{
-			CONFIG::desktop
+			
 			{
 				NativeApplication.nativeApplication.addEventListener(Event.ACTIVATE, __activate__);
 				NativeApplication.nativeApplication.addEventListener(Event.DEACTIVATE, __deactivate__);
@@ -251,12 +250,12 @@ namespace bosca
 		
 		private function __activate__($Event event):void
 		{
-			gfx.changeframerate(30);
+			gfx->changeframerate(30);
 		}
 		
 		private function __deactivate__($Event event):void
 		{
-			gfx.changeframerate(1);
+			gfx->changeframerate(1);
 		}
 		
 		CONFIG::web
@@ -277,7 +276,7 @@ namespace bosca
 		
 		function _input():void
 		{
-			if (gfx.scalemode == 1)
+			if (gfx->scalemode == 1)
 			{
 				control.mx = mouseX / 1.5;
 				control.my = mouseY / 1.5;
@@ -298,13 +297,13 @@ namespace bosca
 			if (control.forceresize)
 			{
 				control.forceresize = false;
-				handleResize(null);
+				handleResize(nullptr);
 			}
 		}
 		
 		function _render():void
 		{
-			gfx.backbuffer.lock();
+			gfx->backbuffer.lock();
 			render(key);
 		}
 		
@@ -349,13 +348,13 @@ namespace bosca
 			control.savescreensettings();
 		}
 		
-		CONFIG::desktop
+		
 		{
 			void onInvokeEvent(InvokeEvent event)
 			{
 				if (event.arguments.length > 0)
 				{
-					if (event.currentDirectory != null)
+					if (event.currentDirectory != nullptr)
 					{
 						// set file directory to current directory
 						control.filepath = event.currentDirectory;

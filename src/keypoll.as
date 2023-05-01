@@ -46,6 +46,6 @@ void generickeypoll() {
 	if (control.press_space || control.press_right || control.press_left || control.press_enter ||
 			control.press_down || control.press_up) {
 		//Update screen when there is input.
-		gfx.updatebackground = 5;
+		gfx->updatebackground = 5;
 	}
 }

@@ -13,16 +13,16 @@
 		control.doubleclickcheck -= 2;
 		if (control.doubleclickcheck < 0) control.doubleclickcheck = 0;
 	}
-	if (gfx.buttonpress > 0) {
-		gfx.buttonpress -= 2;
-		if (gfx.buttonpress < 0) gfx.buttonpress = 0;
+	if (gfx->buttonpress > 0) {
+		gfx->buttonpress -= 2;
+		if (gfx->buttonpress < 0) gfx->buttonpress = 0;
 	}
 	
 	if (control.minresizecountdown > 0) {
 		control.minresizecountdown -= 2;
 		if (control.minresizecountdown <= 0) {
 			control.minresizecountdown = 0;
-			gfx.forceminimumsize();
+			gfx->forceminimumsize();
 		}
 	}
 	
